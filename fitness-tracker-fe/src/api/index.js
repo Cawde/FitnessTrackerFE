@@ -1,6 +1,6 @@
 import { storeToken, getToken } from "../auth";
 
-const BASE = 'https://fast-dawn-33652.herokuapp.com';
+const BASE = 'https://murmuring-journey-02933.herokuapp.com/api';
 
 
 export async function loginUser(username, password) {
@@ -26,9 +26,7 @@ export async function loginUser(username, password) {
           } else {
             storeToken(token);
           }
-          
           console.log(token);
-
         })
         .catch(console.error);
 }
