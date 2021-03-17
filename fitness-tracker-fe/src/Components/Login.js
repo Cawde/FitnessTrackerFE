@@ -114,19 +114,19 @@
 
 // export default Login;
 
-import React, { useState } from 'react';
+import React from 'react';
 
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
 
 const Login = (props) => {
-  const [loginSuccessful, setLoginSuccessful] = useState(false);
+  // const {loginSuccessful, setLoginSuccessful} = props;
   let pass = '';
   let user = '';
 
-  // const storeToken = (token, user) => {
-  //   localStorage.setItem('token', token);
-  //   localStorage.setItem('user', user);
-  // }
+  const storeToken = (token, user) => {
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', user);
+  }
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -142,6 +142,7 @@ const Login = (props) => {
     }).then(response => response.json())
       .then(result => {
         console.log(result);
+        storeToken(result.token, user)
       }).catch(console.error);
   }
   
@@ -153,18 +154,17 @@ const loginUser = (event) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      user: {
-        username: user,
-        password: pass
-      }
+      username: user,
+      password: pass
     })
   }).then(response => response.json())
     .then(result => {
       console.log(result);
+      storeToken(result.token, user)
     }).catch(console.error);
 }
 
-  return (
+ return (
     <div className="login">
       <h1>Register or Sign in below</h1>
       <form className="input-box" onSubmit={registerUser}>

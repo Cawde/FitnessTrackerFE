@@ -1,8 +1,10 @@
 
 const Activity = () => {
   return (
-    <p>This is the Activity section</p>
-  )
+    <div>
+      <h1>This is the Activity section</h1>
+    </div>
+  );
 }
 
 export default Activity;
