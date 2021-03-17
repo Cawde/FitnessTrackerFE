@@ -1,12 +1,12 @@
 /* CSS HEX */
 --rich-black-fogra-29: #061c23ff;
---light-blue: #cbecf6ff;
 --dark-green-x-11: #0f6006ff;
---tea-green: #cafcc5ff;
+--platinum: #ebebebff;
+--azure-x-11-web-color: #d9f4fcff;
 
 
 /* SCSS RGB */
 $rich-black-fogra-29: rgba(6, 28, 35, 1);
-$light-blue: rgba(203, 236, 246, 1);
 $dark-green-x-11: rgba(15, 96, 6, 1);
-$tea-green: rgba(202, 252, 197, 1);
+$platinum: rgba(235, 235, 235, 1);
+$azure-x-11-web-color: rgba(217, 244, 252, 1);

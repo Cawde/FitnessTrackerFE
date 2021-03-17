@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-// import ReactDOM from 'react-dom';
+import { useState } from 'react';
 import {
   BrowserRouter as Router,
   Link,
@@ -12,43 +11,62 @@ import {
   Activity,
   Routines,
   User,
-  Login
+  Login,
+  Footer
  } from './components';
 
 function App() {
   const [loginSuccessful, setLoginSuccessful] = useState(false);
+  const [currentPage, setCurrentPage] = useState("home");
   return (
     <div className="App">
       <Header />
       <Router>
           <nav>
-            <ul className="links">
+            <ul className="Navbar">
               <li><Link to="/home">Home</Link></li>
               <li><Link to="/profile">Profile</Link></li>
               <li><Link to="/routines">Routines</Link></li>
               <li><Link to="/activities">Activities</Link></li>
-              <li><Link to="/login">Login/Register here</Link></li>
             </ul>
           </nav>
           <Route path="/home">
-            <Home/>
+            <Home
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
           </Route>
           <Route path="/profile">
-            <User />
+            <User 
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
           </Route>
           <Route path="/routines">
-            <Routines />
+            <Routines 
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
           </Route>
           <Route path="/activities">
-            <Activity />
+            <Activity 
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
           </Route>
+
+          <Footer />
+          <li><Link to="/login">Login/Register here</Link></li>
           <Route path="/login">
             <Login
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
               loginSuccessful={loginSuccessful} 
               setLoginSuccessful={setLoginSuccessful}
             />
           </Route>
       </Router>
+      
     </div>
   )
 }

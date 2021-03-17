@@ -1,10 +1,13 @@
-// import React, { Fragment, useState } from 'react';
-// import { Redirect } from 'react-router-dom';
+import { Content } from './index';
+
 
 const Home = () => {
   return (
-    <div>
+    <div className="Home_content">
       <h1>This is the home section</h1>
+      <div className="Hero-text">
+        <p>Gestures indicate movement. Get moving today with GEST.R</p>
+      </div>
     </div>
   )
 }

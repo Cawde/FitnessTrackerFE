@@ -1,230 +1,132 @@
+/*-----CSS STANDARDS-----*/
+/*Naming: 
+
+Names of parent classes returned from a React component are capitalized, and use underscores when needed to seperate.
+Names of children classes or classes created within the html doc conform to lowercase with underscore seperation
+
+
+/*-----IMPORTS-----*/
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif+Caption&family=Poppins:ital,wght@0,400;0,700;1,100&display=swap');
+
+/*-----CSS RESET----*/
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, img, center, ol, ul, li, form, label, footer, header, nav{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;}
+
+/*----- HTML5 DR Reset-----*/
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
 body {
-  background: #04053a;
-  color: white;
-  font-family: 'Sriracha', cursive;
-
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
 }
 
-.user {
-    padding: 0px, 20px, 0px, 20px;
-}
+/*-----Global Styles-----*/
+html { font-size: 100%; }
+body {
 
-.links {
+}
+h1 { font-size: 2em; }
+
+/* CSS HEX */
+/* --rich-black-fogra-29: #061c23ff;
+--dark-green-x-11: #0f6006ff;
+--platinum: #ebebebff;
+--azure-x-11-web-color: #d9f4fcff; */
+
+
+/* SCSS RGB */
+/* $rich-black-fogra-29: rgba(6, 28, 35, 1);
+$dark-green-x-11: rgba(15, 96, 6, 1);
+$platinum: rgba(235, 235, 235, 1);
+$azure-x-11-web-color: rgba(217, 244, 252, 1); */
+
+/* font-family: 'Poppins', sans-serif;
+
+font-family: 'PT Serif Caption', serif; */
+.App {
     display: flex;
-    list-style-type: none;
-    justify-content: flex-start;
-    
+    min-height: 100vh;
+    flex-direction: column;
+    background: #ffffff;
+    font-size: 0.75em;
 }
-
-nav a {
-    text-shadow: 2px 1px 2px black;
+.App-Header {
+   
+}
+.Navbar {
+    display: flex;
+    flex-direction: row;
+}
+.Navbar li, a {
+    font-size: 1.2em;
+    padding: 3px;
     text-decoration: none;
-    color:white;
-    padding: 1px 30px;
-    font-size: 30px;
+    border: solid, black, 3px; 
+    ;
 }
-
-a:hover {
-    color:#6cbafa;
+.Heading_h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 6em;
 }
-
-h1 {
-    color: white;
-    text-align: center;
-    letter-spacing: 0.5rem;
-    font-size: 50px;
-    text-shadow: 2px 1px 2px black;
-}
-
-h3 {
-    font-size: 25px;
-    text-shadow: 2px 1px 2px black;
-}
-
-label {
-    font-size: 25px;
-    text-shadow: 2px 1px 2px black;
-}
-
-h4 {
-    text-shadow: 2px 1px 2px black;
-}
-
-.header {
-    font-size: 48px;
-}
-
-.input-box {
-    color: white;
+.Home_content {
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.input-div {
-    display: flex;
-    align-items: center;
-}
-
-.container {
-    padding: 16px;
-}
-
-input[type=text], input[type=password] {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    display: inline-block;
-    border: none;
-    background: #f1f1f1;
-}
-
-input[type=text]:focus, input[type=password]:focus {
-    box-sizing: border-box;
-    background-color: #ddd;
-    outline: none;
-}
-
-hr {
-    box-sizing: border-box;
-    border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
-}
-
-.search-box {
-    box-sizing: border-box;
-    color: white;
-    padding: 16px 20px;
-    margin: 150px 500px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.registerbtn {
-    box-sizing: border-box;
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-}
-
-.message-button {
-    box-sizing: border-box;
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 25%;
-    opacity: 0.9;
-}
-
-.sign-in-btn {
-    box-sizing: border-box;
-    background-color: #c9522e;
-    color: white;
-    padding: 16px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-}
-
-.delete-button {
-    box-sizing: border-box;
-    background-color: #c92e2e;
-    color: white;
-    padding: 16px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 25%;
-    opacity: 0.9;
-}
-
-.edit-button {
-    box-sizing: border-box;
-    background-color: #2e83c9;
-    color: white;
-    padding: 16px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 25%;
-    opacity: 0.9;
-}
-
-.registerbtn:hover {
-    box-sizing: border-box;
-    opacity:1;
-}
-
-.sign-in-btn:hover {
-    box-sizing: border-box;
-    opacity:1;
-}
-
-.edit-button:hover {
-    box-sizing: border-box;
-    opacity:1;
-}
-
-.delete-button:hover {
-    box-sizing: border-box;
-    opacity:1;
-}
-.message-button:hover {
-    box-sizing: border-box;
-    opacity:1;
-}
-
-.object-listings {
-    display:flex;
     flex-direction: column;
-    flex: 1 0 100px;
-}
-
-.title {
+    margin-top: 20px;
+    flex: 1;
+    background-image: url(./images/plant.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+ }
+.User {
     display: flex;
-    justify-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    flex: 1;
+    background-image: url(./images/dirt.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+ .content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "."
+      ".";
+    background: #d9f4fcff;;
+    border-radius: 20px; 
+    border: 2px solid #73AD21;
+    width: 80vw;
+    margin: auto;
+ }
+ 
+.Card {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin: 10 px;
+    border-radius: 20px; 
+    border: 2px solid #73AD21;
+    margin: 15px;
+    padding: 5px;
     
 }
-
-.content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 2px;
-    margin-top: 0px;
-    margin-left: 10px;
+.Hero_text {
+   flex: .5;
 }
-
-.price {
-    color: #2D8557;
-}
-
-.details {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    background: #FFE4D6;
-    color: black;
-    box-shadow: 10px 4px 4px black;
-    padding: 10px;
-}
- span p {
-    display: inline;
+ .Footer {
+    font-size: 1.5em;
+ }
+ .Footer :is(a, li) {
+    font-size: 1.5em;  /*NOT WORKING*/
  }

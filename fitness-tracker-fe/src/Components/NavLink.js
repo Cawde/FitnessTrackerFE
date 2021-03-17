@@ -1,12 +1,10 @@
 
 
-const NavLink = () => {
+const NavLink = (linkName) => {
     return (
-        <div className="nav_buttons">
+        <div className="nav_button">
             <ul>
-                <li>Home</li>
-                <li>Activities</li>
-                <li>Routines</li>
+                <li>${linkName}</li>     
             </ul>
         </div>
     )
