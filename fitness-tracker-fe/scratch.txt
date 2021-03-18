@@ -1,12 +1,19 @@
+$black-coral: rgba(84, 88, 99, 1);
+$maximum-blue-green: rgba(88, 198, 196, 1);
+$queen-pink: rgba(224, 204, 208, 1);
+$deep-champagne: rgba(243, 212, 165, 1);
+
+868b98 light primary
+
 /* CSS HEX */
---rich-black-fogra-29: #061c23ff;
---dark-green-x-11: #0f6006ff;
---platinum: #ebebebff;
---azure-x-11-web-color: #d9f4fcff;
+--black-coral: #545863ff;
+--maximum-blue-green: #58c6c4ff;
+--queen-pink: #e0ccd0ff;
+--deep-champagne: #f3d4a5ff;
 
+#f3d4a5ff
+#e0ccd0ff
+#58c6c4ff
+#545863ff
 
-/* SCSS RGB */
-$rich-black-fogra-29: rgba(6, 28, 35, 1);
-$dark-green-x-11: rgba(15, 96, 6, 1);
-$platinum: rgba(235, 235, 235, 1);
-$azure-x-11-web-color: rgba(217, 244, 252, 1);
+#f3d4a5ff; #e0ccd0ff; #58c6c4ff; #545863ff;

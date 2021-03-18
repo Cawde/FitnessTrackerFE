@@ -56,8 +56,11 @@ font-family: 'PT Serif Caption', serif; */
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background: #ffffff;
+    background: #545863ff;
     font-size: 0.75em;
+    background-image: url(./images/blob3.svg);
+    
+    background-repeat: no-repeat;
 }
 .App-Header {
    
@@ -82,7 +85,7 @@ font-family: 'PT Serif Caption', serif; */
     flex-direction: column;
     margin-top: 20px;
     flex: 1;
-    background-image: url(./images/plant.jpg);
+    background-image: url(./images/blob1.svg);
     background-size: 100%;
     background-repeat: no-repeat;
  }
@@ -91,7 +94,7 @@ font-family: 'PT Serif Caption', serif; */
     flex-direction: column;
     margin-top: 20px;
     flex: 1;
-    background-image: url(./images/dirt.jpg);
+    background-image: url(./images/blob2.svg);
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -99,27 +102,24 @@ font-family: 'PT Serif Caption', serif; */
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: 0px 0px;
+    gap: .5rem .5rem;
     grid-template-areas:
       "."
       ".";
-    background: #d9f4fcff;;
+    
     border-radius: 20px; 
-    border: 2px solid #73AD21;
+   ;
     width: 80vw;
     margin: auto;
  }
- 
 .Card {
     display: flex;
     flex-direction: column;
-    padding: 5px;
-    margin: 10 px;
-    border-radius: 20px; 
-    border: 2px solid #73AD21;
-    margin: 15px;
-    padding: 5px;
-    
+    padding: 1rem;
+    margin: .5rem;
+    border-radius: 5px; 
+    background: #5e626e;
+    justify-content: space-around;  
 }
 .card_details
 .card_content
@@ -134,3 +134,8 @@ font-family: 'PT Serif Caption', serif; */
  .Footer :is(a, li) {
     font-size: 1.5em;  /*NOT WORKING*/
  }
+
+ /*----OUT OF ORDER-----*/
+ a, a:visited, a:hover, a:active {
+    color: inherit;
+  }
