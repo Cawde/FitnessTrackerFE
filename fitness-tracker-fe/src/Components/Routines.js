@@ -3,20 +3,17 @@ import React, { useState, useEffect, Fragment } from 'react';
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
 
 const Routines = () => {
-  
   const [routines, setRoutines] = useState();
   const [searchTerm, setSearchTerm] = useState('');
   const postMatches = (post, text) => {
     return post.author.username.toLowerCase().includes(text.toLowerCase()) || post.description.toLowerCase().includes(text.toLowerCase()) || post.price.toLowerCase().includes(text.toLowerCase());
   }
-
   const getRoutines = () => {
     fetch(`${BASE_URL}/routines`)
     .then(response => response.json())
     .then(data => {
       console.log(data);
       setRoutines(data);
-      
     })
     .catch(console.error);
   }
@@ -54,7 +51,6 @@ const Routines = () => {
               )
             }): null}  
           </Fragment>
-
       </div>
   ) : null;
 }
