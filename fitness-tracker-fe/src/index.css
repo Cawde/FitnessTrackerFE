@@ -56,13 +56,8 @@ font-family: 'PT Serif Caption', serif; */
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background: #661414;
+    background: #ffffff;
     font-size: 0.75em;
-    color: white;
-}
-.Login-btn {
-    margin: auto;
-    list-style: none;
 }
 .App-Header {
    
@@ -70,15 +65,13 @@ font-family: 'PT Serif Caption', serif; */
 .Navbar {
     display: flex;
     flex-direction: row;
-    align-content: flex-end;
 }
 .Navbar li, a {
     font-size: 1.2em;
     padding: 3px;
     text-decoration: none;
-    border: solid, rgb(255, 255, 255), 3px;
-    
-    
+    border: solid, black, 3px; 
+    ;
 }
 .Heading_h1 {
     font-family: 'Poppins', sans-serif;
@@ -128,19 +121,11 @@ font-family: 'PT Serif Caption', serif; */
     padding: 5px;
     
 }
-.card_details
-.card_content
-.card_title
-.card_subtitle
-
 .Hero_text {
    flex: .5;
 }
  .Footer {
     font-size: 1.5em;
-    display: flex;
-    flex-direction: row;
-    margin: auto;
  }
  .Footer :is(a, li) {
     font-size: 1.5em;  /*NOT WORKING*/

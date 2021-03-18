@@ -53,6 +53,7 @@ const Routines = () => {
                         <div className="Card" key={index}>
                           <header>
                             <h3 className="card_title">{activity.name}</h3>
+                            <h3 className="card_title">{activity.description}</h3>
                             <h3 className="card_title">Goal: {activity.goal}</h3>
                             <h3 className="card_title">Count: {activity.count}</h3>
                             <h3 className="card_title">Duration: {activity.duration}</h3>
