@@ -36,17 +36,29 @@ const Routines = () => {
         </div>
         <h1>{routines.length} Routines</h1>
         <Fragment>
-            {routines ? routines.map((post, index) => {
+            {routines ? routines.map((routine, index) => {
               return (
                 <div className="Card" key={index} >
                   <header>
-                      <h3 className="card_title">{routines.name}</h3>
-                      <h3 className="card_subtitle">Goal:</h3>
-                      <p className="card_content">{routines.goal}</p>
+                    <h3 className="card_title">{routine.name}</h3>
+                    <h3 className="card_subtitle">Goal: {routine.goal}</h3>
+                    <p className="card_content">Creator: {routine.creatorName}</p>
                   </header>
-                    <div className="card_details" value={post._id}>
-                    <span className="title">{routines.creatorName }</span>
-                    </div>
+                  <div className="card_details" value={routine.id}>
+                    {routine.activities.length ? routine.activities.map((activity, index) => {
+                      return (
+                        <div className="Card" key={index}>
+                          <header>
+                            <h3 className="card_title">{activity.name}</h3>
+                            <h3 className="card_title">{activity.description}</h3>
+                            <h3 className="card_title">Goal: {activity.goal}</h3>
+                            <h3 className="card_title">Count: {activity.count}</h3>
+                            <h3 className="card_title">Duration: {activity.duration}</h3>
+                          </header>
+                        </div>
+                     )
+                   }) : null} 
+                  </div>
                 </div>
               )
             }): null}  
