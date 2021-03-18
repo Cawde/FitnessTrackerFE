@@ -4,7 +4,7 @@
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
 
 const Login = (props) => {
-  // const {loginSuccessful, setLoginSuccessful} = props;
+  const {loginSuccessful, setLoginSuccessful} = props;
   let pass = '';
   let user = '';
 
@@ -27,6 +27,7 @@ const Login = (props) => {
     }).then(response => response.json())
       .then(result => {
         console.log(result);
+        alert(result.message);
         storeToken(result.token, user)
       }).catch(console.error);
   }
@@ -45,6 +46,7 @@ const loginUser = (event) => {
   }).then(response => response.json())
     .then(result => {
       console.log(result);
+      alert(result.message);
       storeToken(result.token, user)
     }).catch(console.error);
 }
