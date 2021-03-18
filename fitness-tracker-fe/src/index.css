@@ -56,8 +56,9 @@ font-family: 'PT Serif Caption', serif; */
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background: #ffffff;
+    background: #661414;
     font-size: 0.75em;
+    color: white;
 }
 .Login-btn {
     margin: auto;
@@ -75,7 +76,7 @@ font-family: 'PT Serif Caption', serif; */
     font-size: 1.2em;
     padding: 3px;
     text-decoration: none;
-    border: solid, black, 3px;
+    border: solid, rgb(255, 255, 255), 3px;
     
     
 }
