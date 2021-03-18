@@ -1,21 +1,14 @@
-// import { Content } from './index';
+
 import React, { useState, useEffect, Fragment } from 'react';
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
 
 const Routines = () => {
   const [routines, setRoutines] = useState();
-<<<<<<< HEAD
   const [searchTerm, setSearchTerm] = useState('');
-  const postMatches = (post, text) => {
-    return post.author.username.toLowerCase().includes(text.toLowerCase()) || post.description.toLowerCase().includes(text.toLowerCase()) || post.price.toLowerCase().includes(text.toLowerCase());
-  }
-=======
-  // const [searchTerm, setSearchTerm] = useState('');
   // const postMatches = (post, text) => {
   //   return post.author.username.toLowerCase().includes(text.toLowerCase()) || post.description.toLowerCase().includes(text.toLowerCase()) || post.price.toLowerCase().includes(text.toLowerCase());
   // }
 
->>>>>>> ddd6935413b7477904c837054e40bf1a8ff94071
   const getRoutines = () => {
     fetch(`${BASE_URL}/routines`)
     .then(response => response.json())
@@ -33,18 +26,27 @@ const Routines = () => {
       <div className="Content">
         <div>
           <h1 className="search_text">Search</h1>
-          <div className="input">
+          <div className="search">
               <form className="search-box">
-              {/* <input 
+              { <input 
                   type="text" 
                   placeholder="Search for routines here" 
-                  onChange={(event)=> {setSearchTerm(event.target.value)}}/> */}
+                  onChange={(event)=> {setSearchTerm(event.target.value)}}/>
+              }
               </form>
           </div>
         </div>
         <h1>{routines.length} Routines</h1>
-        <Fragment>
-            {routines ? routines.map((routine, index) => {
+
+        <div className="Routines_Content">
+
+            {routines ? routines.filter((routine) => {
+
+              if (searchTerm == '') {
+                return routine;
+              } else if (routine.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                return routine }
+            }).map((routine, index) => {
               return (
                 <div className="Card" key={index} >
                   <header>
@@ -70,7 +72,7 @@ const Routines = () => {
                 </div>
               )
             }): null}  
-          </Fragment>
+          </div>
       </div>
   ) : null;
 }
