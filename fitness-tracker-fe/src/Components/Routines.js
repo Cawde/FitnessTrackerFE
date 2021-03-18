@@ -1,14 +1,14 @@
-import { Content } from './index';
+// import { Content } from './index';
 import React, { useState, useEffect, Fragment } from 'react';
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
 
 const Routines = () => {
   
   const [routines, setRoutines] = useState();
-  const [searchTerm, setSearchTerm] = useState('');
-  const postMatches = (post, text) => {
-    return post.author.username.toLowerCase().includes(text.toLowerCase()) || post.description.toLowerCase().includes(text.toLowerCase()) || post.price.toLowerCase().includes(text.toLowerCase());
-  }
+  // const [searchTerm, setSearchTerm] = useState('');
+  // const postMatches = (post, text) => {
+  //   return post.author.username.toLowerCase().includes(text.toLowerCase()) || post.description.toLowerCase().includes(text.toLowerCase()) || post.price.toLowerCase().includes(text.toLowerCase());
+  // }
 
   const getRoutines = () => {
     fetch(`${BASE_URL}/routines`)
@@ -30,10 +30,10 @@ const Routines = () => {
           <h1 className="search_text">Search</h1>
           <div className="input">
               <form className="search-box">
-              <input 
+              {/* <input 
                   type="text" 
                   placeholder="Search for routines here" 
-                  onChange={(event)=> {setSearchTerm(event.target.value)}}/>
+                  onChange={(event)=> {setSearchTerm(event.target.value)}}/> */}
               </form>
           </div>
         </div>

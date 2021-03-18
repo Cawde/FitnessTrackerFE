@@ -1,4 +1,4 @@
-import { Content } from './index';
+// import { Content } from './index';
 
 
 const Home = () => {
