@@ -25,11 +25,10 @@ const Routines = () => {
   }, []);
   console.log('These are the routines in the state', routines);
   return routines ? (
-    <main id="listings">
-      <div className="object-listings">
+      <div className="Content">
         <div>
-          <h1>Search for routines below</h1>
-          <div className="input-div">
+          <h1 className="search_text">Search</h1>
+          <div className="input">
               <form className="search-box">
               <input 
                   type="text" 
@@ -42,21 +41,21 @@ const Routines = () => {
         <Fragment>
             {routines ? routines.map((post, index) => {
               return (
-                <Fragment key={index} >
+                <div className="Card" key={index} >
                   <header>
-                      <h3>{routines.name}</h3>
-                      <h4>{routines.goal}</h4>
+                      <h3 className="card_title">{routines.name}</h3>
+                      <h3 className="card_subtitle">Goal:</h3>
+                      <p className="card_content">{routines.goal}</p>
                   </header>
-                    <section className="details" value={post._id}>
+                    <div className="card_details" value={post._id}>
                     <span className="title">{routines.creatorName }</span>
-                    </section>
-                </Fragment>
+                    </div>
+                </div>
               )
             }): null}  
           </Fragment>
 
       </div>
-    </main>
   ) : null;
 }
 
