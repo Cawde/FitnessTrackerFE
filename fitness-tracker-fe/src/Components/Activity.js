@@ -5,6 +5,7 @@ const Activity = () => {
     <div>
       <h1>This is the Activity section</h1>
       <Content />
+      
     </div>
   );
 }

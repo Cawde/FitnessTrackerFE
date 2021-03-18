@@ -56,7 +56,7 @@ function App() {
           </Route>
 
           <Footer />
-          <li><Link to="/login">Login/Register here</Link></li>
+          <li className="Login-btn"><Link to="/login">Login/Register here</Link></li>
           <Route path="/login">
             <Login
               currentPage={currentPage}
@@ -66,7 +66,6 @@ function App() {
             />
           </Route>
       </Router>
-      
     </div>
   )
 }
