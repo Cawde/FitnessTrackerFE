@@ -22,12 +22,7 @@ const Activity = () => {
   }, []);
   console.log('These are the activities in the state', activities);
   return activities ? (
-<<<<<<< HEAD
-    <div className="Content">
-      <h1>Activities</h1>
-=======
     <div className="Activities-Content">
->>>>>>> refs/remotes/origin/main
       {activities ? activities.map((activity, index) => {
         return (
           <div className="Card" key={index} >
