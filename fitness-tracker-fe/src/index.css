@@ -15,7 +15,9 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, img, center, ol, ul, li, form,
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;}
+	vertical-align: baseline;
+    color: #c4bbb8;}
+    
 
 /*----- HTML5 DR Reset-----*/
 article, aside, details, figcaption, figure, 
@@ -101,12 +103,10 @@ font-family: 'PT Serif Caption', serif; */
     grid-template-areas:
       "."
       ".";
-    
     border-radius: 20px; 
    ;
     width: 80vw;
-    margin: auto;
-    
+    margin: auto;  
  }
 .Card {
     display: flex;
@@ -123,7 +123,10 @@ font-family: 'PT Serif Caption', serif; */
 .card_title
 .card_subtitle
 .sub_card{
-    display: flex
+    display: flex;
+    flex-direction: column;
+    font-family: 'PT Serif Caption', serif;
+    font-size: large;
 }
 .Hero_text {
    flex: .5;

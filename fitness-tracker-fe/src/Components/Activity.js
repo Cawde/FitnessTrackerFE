@@ -1,19 +1,15 @@
 // import { Content } from './index';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
-
-
 
 const Activity = () => {
   const [activities, setActivities] = useState();
-
   const getActivities = () => {
     fetch(`${BASE_URL}/activities`)
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      setActivities(data);
-      
+      setActivities(data); 
     })
     .catch(console.error);
   }
