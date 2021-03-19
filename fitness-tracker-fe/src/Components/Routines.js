@@ -23,6 +23,19 @@ const Routines = () => {
   }, []);
   console.log('These are the routines in the state', routines);
   return routines ? (
+<<<<<<< HEAD
+    <div className="Content">
+      <div>
+        <h1 className="search_text">Search</h1>
+        <div className="input">
+            <form className="search-box">
+            {/* <input 
+                type="text" 
+                placeholder="Search for routines here" 
+                onChange={(event)=> {setSearchTerm(event.target.value)}}/> */}
+            </form>
+        </div>
+=======
       <div className="Routine-Content">
         <div>
           <h1 className="search_text">Search</h1>
@@ -71,7 +84,38 @@ const Routines = () => {
               )
             }): null}  
           </div>
+>>>>>>> refs/remotes/origin/main
       </div>
+      <h1>{routines.length} Routines</h1>
+      <Fragment>
+          {routines ? routines.map((routine, index) => {
+            return (
+              <div className="Card" key={index} >
+                <header>
+                  <h3 className="card_title">{routine.name}</h3>
+                  <h3 className="card_subtitle">Goal: {routine.goal}</h3>
+                  <p className="card_content">Creator: {routine.creatorName}</p>
+                </header>
+                <div className="card_details" value={routine.id}>
+                  {routine.activities.length ? routine.activities.map((activity, index) => {
+                    return (
+                      <div className="Card" key={index}>
+                        <header>
+                          <h3 className="card_title">{activity.name}</h3>
+                          <h3 className="card_title">{activity.description}</h3>
+                          <h3 className="card_title">Goal: {activity.goal}</h3>
+                          <h3 className="card_title">Count: {activity.count}</h3>
+                          <h3 className="card_title">Duration: {activity.duration}</h3>
+                        </header>
+                      </div>
+                    )
+                  }) : null} 
+                </div>
+              </div>
+            )
+          }): null}  
+        </Fragment>
+    </div>
   ) : null;
 }
 
