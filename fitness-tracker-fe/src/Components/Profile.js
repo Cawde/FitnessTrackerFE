@@ -1,5 +1,5 @@
 // import { Content } from './index';
-const User = () => {
+const Profile = () => {
   return (
     <div className="User">
       <h1>This is the User section</h1>
@@ -8,4 +8,4 @@ const User = () => {
   )
 }
 
-export default User;
+export default Profile;

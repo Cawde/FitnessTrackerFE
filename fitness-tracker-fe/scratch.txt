@@ -1,12 +1,13 @@
 /* CSS HEX */
---rich-black-fogra-29: #061c23ff;
---dark-green-x-11: #0f6006ff;
---platinum: #ebebebff;
---azure-x-11-web-color: #d9f4fcff;
-
+--dark-purple: #160c28ff;
+--orange-yellow-crayola: #efcb68ff;
+--honeydew: #e1efe6ff;
+--ash-gray: #aeb7b3ff;
+--rich-black-fogra-29: #000411ff;
 
 /* SCSS RGB */
-$rich-black-fogra-29: rgba(6, 28, 35, 1);
-$dark-green-x-11: rgba(15, 96, 6, 1);
-$platinum: rgba(235, 235, 235, 1);
-$azure-x-11-web-color: rgba(217, 244, 252, 1);
+$dark-purple: rgba(22, 12, 40, 1);
+$orange-yellow-crayola: rgba(239, 203, 104, 1);
+$honeydew: rgba(225, 239, 230, 1);
+$ash-gray: rgba(174, 183, 179, 1);
+$rich-black-fogra-29: rgba(0, 4, 17, 1);

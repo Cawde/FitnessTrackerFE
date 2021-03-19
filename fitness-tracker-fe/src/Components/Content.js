@@ -2,7 +2,7 @@ import { Card } from './index'
 
 const Content = () => {
     return (
-        <div className="content">
+        <div className="Content">
             <Card />
             <Card />
             <Card />

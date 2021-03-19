@@ -12,7 +12,8 @@ import {
   Routines,
   User,
   Login,
-  Footer
+  Footer, 
+  Button
  } from './components';
 
 function App() {
@@ -54,7 +55,7 @@ function App() {
               setCurrentPage={setCurrentPage}
             />
           </Route>
-
+          {/* <Button /> */}
           <Footer />
           <li className="Login-btn"><Link to="/login">Login/Register here</Link></li>
           <Route path="/login">
