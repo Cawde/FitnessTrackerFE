@@ -23,7 +23,7 @@ const Routines = () => {
   }, []);
   console.log('These are the routines in the state', routines);
   return routines ? (
-      <div className="Content">
+      <div className="Routine-Content">
         <div>
           <h1 className="search_text">Search</h1>
           <div className="search">

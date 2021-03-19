@@ -37,17 +37,12 @@ body {
 h1 { font-size: 2em; }
 
 /* CSS HEX */
-/* --rich-black-fogra-29: #061c23ff;
---dark-green-x-11: #0f6006ff;
---platinum: #ebebebff;
---azure-x-11-web-color: #d9f4fcff; */
+/* --onyx: #303634ff;
+--black-olive: #3a413eff;
+--crimson-ua: #ac0c2cff;
+--redwood: #ad5d4eff;
+--pale-silver: #c4bbb8ff; */
 
-
-/* SCSS RGB */
-/* $rich-black-fogra-29: rgba(6, 28, 35, 1);
-$dark-green-x-11: rgba(15, 96, 6, 1);
-$platinum: rgba(235, 235, 235, 1);
-$azure-x-11-web-color: rgba(217, 244, 252, 1); */
 
 /* font-family: 'Poppins', sans-serif;
 
@@ -56,10 +51,9 @@ font-family: 'PT Serif Caption', serif; */
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background: #545863ff;
+    background: #303634;;
     font-size: 0.75em;
-    background-image: url(./images/blob3.svg);
-    
+    background-image: url();
     background-repeat: no-repeat;
 }
 .App-Header {
@@ -85,7 +79,7 @@ font-family: 'PT Serif Caption', serif; */
     flex-direction: column;
     margin-top: 20px;
     flex: 1;
-    background-image: url(./images/blob1.svg);
+    background-image: url(./images/M2.svg);
     background-size: 100%;
     background-repeat: no-repeat;
  }
@@ -94,11 +88,11 @@ font-family: 'PT Serif Caption', serif; */
     flex-direction: column;
     margin-top: 20px;
     flex: 1;
-    background-image: url(./images/blob2.svg);
+    background-image: url(./images/M1.svg);
     background-size: 100%;
     background-repeat: no-repeat;
 }
- .content {
+ .Content {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
@@ -111,15 +105,17 @@ font-family: 'PT Serif Caption', serif; */
    ;
     width: 80vw;
     margin: auto;
+    
  }
 .Card {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: .5rem;
     margin: .5rem;
+    width: 60vw;
     border-radius: 5px; 
     background: #5e626e;
-    justify-content: space-around;  
+    justify-content: space-between;  
 }
 .card_details
 .card_content
@@ -138,4 +134,24 @@ font-family: 'PT Serif Caption', serif; */
  /*----OUT OF ORDER-----*/
  a, a:visited, a:hover, a:active {
     color: inherit;
+  }
+
+  .Routine-Content{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  flex: 1;
+  background-image: url(./images/M3.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  }
+/*AC content may be a redundant rule*/
+  .Activities-Content{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    flex: 1;
+    background-image: url(./images/M4.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
   }

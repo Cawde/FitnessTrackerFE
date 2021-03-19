@@ -1,19 +1,13 @@
-$black-coral: rgba(84, 88, 99, 1);
-$maximum-blue-green: rgba(88, 198, 196, 1);
-$queen-pink: rgba(224, 204, 208, 1);
-$deep-champagne: rgba(243, 212, 165, 1);
-
-868b98 light primary
-
 /* CSS HEX */
---black-coral: #545863ff;
---maximum-blue-green: #58c6c4ff;
---queen-pink: #e0ccd0ff;
---deep-champagne: #f3d4a5ff;
+--dark-purple: #160c28ff;
+--orange-yellow-crayola: #efcb68ff;
+--honeydew: #e1efe6ff;
+--ash-gray: #aeb7b3ff;
+--rich-black-fogra-29: #000411ff;
 
-#f3d4a5ff
-#e0ccd0ff
-#58c6c4ff
-#545863ff
-
-#f3d4a5ff; #e0ccd0ff; #58c6c4ff; #545863ff;
+/* SCSS RGB */
+$dark-purple: rgba(22, 12, 40, 1);
+$orange-yellow-crayola: rgba(239, 203, 104, 1);
+$honeydew: rgba(225, 239, 230, 1);
+$ash-gray: rgba(174, 183, 179, 1);
+$rich-black-fogra-29: rgba(0, 4, 17, 1);

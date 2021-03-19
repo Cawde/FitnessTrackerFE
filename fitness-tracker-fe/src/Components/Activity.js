@@ -22,7 +22,7 @@ const Activity = () => {
   }, []);
   console.log('These are the activities in the state', activities);
   return activities ? (
-    <div className="Content">
+    <div className="Activities-Content">
       {activities ? activities.map((activity, index) => {
         return (
           <div className="Card" key={index} >
