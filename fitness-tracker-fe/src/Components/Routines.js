@@ -54,11 +54,11 @@ const Routines = () => {
                     <div className="sub_card" key={index}>
                       <h2>Activity: </h2>
                       <header>
-                        <h3 className="card_title">{activity.name}</h3>
-                        <h3 className="card_title">{activity.description}</h3>
-                        <h3 className="card_title">Goal: {activity.goal}</h3>
-                        <h3 className="card_title">Count: {activity.count}</h3>
-                        <h3 className="card_title">Duration: {activity.duration}</h3>
+                        <h3 className="card_title">Activity name: {activity.name}</h3>
+                        <h3 className="card_title">Activity description: {activity.description}</h3>
+                        {activity.goal ? <h3 className="card_title">Goal: {activity.goal}</h3> : null}
+                        <h3 className="card_title">Count: {activity.count} reps</h3>
+                        <h3 className="card_title">Duration: {activity.duration} minutes</h3>
                       </header>
                     </div>
                   )

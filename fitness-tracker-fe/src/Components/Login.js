@@ -2,7 +2,7 @@
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
 
 const Login = (props) => {
-  const {loginSuccessful, setLoginSuccessful} = props;
+  const { setLoginSuccessful } = props;
   let pass = '';
   let user = '';
 

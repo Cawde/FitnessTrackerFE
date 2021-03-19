@@ -12,8 +12,7 @@ import {
   Routines,
   User,
   Login,
-  Footer, 
-  Button
+  Footer
  } from './components';
 
 function App() {
@@ -60,7 +59,7 @@ function App() {
             />
           </Route>
           <Footer />
-        {loginSuccessful ? <button onClick={logOut}>Log Out</button> : <li className="Login-btn"><Link to="/login">Login/Register here</Link></li>}
+        {localStorage.getItem('user') ? <button onClick={logOut}>Log Out</button> : <li className="Login-btn"><Link to="/login">Login/Register here</Link></li>}
           <Route path="/login">
             <Login
               currentPage={currentPage}
