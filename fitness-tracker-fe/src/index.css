@@ -121,6 +121,9 @@ font-family: 'PT Serif Caption', serif; */
 .card_content
 .card_title
 .card_subtitle
+.sub_card{
+    display: flex
+}
 .Hero_text {
    flex: .5;
 }
@@ -142,7 +145,7 @@ font-family: 'PT Serif Caption', serif; */
   margin-top: 20px;
   flex: 1;
   background-image: url(./images/M3.svg);
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   }
 /*AC content may be a redundant rule*/
