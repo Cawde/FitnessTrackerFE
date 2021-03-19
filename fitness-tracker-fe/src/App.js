@@ -19,6 +19,10 @@ import {
 function App() {
   const [loginSuccessful, setLoginSuccessful] = useState(false);
   const [currentPage, setCurrentPage] = useState("home");
+  const logOut = () => {
+    setLoginSuccessful(false);
+    localStorage.clear();
+  }
   return (
     <div className="App">
       <Header />
@@ -55,9 +59,8 @@ function App() {
               setCurrentPage={setCurrentPage}
             />
           </Route>
-          {/* <Button /> */}
           <Footer />
-          <li className="Login-btn"><Link to="/login">Login/Register here</Link></li>
+        {loginSuccessful ? <button onClick={logOut}>Log Out</button> : <li className="Login-btn"><Link to="/login">Login/Register here</Link></li>}
           <Route path="/login">
             <Login
               currentPage={currentPage}
