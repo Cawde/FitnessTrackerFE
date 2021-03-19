@@ -52,6 +52,7 @@ const Routines = () => {
                 {routine.activities.length ? routine.activities.map((activity, index) => {
                   return (
                     <div className="sub_card" key={index}>
+                      <h2>Activity: </h2>
                       <header>
                         <h3 className="card_title">{activity.name}</h3>
                         <h3 className="card_title">{activity.description}</h3>

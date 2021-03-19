@@ -106,7 +106,7 @@ font-family: 'PT Serif Caption', serif; */
     border-radius: 20px; 
    ;
     width: 80vw;
-    margin: auto;  
+    margin: auto;
  }
 .Card {
     display: flex;
@@ -115,8 +115,9 @@ font-family: 'PT Serif Caption', serif; */
     margin: .5rem;
     width: 60vw;
     border-radius: 5px; 
-    background: #5e626e;
-    justify-content: space-between;  
+    background: #050505;
+    justify-content: space-between;
+    font-size: 20px;
 }
 .card_details
 .card_content
