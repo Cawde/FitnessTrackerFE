@@ -39,10 +39,8 @@ const Routines = () => {
         <h1>{routines.length} Routines</h1>
 
         <div className="Routines_Content">
-
             {routines ? routines.filter((routine) => {
-
-              if (searchTerm == '') {
+              if (searchTerm === '') {
                 return routine;
               } else if (routine.name.toLowerCase().includes(searchTerm.toLowerCase())) {
                 return routine }
