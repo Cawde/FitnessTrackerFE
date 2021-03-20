@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Link,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
 
 import {
@@ -17,33 +18,32 @@ import {
  } from './components';
 
 function App() {
-  const [loginSuccessful, setLoginSuccessful] = useState(false);
   const [currentPage, setCurrentPage] = useState("home");
-  const logOut = () => {
-    setLoginSuccessful(false);
-    localStorage.clear();
-  }
 
+  useEffect(() => {
+
+  },[])
   return (
     <div className="App">
       <Header />
       <Router>
-          <nav>
-            <ul className="Navbar">
-              <li><Link to="/home">Home</Link></li>
-            {localStorage.getItem('user') ? <li><Link to="/profile">My Routines</Link></li> : null}
-              <li><Link to="/routines">Routines</Link></li>
-              <li><Link to="/activities">Activities</Link></li>
-            </ul>
-          </nav>
-          <Modal /> 
+        <nav>
+          <ul className="Navbar">
+            <li><Link to="/home">Home</Link></li>
+          {localStorage.getItem('user') ? <li><Link to="/myroutines">My Routines</Link></li> : null}
+            <li><Link to="/routines">Routines</Link></li>
+            <li><Link to="/activities">Activities</Link></li>
+          </ul>
+        </nav>
+        <Modal />
+        <Switch>
           <Route path="/home">
             <Home
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
             />
           </Route>
-          <Route path="/profile">
+          <Route path="/myroutines">
             <User 
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
@@ -61,16 +61,19 @@ function App() {
               setCurrentPage={setCurrentPage}
             />
           </Route>
-          <Footer />
-        {localStorage.getItem('user') ? <button className="actionButton" onClick={logOut}>Log Out</button> : <li className="Login-btn"><Link to="/login">Login/Register here</Link></li>}
+          
           <Route path="/login">
             <Login
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
-              loginSuccessful={loginSuccessful} 
-              setLoginSuccessful={setLoginSuccessful}
             />
           </Route>
+        </Switch>
+        <Footer />
+          <Login
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+          />
       </Router>
     </div>
   )

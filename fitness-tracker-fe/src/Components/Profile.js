@@ -1,9 +1,11 @@
 
 import { useState, useEffect } from 'react';
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
-let activityId = undefined;
+let routineId = undefined;
 let name = '';
 let goal = '';
+let updateName = '';
+let updateGoal = '';
 let isPublic = true;
 
 const Profile = () => {
@@ -21,13 +23,28 @@ const Profile = () => {
 
   useEffect(() => {
     getActivities();
+    userRoutines();
   }, []);
 
   const getID = (id) => {
-    activityId = id;
-    console.log(id)
+    routineId = id;
+    console.log(routineId)
   }
 
+  const updateRoutine = (event) => {
+    event.preventDefault();
+    fetch(`${BASE_URL}/routines/${routineId}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        name: 'Long Cardio Day',
+        goal: 'To get your heart pumping!'
+      })
+    }).then(response => response.json())
+      .then(result => {
+        console.log(result);
+      })
+      .catch(console.error);
+  }
   const createRoutine = (event) => {
     event.preventDefault();
     fetch(`${BASE_URL}/routines`, {
@@ -61,10 +78,9 @@ const Profile = () => {
       })
       .catch(console.error);
   }
-  
+  console.log(routines);
   return (
     <>
-      {/* <button id="modalOpen" className="actionButton" onClick={toggleModal}>uiText</button> */}
       {localStorage.getItem('user') ?
         <div className="Home_content">
           <div className="create-text">Create an routine below</div>
@@ -90,12 +106,13 @@ const Profile = () => {
             </form>
             {routines ? routines.map((routine, index) => {
               return (
-                <div className="Card" key={index} >
+                <div className="Card" key={index} id={routine.id} onClick={() => { getID(routine.id) }}>
                   <header>
                     <h3 className="card_title">{routine.name}</h3>
                     <h3 className="card_subtitle">Goal: {routine.goal}</h3>
                     <p className="card_content">Creator: {routine.creatorName}</p>
                   </header>
+                  <button>Edit Routine</button>
                 </div>
               )
             }): null}  
