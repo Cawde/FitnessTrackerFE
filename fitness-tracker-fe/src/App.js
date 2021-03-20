@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Link,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
 
 import {
@@ -28,15 +29,9 @@ function App() {
     <div className="App">
       <Header />
       <Router>
-          <nav>
-            <ul className="Navbar">
-              <li><Link to="/home">Home</Link></li>
-            {localStorage.getItem('user') ? <li><Link to="/profile">My Routines</Link></li> : null}
-              <li><Link to="/routines">Routines</Link></li>
-              <li><Link to="/activities">Activities</Link></li>
-            </ul>
-          </nav>
+         
           <Modal /> 
+          <Switch>
           <Route path="/home">
             <Home
               currentPage={currentPage}
@@ -71,6 +66,7 @@ function App() {
               setLoginSuccessful={setLoginSuccessful}
             />
           </Route>
+          </Switch>
       </Router>
     </div>
   )

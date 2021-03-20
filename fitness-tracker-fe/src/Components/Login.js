@@ -6,7 +6,9 @@ const Login = (props) => {
   const { setLoginSuccessful } = props;
   let pass = '';
   let user = '';
+  useEffect(() => {
 
+  },[])
   const storeToken = (token, user) => {
     localStorage.setItem('token', token);
     localStorage.setItem('user', user);

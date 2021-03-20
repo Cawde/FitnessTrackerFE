@@ -4,8 +4,8 @@ export { default as Activity } from './Activity';
 export { default as Routines } from './Routines';
 export { default as User } from './Profile';
 export { default as Login } from './Login';
-export { default as ModalBtn } from './ModalBtn';
-export { default as Content } from './Content';
+
+
 export { default as Hamburger } from './Hamburger';
 export { default as Modal } from './Modal'
 export { default as Card } from './Card.js';

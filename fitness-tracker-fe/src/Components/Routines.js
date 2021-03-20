@@ -1,14 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
+import {  Dialog, DialogActions, DialogContent, TextField } from '@material-ui/core';
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
-
-let routineName = '';
-let goal = '';
-let isPublic = true;
 
 const Routines = () => {
   const [routines, setRoutines] = useState();
   const [searchTerm, setSearchTerm] = useState('');
+  const [name, setName] = useState('');
+  const [goal, setGoal] = useState('');
+  const [isPublic, setIsPublic] = useState(true);
+  const [ modalDisplay, setModalDisplay ] = useState(false); 
 
   const getRoutines = () => {
     fetch(`${BASE_URL}/routines`)
@@ -31,7 +32,7 @@ const Routines = () => {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
       body: JSON.stringify({
-        name: routineName,
+        name: name,
         goal: goal,
         isPublic: isPublic
       })
@@ -57,6 +58,56 @@ const Routines = () => {
   console.log('These are the routines in the state', routines);
   return routines ? (
     <div className="Routine-Content">
+     <div 
+        className="actionButton" 
+        onClick={()=>setModalDisplay(true)}
+    >Open Modal
+    </div>
+    {modalDisplay ? 
+    <Dialog
+        open={modalDisplay}
+        className='actionModal'
+        onClose={() => setModalDisplay(false)}
+    >
+        <DialogContent
+            className="modalContent"
+        >
+                <TextField
+                    autoFocus
+                    id="routineName"
+                    label="Name"
+                    type="text"
+                    fullWidth
+                    value="Name"
+                    onChange={(event) => {setName(event.target.value)}} 
+                />
+                <TextField
+                    autoFocus
+                    id="routineGoal"
+                    label="Goal"
+                    type="text"
+                    fullWidth
+                    value="Goal"
+                    onChange={(event) => setGoal(event.target.value)}
+                />
+                
+                <button 
+                    className="actionButton" 
+                    type="submit" 
+                    value="Submit"
+                >Submit
+                </button>
+        </DialogContent>
+        <DialogActions
+            className="modalContent"
+        >
+            <div 
+                className="actionButton"
+                onClick={()=>{setModalDisplay(false)}}
+            >Cancel
+            </div>
+        </DialogActions>
+    </Dialog> : null} 
       <div className="searchContainer">
         <div className="search">
           <form className="search-box">
