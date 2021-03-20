@@ -3,11 +3,8 @@
 
 Names of parent classes returned from a React component are capitalized, and use underscores when needed to seperate.
 Names of children classes or classes created within the html doc conform to lowercase with underscore seperation
-
-
 /*-----IMPORTS-----*/
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif+Caption&family=Poppins:ital,wght@0,400;0,700;1,100&display=swap');
-
 /*-----CSS RESET----*/
 html, body, div, span, h1, h2, h3, h4, h5, h6, p, img, center, ol, ul, li, form, label, footer, header, nav{
 	margin: 0;
@@ -30,7 +27,6 @@ body {
 ol, ul {
 	list-style: none;
 }
-
 /*-----Global Styles-----*/
 html { font-size: 100%; }
 
@@ -47,6 +43,23 @@ h1 { font-size: 2em; }
 /* font-family: 'Poppins', sans-serif;
 
 font-family: 'PT Serif Caption', serif; */
+
+@media screen 
+  and (min-device-width: 701px) {
+    .App {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+      background: #303634;
+      font-size: 0.75em;
+      background-image: url(./images/DT1.svg);
+      background-repeat: no-repeat;
+      color: #303634ff;
+      min-width: 100vw;;
+  }
+}
+@media screen 
+  and (max-device-width: 700px) {
 .App {
 
     display: flex;
@@ -54,10 +67,11 @@ font-family: 'PT Serif Caption', serif; */
     flex-direction: column;
     background: #303634;
     font-size: 0.75em;
-    background-image: url();
+    background-image: url(./images/M1.svg);
     background-repeat: no-repeat;
     color: #303634ff;
 }
+  }
 .Navbar {
     display: flex;
     flex-direction: row;
@@ -67,28 +81,71 @@ font-family: 'PT Serif Caption', serif; */
     font-size: 1.2em;
     padding: 3px;
     text-decoration: none;
-    
-    ;
 }
 .Heading_h1 {
     font-family: 'Poppins', sans-serif;
     font-size: 6em;
 }
+@media only screen 
+  and (min-width: 1200px) {
+  .homeContent {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    flex: 1;
+
+    background-size: auto;
+ }
+ .User {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  flex: 1;
+
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+  .Activities-Content{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    flex: 1;
+
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+  .Routine-Content{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-top: 20px;
+    flex: 1;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    }
+}
+
+@media only screen
+  and (max-width: 768px){
 .homeContent {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
     flex: 1;
-    background-image: url(./images/M2.svg);
+
     background-size: 100%;
     background-repeat: no-repeat;
  }
+}
+
 .User {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
     flex: 1;
-    background-image: url(./images/M1.svg);
+
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -102,7 +159,7 @@ font-family: 'PT Serif Caption', serif; */
       ".";
     border-radius: 20px; 
    ;
-    width: 80vw;
+    /* width: 80vw; */
     margin: auto;
  }
 .Card {
@@ -111,7 +168,6 @@ font-family: 'PT Serif Caption', serif; */
     align-self: center;
     padding: .5rem;
     margin: .5rem;
-    width: 100%;
     border-radius: 5px; 
     background: #3a413eff;
     justify-content: space-between;
@@ -159,16 +215,13 @@ font-family: 'PT Serif Caption', serif; */
  a, a:visited, a:hover, a:active {
     color: inherit;
   }
-
   .Routine-Content{
   display: flex;
   flex-direction: column;
   align-self: center;
   margin-top: 20px;
   flex: 1;
-  background-image: url(./images/M3.svg);
-  background-size: cover;
-  background-repeat: no-repeat;
+ 
   }
 /*AC content may be a redundant rule*/
   .Activities-Content{
@@ -176,7 +229,7 @@ font-family: 'PT Serif Caption', serif; */
     flex-direction: column;
     margin-top: 20px;
     flex: 1;
-    background-image: url(./images/M4.svg);
+
     background-size: 100%;
     background-repeat: no-repeat;
   }
@@ -217,7 +270,6 @@ font-family: 'PT Serif Caption', serif; */
   text-align: center;
   box-shadow: 0px 1px 3px 0px #999290;
 	background:linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%);
-
 	border-radius:5px;
 	border:1px solid rgb(58, 54, 53);
 	display:inline-block;
@@ -235,7 +287,6 @@ font-family: 'PT Serif Caption', serif; */
   background: linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%);
   display: flex;
   justify-content: center;
-  
 }
 
 .searchContainer {
@@ -243,3 +294,6 @@ font-family: 'PT Serif Caption', serif; */
   flex-direction: row;
   justify-content: center;
 }
+
+
+

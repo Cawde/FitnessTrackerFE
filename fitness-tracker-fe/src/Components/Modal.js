@@ -61,6 +61,7 @@ const Modal = (modalTitle) => {
                 >
                     <div 
                         className="actionButton"
+                        onClick={()=>{setModalDisplay(false)}}
                     >Cancel
                     </div>
                 </DialogActions>
