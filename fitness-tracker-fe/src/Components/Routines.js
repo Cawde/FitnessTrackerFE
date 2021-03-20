@@ -2,6 +2,10 @@
 import React, { useState, useEffect } from 'react';
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
 
+let routineName = '';
+let goal = '';
+let isPublic = true;
+
 const Routines = () => {
   const [routines, setRoutines] = useState();
   const [searchTerm, setSearchTerm] = useState('');
@@ -18,6 +22,38 @@ const Routines = () => {
   useEffect(() => {
     getRoutines();
   }, []);
+  const createRoutine = (event) => {
+    event.preventDefault();
+    fetch(`${BASE_URL}/routines`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({
+        name: routineName,
+        goal: goal,
+        isPublic: isPublic
+      })
+    }).then(response => response.json())
+      .then(result => {
+        console.log(result);
+      })
+      .catch(console.error);
+    userRoutines();
+  }
+  const userRoutines = () => {
+    fetch(`${BASE_URL}/users/${localStorage.getItem('user')}/routines`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(response => response.json())
+      .then(result => {
+        console.log(result);
+        setRoutines(result);
+      })
+      .catch(console.error);
+  }
   console.log('These are the routines in the state', routines);
   return routines ? (
     <div className="Routine-Content">

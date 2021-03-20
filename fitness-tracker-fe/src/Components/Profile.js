@@ -110,7 +110,7 @@ const Profile = () => {
       {/* <button id="modalOpen" className="actionButton" onClick={toggleModal}>uiText</button> */}
       {localStorage.getItem('user') ?
         <div className="Home_content">
-          <h1>Create an routine below</h1>
+          <div className="create-text">Create an routine below</div>
           <div className="Create-routine">
             <form className="create_routine">
               <label>
@@ -144,7 +144,7 @@ const Profile = () => {
             }): null}  
           </div>
         <div className="Home_content">
-          <h1>Create an activity below</h1>
+          <div className="create-text">Create an activity below</div>
           <div className="Create-Activity">
             <form className="create_activity">
               <label>

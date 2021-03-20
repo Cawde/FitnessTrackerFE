@@ -18,7 +18,6 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, img, center, ol, ul, li, form,
 	vertical-align: baseline;
     color: #c4bbb8;}
     
-
 /*----- HTML5 DR Reset-----*/
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -26,6 +25,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+  position: absolute;
 }
 ol, ul {
 	list-style: none;
@@ -33,9 +33,7 @@ ol, ul {
 
 /*-----Global Styles-----*/
 html { font-size: 100%; }
-body {
 
-}
 h1 { font-size: 2em; }
 
 /* CSS HEX */
@@ -50,18 +48,16 @@ h1 { font-size: 2em; }
 
 font-family: 'PT Serif Caption', serif; */
 .App {
+
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background: #303634;;
+    background: #303634;
     font-size: 0.75em;
     background-image: url();
     background-repeat: no-repeat;
     color: #303634ff;
     
-}
-.App-Header {
-   
 }
 .Navbar {
     display: flex;
@@ -177,16 +173,17 @@ font-family: 'PT Serif Caption', serif; */
 .actionButton {
 	box-shadow: 0px 1px 3px 0px #999290;
 	background:linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%);
-	background-color:c4bbb8ff;
+	/* background-color:c4bbb8ff; */
 	border-radius:5px;
 	border:1px solid rgb(58, 54, 53);
 	display:inline-block;
 	cursor:pointer;
-	color:#303634ff;
-	font-family:Arial;
+	color:#303634;
+	font-family: 'PT Serif Caption', serif; 
 	font-size:13px;
 	padding:7px 10px;
 	text-decoration:none;
+  max-width: fit-content;
 	
 }
 .actionButton:hover {
@@ -195,44 +192,36 @@ font-family: 'PT Serif Caption', serif; */
 }
 
 
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-  }
-  
-  /* The Close Button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
 .hide {
     display: none;
 }
 
+.create-text{
+    font-family: 'PT Serif Caption', serif;
+    font-size: 1.3em;
+}
+
+.actionModal {
+  position: relative;
+  left: 15%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0px 1px 3px 0px #999290;
+	background:linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%);
+	/* background-color:c4bbb8ff; */
+	border-radius:5px;
+	border:1px solid rgb(58, 54, 53);
+	display:inline-block;
+	cursor:pointer;
+	color:#303634;
+	font-family: 'PT Serif Caption', serif; 
+	font-size:13px;
+	padding:7px 10px;
+	text-decoration:none;
+  width: 60vw;
+  height: 60vh;
+}
