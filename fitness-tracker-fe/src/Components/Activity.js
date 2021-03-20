@@ -8,7 +8,6 @@ let activityId = undefined;
 
 const Activity = () => {
   const [activities, setActivities] = useState();
-  const [routines, setRoutines] = useState();
   const [searchTerm, setSearchTerm] = useState('');
 
   const createActivity = (event) => {
@@ -21,7 +20,7 @@ const Activity = () => {
     },
       body: JSON.stringify({
         name: name,
-        description: description,
+        description: description
       })
     }).then(response => response.json())
       .then(result => {
@@ -47,14 +46,11 @@ const Activity = () => {
     }).then(response => response.json())
       .then(result => {
         console.log(result);
-        setRoutines(result);
+        setActivities(result);
       })
       .catch(console.error);
   }
 
-  useEffect(() => {
-    getActivities();
-  }, []);
 
   const getID = (id) => {
     activityId = id;
@@ -76,6 +72,30 @@ const Activity = () => {
   
   return activities ? (
     <div className="Activities-Content">
+      <div className="Home_content">
+        <div className="create-text">Create an activity below</div>
+        <div className="Create-Activity">
+          <form className="create_activity">
+            <label>
+              Name:
+            <input 
+              type="text" 
+              name="Activity_Name" 
+              onChange={(event) => {name = event.target.value}} 
+            />
+            </label>
+            <label>
+              Description
+            <input 
+              type="text" 
+              name="Activity_Description"
+              onChange={(event) => {description = event.target.value}}          
+            />
+            </label>
+            <button className="actionButton" type="submit" onClick={createActivity}>Create Activity</button>
+          </form>
+        </div>
+    </div>
      <div className="searchContainer">
         <div className="search">
           <form className="search-box">
@@ -103,7 +123,7 @@ const Activity = () => {
           </div>
         )
       }): null}
-    </div>
+    </div> 
   ) : null;
 }
 

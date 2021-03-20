@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
 
@@ -51,10 +52,13 @@ const Login = (props) => {
       }).catch(console.error);
   }
 
+  useEffect(() => {
+    storeToken();
+  },[])
   return (
     <div className="login">
       <h1>Register or Sign in below</h1>
-      <form className="input-box" onSubmit={registerUser}>
+      <form className="input-box" onSubmit={loginUser}>
         <div className="container">
           <label><b>Enter Username</b></label>
           <input
@@ -78,6 +82,7 @@ const Login = (props) => {
           <button
             type="submit"
             className="actionButton"
+            onClick={registerUser}
           >Register</button>
           <h2><b>Already have an account?</b> <button type="submit" className="actionButton" onClick={loginUser}>Sign In</button></h2>
         </div>
