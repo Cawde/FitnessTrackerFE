@@ -225,3 +225,7 @@ font-family: 'PT Serif Caption', serif; */
   width: 60vw;
   height: 60vh;
 }
+
+.modalContent {
+  background: linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%)
+}
