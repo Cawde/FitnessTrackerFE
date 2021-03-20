@@ -19,14 +19,10 @@ import {
 function App() {
   const [loginSuccessful, setLoginSuccessful] = useState(false);
   const [currentPage, setCurrentPage] = useState("home");
-  const [modalControl, setModalControl] = useState(false);
   const logOut = () => {
     setLoginSuccessful(false);
     localStorage.clear();
   }
-  // const openModal = () => {
-  //   setModalControl(true)
-  // }
   return (
     <div className="App">
       <Header />
@@ -39,7 +35,6 @@ function App() {
               <li><Link to="/activities">Activities</Link></li>
             </ul>
           </nav>
-
           <Modal /> 
           <Route path="/home">
             <Home
@@ -79,5 +74,4 @@ function App() {
     </div>
   )
 }
-
 export default App;

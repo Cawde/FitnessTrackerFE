@@ -1,14 +1,9 @@
 
-import { useState, useEffect } from 'react';
-const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
-
 const Home = () => {
-
-
-  
-
   return (
-    <div>HomePage</div>
+    <div className='homeContent'>
+      <p className="heroText">"Gestures indicate movement. Get moving today with GEST.R"</p>
+    </div>
   )   
 } 
 

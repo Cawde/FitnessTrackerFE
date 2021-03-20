@@ -76,8 +76,7 @@ const Activity = () => {
   
   return activities ? (
     <div className="Activities-Content">
-     <div>
-        <h1 className="search_text">Search</h1>
+     <div className="searchContainer">
         <div className="search">
           <form className="search-box">
           { <input 
@@ -98,6 +97,7 @@ const Activity = () => {
           <div className="Card" key={index} >
             <header>
               <h3 className="card_title">{activity['name'].toUpperCase()}</h3>
+              <hr />
               <h3 className="card_subtitle">Description: {activity.description}</h3>
             </header>
           </div>

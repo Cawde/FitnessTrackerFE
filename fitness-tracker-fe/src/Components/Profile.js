@@ -46,7 +46,6 @@ const Profile = () => {
       })
       .catch(console.error);
   };
-
   const updateActivity = () => {
     fetch(`{BASE_URL}/activities/${activityId}`, {
       method: "PATCH",
@@ -173,7 +172,8 @@ const Profile = () => {
             return (
               <div className="Card" key={index} id={activity.id} onClick={() => { getID(activity.id) }}>
                 <header>
-                  <h3 className="card_title">{activity.name}</h3>
+                  <h3 className="card_title">{activity.name.toUpperCase()}</h3>
+                  <hr />
                   <h3 className="card_subtitle">Description: {activity.description}</h3>
                 </header>
             </div>

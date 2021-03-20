@@ -57,7 +57,6 @@ font-family: 'PT Serif Caption', serif; */
     background-image: url();
     background-repeat: no-repeat;
     color: #303634ff;
-    
 }
 .Navbar {
     display: flex;
@@ -75,7 +74,7 @@ font-family: 'PT Serif Caption', serif; */
     font-family: 'Poppins', sans-serif;
     font-size: 6em;
 }
-.Home_content {
+.homeContent {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -112,7 +111,7 @@ font-family: 'PT Serif Caption', serif; */
     align-self: center;
     padding: .5rem;
     margin: .5rem;
-    width: 60vw;
+    width: 100%;
     border-radius: 5px; 
     background: #3a413eff;
     justify-content: space-between;
@@ -126,18 +125,31 @@ font-family: 'PT Serif Caption', serif; */
     font-family: 'PT Serif Caption', serif;
     font-weight: bolder;
 }
-.card_subtitle
+.card_subtitle {
+  font-family: 'PT Serif Caption', serif;;
+  font-weight: 100;
+}
 .sub_card{
     display: flex;
     flex-direction: column;
     font-family: 'PT Serif Caption', serif;
     font-size: large;
 }
-.Hero_text {
-   flex: .5;
+.heroText {
+  font-size: 3em;
+  font-family: 'PT Serif Caption', serif; 
+  margin: 1em;
+  margin-top: 2em;
+  border-radius: 20px;
+  font-style: italic;
+  line-height: 2em;
+  background: rgba(107, 102, 100, 0.25)
+
+  
 }
  .Footer {
     font-size: 1.5em;
+    background: none;
  }
  .Footer :is(a, li) {
     font-size: 1.5em;  /*NOT WORKING*/
@@ -169,11 +181,9 @@ font-family: 'PT Serif Caption', serif; */
     background-repeat: no-repeat;
   }
 
-
 .actionButton {
 	box-shadow: 0px 1px 3px 0px #999290;
 	background:linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%);
-	/* background-color:c4bbb8ff; */
 	border-radius:5px;
 	border:1px solid rgb(58, 54, 53);
 	display:inline-block;
@@ -183,24 +193,19 @@ font-family: 'PT Serif Caption', serif; */
 	font-size:13px;
 	padding:7px 10px;
 	text-decoration:none;
-  max-width: fit-content;
-	
+  max-width: fit-content;	
 }
 .actionButton:hover {
 	background:linear-gradient(to bottom, #c4bbb8 5%, #ad5c4e 100%);
 	background-color:#c4bbb8;
 }
-
-
 .hide {
     display: none;
 }
-
 .create-text{
     font-family: 'PT Serif Caption', serif;
     font-size: 1.3em;
 }
-
 .actionModal {
   position: relative;
   left: 15%;
@@ -212,7 +217,7 @@ font-family: 'PT Serif Caption', serif; */
   text-align: center;
   box-shadow: 0px 1px 3px 0px #999290;
 	background:linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%);
-	/* background-color:c4bbb8ff; */
+
 	border-radius:5px;
 	border:1px solid rgb(58, 54, 53);
 	display:inline-block;
@@ -227,5 +232,14 @@ font-family: 'PT Serif Caption', serif; */
 }
 
 .modalContent {
-  background: linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%)
+  background: linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%);
+  display: flex;
+  justify-content: center;
+  
+}
+
+.searchContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

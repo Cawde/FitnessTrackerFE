@@ -57,8 +57,7 @@ const Routines = () => {
   console.log('These are the routines in the state', routines);
   return routines ? (
     <div className="Routine-Content">
-      <div>
-        <h1 className="search_text">Search</h1>
+      <div className="searchContainer">
         <div className="search">
           <form className="search-box">
           { <input 
@@ -81,7 +80,9 @@ const Routines = () => {
             <div className="Card" key={index} >
               <header>
                 <h3 className="card_title">{routine.name}</h3>
+                <hr />
                 <h3 className="card_subtitle">Goal: {routine.goal}</h3>
+                <hr />
                 <p className="card_content">Creator: {routine.creatorName}</p>
               </header>
               <div className="card_details" value={routine.id}>
