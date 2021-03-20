@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Link,
@@ -23,6 +23,10 @@ function App() {
     setLoginSuccessful(false);
     localStorage.clear();
   }
+
+  useEffect(() => {
+    logOut();
+  },[])
   return (
     <div className="App">
       <Header />
@@ -30,7 +34,7 @@ function App() {
           <nav>
             <ul className="Navbar">
               <li><Link to="/home">Home</Link></li>
-              <li><Link to="/profile">Profile</Link></li>
+            {localStorage.getItem('user') ? <li><Link to="/profile">My Routines</Link></li> : null}
               <li><Link to="/routines">Routines</Link></li>
               <li><Link to="/activities">Activities</Link></li>
             </ul>
