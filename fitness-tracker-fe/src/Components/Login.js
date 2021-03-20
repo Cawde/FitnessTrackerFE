@@ -13,7 +13,6 @@ const Login = (props) => {
   }
 
   const registerUser = (event) => {
-    event.preventDefault();
     fetch(`${BASE_URL}/users/register`, {
       method: "POST",
       headers: {
@@ -33,7 +32,6 @@ const Login = (props) => {
   }
   
   const loginUser = (event) => {
-    event.preventDefault();
     fetch(`${BASE_URL}/users/login`, {
       method: "POST",
       headers: {
@@ -52,9 +50,6 @@ const Login = (props) => {
       }).catch(console.error);
   }
 
-  useEffect(() => {
-    storeToken();
-  },[])
   return (
     <div className="login">
       <h1>Register or Sign in below</h1>

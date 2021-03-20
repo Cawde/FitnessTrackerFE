@@ -24,9 +24,6 @@ function App() {
     localStorage.clear();
   }
 
-  useEffect(() => {
-    logOut();
-  },[])
   return (
     <div className="App">
       <Header />
