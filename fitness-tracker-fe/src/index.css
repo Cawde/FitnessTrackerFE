@@ -57,7 +57,8 @@ font-family: 'PT Serif Caption', serif; */
     font-size: 0.75em;
     background-image: url();
     background-repeat: no-repeat;
-    color: #C4BBB8;
+    color: #303634ff;
+    
 }
 .App-Header {
    
@@ -65,12 +66,13 @@ font-family: 'PT Serif Caption', serif; */
 .Navbar {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 .Navbar li, a {
     font-size: 1.2em;
     padding: 3px;
     text-decoration: none;
-    border: solid, black, 3px; 
+    
     ;
 }
 .Heading_h1 {
@@ -111,17 +113,23 @@ font-family: 'PT Serif Caption', serif; */
 .Card {
     display: flex;
     flex-direction: column;
+    align-self: center;
     padding: .5rem;
     margin: .5rem;
     width: 60vw;
     border-radius: 5px; 
-    background: #050505;
+    background: #3a413eff;
     justify-content: space-between;
     font-size: 20px;
+    box-shadow: rgb(17, 19, 18) 3px 3px 5px;
+    font-weight: bolder;
 }
 .card_details
 .card_content
-.card_title
+.card_title {
+    font-family: 'PT Serif Caption', serif;
+    font-weight: bolder;
+}
 .card_subtitle
 .sub_card{
     display: flex;
@@ -147,6 +155,7 @@ font-family: 'PT Serif Caption', serif; */
   .Routine-Content{
   display: flex;
   flex-direction: column;
+  align-self: center;
   margin-top: 20px;
   flex: 1;
   background-image: url(./images/M3.svg);
@@ -163,3 +172,67 @@ font-family: 'PT Serif Caption', serif; */
     background-size: 100%;
     background-repeat: no-repeat;
   }
+
+
+.actionButton {
+	box-shadow: 0px 1px 3px 0px #999290;
+	background:linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%);
+	background-color:c4bbb8ff;
+	border-radius:5px;
+	border:1px solid rgb(58, 54, 53);
+	display:inline-block;
+	cursor:pointer;
+	color:#303634ff;
+	font-family:Arial;
+	font-size:13px;
+	padding:7px 10px;
+	text-decoration:none;
+	
+}
+.actionButton:hover {
+	background:linear-gradient(to bottom, #c4bbb8 5%, #ad5c4e 100%);
+	background-color:#c4bbb8;
+}
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+.hide {
+    display: none;
+}
+

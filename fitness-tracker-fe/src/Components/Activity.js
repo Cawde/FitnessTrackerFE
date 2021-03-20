@@ -16,14 +16,14 @@ const Activity = () => {
   useEffect(() => {
     getActivities();
   }, []);
-  console.log('These are the activities in the state', activities);
+  
   return activities ? (
     <div className="Activities-Content">
       {activities ? activities.map((activity, index) => {
         return (
           <div className="Card" key={index} >
             <header>
-              <h3 className="card_title">{activity.name}</h3>
+              <h3 className="card_title">{activity['name'].toUpperCase()}</h3>
               <h3 className="card_subtitle">Description: {activity.description}</h3>
             </header>
           </div>

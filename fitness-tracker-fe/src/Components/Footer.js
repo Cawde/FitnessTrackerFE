@@ -2,7 +2,7 @@
 const Footer = () => {
     return (
       <div className="Footer">
-        <p> Footer bby </p>
+        <p>Gestures indicate movement. Get moving today with GEST.R</p>
       </div>
     );
   }

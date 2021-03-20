@@ -77,9 +77,9 @@ const Login = (props) => {
           <hr />
           <button
             type="submit"
-            className="registerbtn"
+            className="actionButton"
           >Register</button>
-          <h2><b>Already have an account?</b> <button type="submit" className="sign-in-btn" onClick={loginUser}>Sign In</button></h2>
+          <h2><b>Already have an account?</b> <button type="submit" className="actionButton" onClick={loginUser}>Sign In</button></h2>
         </div>
       </form>
     </div>

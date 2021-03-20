@@ -59,7 +59,7 @@ function App() {
             />
           </Route>
           <Footer />
-        {localStorage.getItem('user') ? <button onClick={logOut}>Log Out</button> : <li className="Login-btn"><Link to="/login">Login/Register here</Link></li>}
+        {localStorage.getItem('user') ? <button className="actionButton" onClick={logOut}>Log Out</button> : <li className="Login-btn"><Link to="/login">Login/Register here</Link></li>}
           <Route path="/login">
             <Login
               currentPage={currentPage}
