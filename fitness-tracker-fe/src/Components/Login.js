@@ -77,12 +77,12 @@ const Login = (props) => {
       {localStorage.getItem('user') ? <button className="actionButton" onClick={logOut}>Log Out</button> :
       <div>
         <h1>Register or Sign in below</h1>
-        <form className="input-box" onSubmit={loginUser}>
+        <form className="inputBox" onSubmit={loginUser}>
           <div className="container">
             <label><b>Enter Username</b></label>
             <input
               type="text"
-              name="uname"
+              name="name"
               placeholder="Enter Username" required
               onChange={(event) => { user = event.target.value }}
             />

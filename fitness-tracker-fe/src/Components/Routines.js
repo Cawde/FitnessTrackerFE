@@ -110,7 +110,7 @@ const Routines = () => {
     </Dialog> : null} 
       <div className="searchContainer">
         <div className="search">
-          <form className="search-box">
+          <form className="searchBox">
           { <input 
               type="text" 
               placeholder="Search for routines here" 
@@ -119,7 +119,7 @@ const Routines = () => {
           </form>
         </div>
       </div>
-      <div className="Routines_Content">
+      <div className="routinesContent">
         {routines ? routines.filter((routine) => {
           if (searchTerm === '') {
             return routine;
@@ -128,13 +128,13 @@ const Routines = () => {
         }).map((routine, index) => {
           return (
             <div className="card" key={index} >
-              <header>
-                <h3 className="cardTitle">{routine.name}</h3>
+              
+                <p className="cardTitle">{routine.name}</p>
                 <hr />
                 <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
                 <hr />
                 <p className="cardContent">Creator: {routine.creatorName}</p>
-              </header>
+              
               <div className="cardContent" value={routine.id}>
                 {routine.activities.length ? routine.activities.map((activity, index) => {
                   return (
@@ -143,7 +143,7 @@ const Routines = () => {
                       <header>
                         <h3 className="cardSubtitle">Activity name: {activity.name}</h3>
                         <h3 className="cardSubtitle">Activity description: {activity.description}</h3>
-                        {activity.goal ? <h3 className="card_title">Goal: {activity.goal}</h3> : null}
+                        {activity.goal ? <h3 className="cardTitle">Goal: {activity.goal}</h3> : null}
                         <h3 className="cardSutitle">Count: {activity.count} reps</h3>
                         <h3 className="cardSubtitle">Duration: {activity.duration} minutes</h3>
                       </header>

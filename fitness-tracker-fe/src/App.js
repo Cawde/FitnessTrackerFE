@@ -24,11 +24,11 @@ function App() {
 
   },[])
   return (
-    <div className="App">
+    <div className="app">
       <Header />
       <Router>
         <nav>
-          <ul className="Navbar">
+          <ul className="navbar">
             <li><Link to="/home">Home</Link></li>
           {localStorage.getItem('user') ? <li><Link to="/myroutines">My Routines</Link></li> : null}
             <li><Link to="/routines">Routines</Link></li>
