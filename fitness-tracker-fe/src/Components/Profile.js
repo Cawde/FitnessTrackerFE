@@ -14,12 +14,6 @@ let routineId = undefined;
 let updateName = '';
 let updateGoal = '';
 let isPublic = true;
-const options = [
-  'a bunch',
-  'of',
-  'different',
-  'activities'
- ];
 let activityId = undefined;
 let count = null;
 let duration = null;
@@ -124,6 +118,22 @@ const Profile = () => {
     userRoutines();
   }
 
+  const addActivityToRoutine = async (activityId, routineId) => {
+    await fetch( `${BASE_URL}/routines/${routineId}/activities`, {
+      method: "POST",
+      body: JSON.stringify({
+        "activityId": activityId,
+        count: 4, 
+        duration: 5
+      })
+    }).then(response => response.json())
+      .then(result => {
+        console.log(activityId, routineId)
+        console.log(result);
+      })
+      .catch(console.error);
+  }
+  
   const getRoutineId = (id) => {
     routineId = id;
     console.log(routineId)
@@ -132,26 +142,11 @@ const Profile = () => {
   
   const getActivityId = (id) => {
     activityId = id;
-    console.log("The Activity Id Is: ", activityId)
+    console.log(id);
+    console.log(activityId)
     return activityId;
   }
-
-
-  const addActivityToRoutine = () => {
-    fetch( `${BASE_URL}/routines/${routineId}/activities`, {
-      method: "POST",
-      body: JSON.stringify({
-        activityId: activityId,
-        count: count, 
-        duration: duration
-      })
-    }).then(response => response.json())
-      .then(result => {
-        console.log(result);
-      })
-      .catch(console.error);
-  }
-
+  
   useEffect(() => {
     getActivities();
     userRoutines();
@@ -250,7 +245,7 @@ const Profile = () => {
                         aria-label="Add to Routine"
                         onClick={handleClickListItem}
                       >
-                        <ListItemText primary="Add to Routine"/>
+                        <ListItemText primary="Add activity to routine"/>
                       </ListItem>
                     </List>
                     <Menu
@@ -262,7 +257,7 @@ const Profile = () => {
                     >
                       {activities ? activities.map((activity, index) => {
                         return (
-                          <div className="card" key={index} id={activity.id} onClick={() => { getActivityId(activity.id) }}>
+                          <div className="card" key={index} id={activity.id} onClick={() => { addActivityToRoutine(activity.id, routine.id) }}>
                             <header>
                               <h3 className="cardTitle">{activity.name.toUpperCase()}</h3>
                               <hr />
