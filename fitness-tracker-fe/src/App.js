@@ -13,6 +13,7 @@ import {
   Routines,
   User,
   Login,
+  Profile,
   Footer,
   Navbar,
   Modal
@@ -35,7 +36,7 @@ function App() {
         <nav>
           <ul className="Navbar">
             <li><Link to="/home">Home</Link></li>
-          {localStorage.getItem('user') ? <li><Link to="/myroutines">My Routines</Link></li> : null}
+            <li><Link to="/myroutines">My Routines</Link></li>
             <li><Link to="/routines">Routines</Link></li>
             <li><Link to="/activities">Activities</Link></li>
           </ul>
@@ -48,8 +49,8 @@ function App() {
               setCurrentPage={setCurrentPage}
             />
           </Route>
-          <Route path="/profile">
-            <User 
+          <Route path="/myroutines">
+            <Profile 
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
             />

@@ -15,6 +15,7 @@ const Login = () => {
   }
 
   const registerUser = (event) => {
+    event.preventDefault();
     fetch(`${BASE_URL}/users/register`, {
       method: "POST",
       headers: {
@@ -34,6 +35,7 @@ const Login = () => {
   }
   
   const loginUser = (event) => {
+    event.preventDefault();
     fetch(`${BASE_URL}/users/login`, {
       method: "POST",
       headers: {
@@ -59,7 +61,6 @@ const Login = () => {
   }
 
   useEffect(() => {
-
   }, [])
   return (
     <div className="login">

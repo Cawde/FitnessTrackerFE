@@ -15,18 +15,16 @@ const Profile = () => {
   const [activities, setActivities] = useState();
 
   const getActivities = async () => {
-    await fetch(`${BASE_URL}/activities`)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      setActivities(data); 
-    })
-    .catch(console.error);
-  }
-  const getID = (id) => {
-    routineId = id;
-    return routineId;
-    console.log(routineId)
+    await fetch(`${BASE_URL}/activities`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(response => response.json())
+      .then(result => {
+        console.log(result);
+        setActivities(result);
+      })
+      .catch(console.error);
   }
 
   const updateRoutine = async (event) => {
@@ -94,25 +92,28 @@ const Profile = () => {
     userRoutines();
   }
 
+  const getID = (id) => {
+    routineId = id;
+    return routineId;
+  }
 
   useEffect(() => {
     getActivities();
     userRoutines();
-  }, [setActivities, setRoutines, setDeletedRoutine]);
+  }, [setActivities, setDeletedRoutine, setRoutines]);
 
   return (
     <>
-      {/* <button id="modalOpen" className="actionButton" onClick={toggleModal}>uiText</button> */}
       {localStorage.getItem('user') ?
-        <div className="Home_content">
-          <div className="create-text">Create an routine below</div>
-          <div className="Create-routine">
-            <form className="create_routine">
+        <div className="homeContent">
+          <div className="createText">Create an routine below</div>
+          <div className="createRoutine">
+            <form className="createRoutine">
               <label>
                 Name:
               <input 
                 type="text" 
-                name="Routine_Name" 
+                name="routineName" 
                 onChange={(event) => {name = event.target.value}} 
               />
               </label>
@@ -120,7 +121,7 @@ const Profile = () => {
                 Goal
               <input 
                 type="text" 
-                name="Routine_Goal"
+                name="routineGoal"
                 onChange={(event) => {goal = event.target.value}}          
               />
               </label>
@@ -128,12 +129,14 @@ const Profile = () => {
             </form>
             {routines ? routines.map((routine, index) => {
               return (
-                <div className="Card" key={index} >
+                <div className="card" key={index} id={routine.id} onClick={()=> getID(routine.id)}>
                   <header>
                     <h3 className="cardTitle">{routine.name}</h3>
                     <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
                     <p className="cardContent">Creator: {routine.creatorName}</p>
                   </header>
+                  <button className="actionButton">Edit Routine</button>
+                  <button className="actionButton" onClick={() => deleteRoutine(routine.id)}>Delete Routine</button>
                 </div>
               )
             }): null}  
