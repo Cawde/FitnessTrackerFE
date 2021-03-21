@@ -1,8 +1,11 @@
 
 import { useState, useEffect } from 'react';
 import {  Dialog, DialogActions, DialogContent, TextField } from '@material-ui/core';
-import { List, ListItem, ListItemText, MenuItem, Menu } from '@material-ui/core'
-
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 
 
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
@@ -12,29 +15,29 @@ let goal = '';
 let updateName = '';
 let updateGoal = '';
 let isPublic = true;
-const activitiesHere = [
+const options = [
   'a bunch',
   'of',
   'different',
   'activities'
  ];
-
 const Profile = () => {
   const [routines, setRoutines] = useState();
   const [deletedRoutine, setDeletedRoutine] = useState();
   const [activities, setActivities] = useState();
-  const [activitySelect, setActivitySelect] = useState('banana');
+  const [anchorEl, setAnchorEl] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(1);
-
   const handleClickListItem = (event) => {
-    setActivitySelect(event.currentTarget);
+    setAnchorEl(event.currentTarget);
   };
+
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
-    setActivitySelect(event.target.value);
+    setAnchorEl(null);
   };
+
   const handleClose = () => {
-    setActivitySelect("null");
+    setAnchorEl(null);
   };
 
   const getActivities = async () => {
@@ -83,7 +86,6 @@ const Profile = () => {
       .catch(console.error);
     userRoutines();
   }
-
   const userRoutines = async () => {
     await fetch(`${BASE_URL}/users/${localStorage.getItem('user')}/routines`, {
       headers: {
@@ -96,7 +98,6 @@ const Profile = () => {
       })
       .catch(console.error);
   }
-
   const deleteRoutine = async (id) => {
     await fetch(`${BASE_URL}/routines/${id}`, {
       method: "DELETE",
@@ -156,35 +157,37 @@ const Profile = () => {
                     <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
                     <p className="cardContent">Creator: {routine.creatorName}</p>
                   </header>
-                  <div className='menu'>
-                <List component="nav" aria-label="Device settings">
-                    <div 
-                      className="actionButton" 
-                      primary="Add Activity to Routine" 
-                      secondary={activitySelect[selectedIndex]} 
-                      onClick={handleClickListItem}
-                      >Add Activity
-                    </div> 
-                </List>
-                <Menu
-                  id="addActivity"
-                  activitySelect={activitySelect}
-                  keepMounted
-                  open={Boolean(activitySelect)}
-                  onClose={handleClose}
-                >
-                  {activitiesHere.map((activity, index) => (
-                    <MenuItem
-                      key={activity}
-                      disabled={index === 0}
-                      selected={index === selectedIndex}
-                      onClick={(event) => handleMenuItemClick(event, index)}
-                    >
-                      {activity}
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </div>
+                  <div className='addActivityMenu'>
+      <List component="nav" aria-label="Device settings">
+        <ListItem
+          button
+          aria-haspopup="true"
+          aria-controls="lock-menu"
+          aria-label="Add to Routine"
+          onClick={handleClickListItem}
+        >
+          <ListItemText primary="Add to Routine"/>
+        </ListItem>
+      </List>
+      <Menu
+        id="lock-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        {options.map((option, index) => (
+          <MenuItem
+            key={option}
+            disabled={index === 0}
+            selected={index === selectedIndex}
+            onClick={(event) => handleMenuItemClick(event, index)}
+          >
+            {option}
+          </MenuItem>
+        ))}
+      </Menu>
+    </div>
                   <button className="actionButton">Edit Routine</button>
                   <button className="actionButton" onClick={() => deleteRoutine(routine.id)}>Delete Routine</button>
                 </div>
