@@ -21,19 +21,22 @@ export default function AddMenu() {
     setActivitySelect(event.target.value);
   };
   const handleClose = () => {
-    setActivitySelect(null);
+    setActivitySelect("grape");
   };
   return (
     <div className='menu'>
       <List component="nav" aria-label="Device settings">
         <ListItem
           button
-          aria-haspopup="true"
-          aria-controls="lock-menu"
-          aria-label="when device is locked"
-          onClick={handleClickListItem}
+          
         >
-          <ListItemText primary="Add Activity to Routine" secondary={activitySelect[selectedIndex]} />
+          <div 
+            className="actionButton" 
+            primary="Add Activity to Routine" 
+            secondary={activitySelect[selectedIndex]} 
+            onClick={handleClickListItem}
+            >Add Activity
+            </div> 
         </ListItem>
       </List>
       <Menu
