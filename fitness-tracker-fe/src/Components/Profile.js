@@ -185,40 +185,40 @@ const Profile = () => {
                     <p className="cardContent">Creator: {routine.creatorName}</p>
                   </header>
                   <div className='addActivityMenu'>
-      <List component="nav" aria-label="Device settings">
-        <ListItem
-          button
-          aria-haspopup="true"
-          aria-controls="lock-menu"
-          aria-label="Add to Routine"
-          onClick={handleClickListItem}
-        >
-          <ListItemText primary="Add to Routine"/>
-        </ListItem>
-      </List>
-      <Menu
-        id="lock-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        {options.map((option, index) => (
-          <MenuItem
-            key={option}
-            disabled={index === 0}
-            selected={index === selectedIndex}
-            onClick={(event) => handleMenuItemClick(event, index)}
-          >
-            {option}
-          </MenuItem>
-        ))}
-      </Menu>
-    </div>
-                  <button className="actionButton">Edit Routine</button>
-                  <button className="actionButton" onClick={() => deleteRoutine(routine.id)}>Delete Routine</button>
-                </div>
-                
+                    <List component="nav" aria-label="Device settings">
+                      <ListItem
+                        button
+                        aria-haspopup="true"
+                        aria-controls="lock-menu"
+                        aria-label="Add to Routine"
+                        onClick={handleClickListItem}
+                      >
+                        <ListItemText primary="Add to Routine"/>
+                      </ListItem>
+                    </List>
+                    <Menu
+                      id="lock-menu"
+                      anchorEl={anchorEl}
+                      keepMounted
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                    >
+                      {activities ? activities.map((activity, index) => {
+                        return (
+                          <div className="card" key={index} id={activity.id} onClick={() => { getActivityId(activity.id) }}>
+                            <header>
+                              <h3 className="cardTitle">{activity.name.toUpperCase()}</h3>
+                              <hr />
+                              <h3 className="cardSubtitle">Description: {activity.description}</h3>
+                            </header>
+                        </div>
+                        )
+                      }): null}
+                    </Menu>
+                  </div>
+                    <button className="actionButton">Edit Routine</button>
+                    <button className="actionButton" onClick={() => deleteRoutine(routine.id)}>Delete Routine</button>
+                  </div>
               )
             }): null}  
           <h1>Here's the current list of Activities</h1>
