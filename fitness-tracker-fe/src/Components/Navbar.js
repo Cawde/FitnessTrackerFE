@@ -10,6 +10,7 @@ const Navbar = () => {
                 {localStorage.getItem('user') ? <li><Link to="/profile">My Routines</Link></li> : null}
                 <li><Link to="/routines">Routines</Link></li>
                 <li><Link to="/activities">Activities</Link></li>
+                <li className="actionButton"><Link to="/login">{localStorage.getItem('user') ? "Log out" : "Login/Register"}</Link></li>
             </ul>
         </nav>
     )
