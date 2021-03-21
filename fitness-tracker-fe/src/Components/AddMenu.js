@@ -2,16 +2,12 @@
 import { useState } from 'react'
 import { List, ListItem, ListItemText, MenuItem, Menu } from '@material-ui/core'
 
-const activitiesHere = [
- 'a bunch',
- 'of',
- 'different',
- 'activities'
-];
 
-export default function AddMenu() {
-  const [activitySelect, setActivitySelect] = useState('banana');
-  const [selectedIndex, setSelectedIndex] = useState(1);
+
+const AddMenu = (props) => {
+  const [activitySelect, setActivitySelect] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const { activities } = props;
 
   const handleClickListItem = (event) => {
     setActivitySelect(event.currentTarget);
@@ -32,8 +28,6 @@ export default function AddMenu() {
         >
           <div 
             className="actionButton" 
-            primary="Add Activity to Routine" 
-            secondary={activitySelect[selectedIndex]} 
             onClick={handleClickListItem}
             >Add Activity
             </div> 
@@ -46,17 +40,20 @@ export default function AddMenu() {
         open={Boolean(activitySelect)}
         onClose={handleClose}
       >
-        {activitiesHere.map((activity, index) => (
-          <MenuItem
-            key={activity}
-            disabled={index === 0}
-            selected={index === selectedIndex}
-            onClick={(event) => handleMenuItemClick(event, index)}
-          >
-            {activity}
-          </MenuItem>
-        ))}
+        {activities ? activities.map((activity, index) => {
+            return (
+              <div className="card" key={index} id={activity.id}>
+                <header>
+                  <h3 className="cardTitle">{activity.name.toUpperCase()}</h3>
+                  <hr />
+                  <h3 className="cardSubtitle">Description: {activity.description}</h3>
+                </header>
+            </div>
+            )
+          }): null}
       </Menu>
     </div>
   );
 }
+
+export default AddMenu;
