@@ -1,18 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const [currentPage, setCurrentPage] = useState('')
+    const logOut = () => {
+        localStorage.clear();
+      }
+    const [loggedIn, setLoggedIn] = useState();
+      useEffect(() => {
+      },[])
+    const userData = localStorage.getItem('user');
     return (
-        <nav>
-            <ul className="Navbar">
+        <nav className="navbar">
+            <ul>
                 <li><Link to="/home">Home</Link></li>
-                {localStorage.getItem('user') ? <li><Link to="/profile">My Routines</Link></li> : null}
+              
                 <li><Link to="/routines">Routines</Link></li>
                 <li><Link to="/activities">Activities</Link></li>
                 <li className="actionButton"><Link to="/login">{localStorage.getItem('user') ? "Log out" : "Login/Register"}</Link></li>
             </ul>
         </nav>
+       
     )
 }
 

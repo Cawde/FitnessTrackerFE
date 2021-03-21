@@ -24,11 +24,9 @@ const Profile = () => {
     })
     .catch(console.error);
   }
-
- 
-
   const getID = (id) => {
     routineId = id;
+    return routineId;
     console.log(routineId)
   }
 
@@ -97,7 +95,7 @@ const Profile = () => {
     userRoutines();
   }
 
-  console.log(routines);
+
   useEffect(() => {
     getActivities();
     userRoutines();
