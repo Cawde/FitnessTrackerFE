@@ -14,8 +14,9 @@ const Login = (props) => {
     localStorage.setItem('user', user);
   }
 
-  const registerUser = (event) => {
-    fetch(`${BASE_URL}/users/register`, {
+  const registerUser = async (event) => {
+    event.preventDefault();
+    await fetch(`${BASE_URL}/users/register`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -33,8 +34,9 @@ const Login = (props) => {
       }).catch(console.error);
   }
   
-  const loginUser = (event) => {
-    fetch(`${BASE_URL}/users/login`, {
+  const loginUser = async (event) => {
+    event.preventDefault();
+    await fetch(`${BASE_URL}/users/login`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'

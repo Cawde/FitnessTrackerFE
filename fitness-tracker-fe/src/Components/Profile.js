@@ -1,16 +1,20 @@
 
 import { useState, useEffect } from 'react';
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
-let activityId = undefined;
+let routineId = undefined;
 let name = '';
 let goal = '';
+let updateName = '';
+let updateGoal = '';
 let isPublic = true;
 
 const Profile = () => {
   const [activities, setActivities] = useState();
   const [routines, setRoutines] = useState();
-  const getActivities = () => {
-    fetch(`${BASE_URL}/activities`)
+  const [deletedRoutine, setDeletedRoutine] = useState();
+
+  const getActivities = async () => {
+    await fetch(`${BASE_URL}/activities`)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -19,18 +23,31 @@ const Profile = () => {
     .catch(console.error);
   }
 
-  useEffect(() => {
-    getActivities();
-  }, []);
+ 
 
   const getID = (id) => {
-    activityId = id;
-    console.log(id)
+    routineId = id;
+    console.log(routineId)
   }
 
-  const createRoutine = (event) => {
+  const updateRoutine = async (event) => {
     event.preventDefault();
-    fetch(`${BASE_URL}/routines`, {
+    await fetch(`${BASE_URL}/routines/${routineId}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        name: name,
+        goal: goal
+      })
+    }).then(response => response.json())
+      .then(result => {
+        console.log(result);
+      })
+      .catch(console.error);
+  }
+
+  const createRoutine = async (event) => {
+    event.preventDefault();
+    await fetch(`${BASE_URL}/routines`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -49,8 +66,8 @@ const Profile = () => {
     userRoutines();
   }
 
-  const userRoutines = () => {
-    fetch(`${BASE_URL}/users/${localStorage.getItem('user')}/routines`, {
+  const userRoutines = async () => {
+    await fetch(`${BASE_URL}/users/${localStorage.getItem('user')}/routines`, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -61,10 +78,31 @@ const Profile = () => {
       })
       .catch(console.error);
   }
-  
+
+  const deleteRoutine = async (id) => {
+    await fetch(`${BASE_URL}/routines/${id}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then(response => response.json())
+      .then(result => {
+        console.log(result);
+        setDeletedRoutine(result);
+      })
+      .catch(console.error);
+    userRoutines();
+  }
+
+  console.log(routines);
+  useEffect(() => {
+    getActivities();
+    userRoutines();
+  }, [setActivities, setRoutines, setDeletedRoutine]);
+
   return (
     <>
-      {/* <button id="modalOpen" className="actionButton" onClick={toggleModal}>uiText</button> */}
       {localStorage.getItem('user') ?
         <div className="Home_content">
           <div className="create-text">Create an routine below</div>
@@ -90,12 +128,14 @@ const Profile = () => {
             </form>
             {routines ? routines.map((routine, index) => {
               return (
-                <div className="Card" key={index} >
+                <div className="Card" key={index} id={routine.id} onClick={() => { getID(routine.id) }}>
                   <header>
                     <h3 className="card_title">{routine.name}</h3>
                     <h3 className="card_subtitle">Goal: {routine.goal}</h3>
                     <p className="card_content">Creator: {routine.creatorName}</p>
                   </header>
+                  <button className="actionButton" >Edit Routine</button>
+                  <button className="actionButton" onClick={() => deleteRoutine(routine.id)}>Delete Routine</button>
                 </div>
               )
             }): null}  

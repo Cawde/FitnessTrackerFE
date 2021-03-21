@@ -14,7 +14,8 @@ import {
   User,
   Login,
   Footer, 
-  Modal
+  Modal,
+  Navbar
  } from './components';
 
 function App() {
@@ -28,10 +29,11 @@ function App() {
   return (
     <div className="App">
       <Header />
+      
       <Router>
-         
-          <Modal /> 
-          <Switch>
+         <Navbar/>
+        <Modal />
+        <Switch>
           <Route path="/home">
             <Home
               currentPage={currentPage}
@@ -56,7 +58,9 @@ function App() {
               setCurrentPage={setCurrentPage}
             />
           </Route>
-          <Footer />
+          
+        </Switch>
+        <Footer />
         {localStorage.getItem('user') ? <button className="actionButton" onClick={logOut}>Log Out</button> : <li className="Login-btn"><Link to="/login">Login/Register here</Link></li>}
           <Route path="/login">
             <Login
@@ -66,8 +70,8 @@ function App() {
               setLoginSuccessful={setLoginSuccessful}
             />
           </Route>
-          </Switch>
-      </Router>
+        </Router>
+        
     </div>
   )
 }

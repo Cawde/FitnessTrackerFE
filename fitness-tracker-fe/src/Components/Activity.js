@@ -10,9 +10,9 @@ const Activity = () => {
   const [activities, setActivities] = useState();
   const [searchTerm, setSearchTerm] = useState('');
 
-  const createActivity = (event) => {
+  const createActivity = async (event) => {
     event.preventDefault();
-    fetch(`${BASE_URL}/activities`,{
+    await fetch(`${BASE_URL}/activities`,{
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -36,8 +36,8 @@ const Activity = () => {
       .catch(console.error);
   };
 
-  const updateActivity = () => {
-    fetch(`{BASE_URL}/activities/${activityId}`, {
+  const updateActivity = async () => {
+    await fetch(`{BASE_URL}/activities/${activityId}`, {
       method: "PATCH",
       body: JSON.stringify({
         name: name,
@@ -57,8 +57,8 @@ const Activity = () => {
     console.log(id)
   }
 
-  const getActivities = () => {
-    fetch(`${BASE_URL}/activities`)
+  const getActivities = async () => {
+    await fetch(`${BASE_URL}/activities`)
     .then(response => response.json())
     .then(data => {
       console.log(data);
