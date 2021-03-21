@@ -113,10 +113,10 @@ const Profile = () => {
   }
 
   const addActivityToRoutine = async (activityId, routineId) => {
-    await fetch( `${BASE_URL}/routines/${routineId}/activities`, {
+    await fetch(`${BASE_URL}/routines/${routineId}/activities`, {
       method: "POST",
       body: JSON.stringify({
-        "activityId": activityId,
+        routineActivityId: activityId,
         count: 4, 
         duration: 5
       })
