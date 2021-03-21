@@ -68,6 +68,7 @@ const Modal = (modalTitle) => {
             </Dialog> : null} 
         </>)
 }
+
 export default Modal;
 
 

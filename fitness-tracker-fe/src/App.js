@@ -13,26 +13,21 @@ import {
   Routines,
   User,
   Login,
-  Footer, 
-  Modal,
-  Navbar
+  Footer,
+  Navbar, 
  } from './components';
 
 function App() {
   const [loginSuccessful, setLoginSuccessful] = useState(false);
   const [currentPage, setCurrentPage] = useState("home");
-  const logOut = () => {
-    setLoginSuccessful(false);
-    localStorage.clear();
-  }
 
   return (
     <div className="App">
       <Header />
       
       <Router>
-         <Navbar/>
-        <Modal />
+        <Navbar/>
+
         <Switch>
           <Route path="/home">
             <Home
@@ -61,7 +56,7 @@ function App() {
           
         </Switch>
         <Footer />
-        {localStorage.getItem('user') ? <button className="actionButton" onClick={logOut}>Log Out</button> : <li className="Login-btn"><Link to="/login">Login/Register here</Link></li>}
+      
           <Route path="/login">
             <Login
               currentPage={currentPage}
@@ -71,7 +66,6 @@ function App() {
             />
           </Route>
         </Router>
-        
     </div>
   )
 }

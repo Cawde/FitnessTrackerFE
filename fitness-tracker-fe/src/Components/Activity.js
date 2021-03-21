@@ -1,23 +1,29 @@
-// import { Content } from './index';
+
 import { useState, useEffect } from 'react';
+import {  Dialog, DialogActions, DialogContent, TextField } from '@material-ui/core';
+
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
-let name = '';
-let description = '';
+
+
+
 let activityId = undefined;
 
 
 const Activity = () => {
   const [activities, setActivities] = useState();
   const [searchTerm, setSearchTerm] = useState('');
+  const [modalDisplay, setModalDisplay] = useState(false);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
 
   const createActivity = async (event) => {
     event.preventDefault();
-    await fetch(`${BASE_URL}/activities`,{
+    await fetch(`${BASE_URL}/activities`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('token')}`
-    },
+      },
       body: JSON.stringify({
         name: name,
         description: description
@@ -58,47 +64,80 @@ const Activity = () => {
   }
 
   const getActivities = async () => {
-    await fetch(`${BASE_URL}/activities`)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      setActivities(data); 
-    })
-    .catch(console.error);
+    await fetch(`${BASE_URL}/activities`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(response => response.json())
+      .then(result => {
+        console.log(result);
+        setActivities(result);
+      })
+      .catch(console.error);
   }
+
   useEffect(() => {
     getActivities();
-  }, []);
+  }, [setActivities, setModalDisplay]);
   
   return activities ? (
-    <div className="Activities-Content">
-      <div className="Home_content">
-        <div className="create-text">Create an activity below</div>
-        <div className="Create-Activity">
-          <form className="create_activity">
-            <label>
-              Name:
-            <input 
-              type="text" 
-              name="Activity_Name" 
-              onChange={(event) => {name = event.target.value}} 
-            />
-            </label>
-            <label>
-              Description
-            <input 
-              type="text" 
-              name="Activity_Description"
-              onChange={(event) => {description = event.target.value}}          
-            />
-            </label>
-            <button className="actionButton" type="submit" onClick={createActivity}>Create Activity</button>
-          </form>
+    <div className="contentContainer">
+        <div className="createActivity">
+        <div 
+          className="actionButton" 
+            onClick={()=>setModalDisplay(true)}
+            >Create Activity
+            </div>
+            {modalDisplay ? 
+            <Dialog
+                open={modalDisplay}
+                className='actionModal'
+                onClose={() => setModalDisplay(false)}
+            >
+                <DialogContent
+                    className="modalContent"
+                >
+                        <TextField
+                            autoFocus
+                            id="Name"
+                            label="Name"
+                            type="text"
+                            fullWidth
+                            value={name} //check this may need to be {name same on routines}
+                            onChange={(event) => setName(event.target.value)} 
+                        />
+                        <TextField
+                            autoFocus
+                            id="Description"
+                            label="Description"
+                            type="text"
+                            fullWidth
+                            value={description}
+                            onChange={(event) => setDescription(event.target.value)}
+                        />
+
+                        <button 
+                            className="actionButton" 
+                            type="submit" 
+                            value="Submit"
+                onClick={(event) => { createActivity(event); setModalDisplay(false) }}//check this
+                          >Submit
+                        </button>
+                </DialogContent>
+                <DialogActions
+                    className="modalContent"
+                >
+                    <div 
+                        className="actionButton"
+                        onClick={()=>{setModalDisplay(false)}}
+                    >Cancel
+                    </div>
+                </DialogActions>
+            </Dialog> : null} 
         </div>
-    </div>
      <div className="searchContainer">
         <div className="search">
-          <form className="search-box">
+          <form className="searchBox">
           { <input 
               type="text" 
               placeholder="Search for activities here" 
@@ -114,12 +153,12 @@ const Activity = () => {
             return activity }
         }).map((activity, index) => {
         return (
-          <div className="Card" key={index} >
-            <header>
-              <h3 className="card_title">{activity['name'].toUpperCase()}</h3>
+          <div className="card" key={index} >
+
+              <p className="cardTitle">{activity['name'].toUpperCase()}</p>
               <hr />
-              <h3 className="card_subtitle">Description: {activity.description}</h3>
-            </header>
+              <h3 className="cardSubtitle">Description: {activity.description}</h3>
+  
           </div>
         )
       }): null}

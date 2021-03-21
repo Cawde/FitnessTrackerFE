@@ -46,7 +46,7 @@ font-family: 'PT Serif Caption', serif; */
 
 @media screen 
   and (min-device-width: 701px) {
-    .App {
+    .app {
       display: flex;
       min-height: 100vh;
       flex-direction: column;
@@ -55,92 +55,42 @@ font-family: 'PT Serif Caption', serif; */
       background-image: url(./images/DT1.svg);
       background-repeat: no-repeat;
       color: #303634ff;
-      min-width: 100vw;;
+      min-width: 100vw;
   }
 }
 @media screen 
   and (max-device-width: 700px) {
-.App {
-
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    background: #303634;
-    font-size: 0.75em;
-    background-image: url(./images/M1.svg);
-    background-repeat: no-repeat;
-    color: #303634ff;
-}
+    .app {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        background: #303634;
+        font-size: 0.75em;
+        background-image: url(./images/M1.svg);
+        background-repeat: no-repeat;
+        color: #303634ff;
+        min-width: 100vw;
+    }
   }
-.Navbar {
+.navbar {
     display: flex;
     flex-direction: row;
-    justify-content: center;
 }
-.Navbar li, a {
-    font-size: 1.2em;
+.navbar ul{
+  display:flex;
+  flex-direction: row; 
+}
+.navbar li, a {
+    font-size: 1.6em;
     padding: 3px;
     text-decoration: none;
+    margin: 5px;
 }
-.Heading_h1 {
+.headingH1 {
     font-family: 'Poppins', sans-serif;
     font-size: 6em;
 }
-@media only screen 
-  and (min-width: 1200px) {
-  .homeContent {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    flex: 1;
-
-    background-size: auto;
- }
- .User {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  flex: 1;
-
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-
-  .Activities-Content{
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    flex: 1;
-
-    background-size: 100%;
-    background-repeat: no-repeat;
-  }
-  .Routine-Content{
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    margin-top: 20px;
-    flex: 1;
-
-    background-size: cover;
-    background-repeat: no-repeat;
-    }
-}
-
-@media only screen
-  and (max-width: 768px){
-.homeContent {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    flex: 1;
-
-    background-size: 100%;
-    background-repeat: no-repeat;
- }
-}
-
-.User {
+.user {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -149,23 +99,10 @@ font-family: 'PT Serif Caption', serif; */
     background-size: 100%;
     background-repeat: no-repeat;
 }
- .Content {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: .5rem .5rem;
-    grid-template-areas:
-      "."
-      ".";
-    border-radius: 20px; 
-   ;
-    /* width: 80vw; */
-    margin: auto;
- }
-.Card {
+.card {
     display: flex;
     flex-direction: column;
-    align-self: center;
+    width: 60vw;
     padding: .5rem;
     margin: .5rem;
     border-radius: 5px; 
@@ -175,17 +112,16 @@ font-family: 'PT Serif Caption', serif; */
     box-shadow: rgb(17, 19, 18) 3px 3px 5px;
     font-weight: bolder;
 }
-.card_details
-.card_content
-.card_title {
+.cardTitle {
     font-family: 'PT Serif Caption', serif;
     font-weight: bolder;
+    color:  #ad5d4eff;
 }
-.card_subtitle {
+.cardSubtitle {
   font-family: 'PT Serif Caption', serif;;
-  font-weight: 100;
+  font-weight: 50;
 }
-.sub_card{
+.subCard{
     display: flex;
     flex-direction: column;
     font-family: 'PT Serif Caption', serif;
@@ -203,11 +139,11 @@ font-family: 'PT Serif Caption', serif; */
 
   
 }
- .Footer {
+ .footer {
     font-size: 1.5em;
     background: none;
  }
- .Footer :is(a, li) {
+ .footer :is(a, li) {
     font-size: 1.5em;  /*NOT WORKING*/
  }
 
@@ -215,23 +151,14 @@ font-family: 'PT Serif Caption', serif; */
  a, a:visited, a:hover, a:active {
     color: inherit;
   }
-  .Routine-Content{
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  margin-top: 20px;
-  flex: 1;
- 
-  }
+
 /*AC content may be a redundant rule*/
-  .Activities-Content{
+  .contentContainer{
     display: flex;
     flex-direction: column;
+    align-self: center;
     margin-top: 20px;
-    flex: 1;
-
-    background-size: 100%;
-    background-repeat: no-repeat;
+    flex: 1 1;
   }
 
 .actionButton {
@@ -255,33 +182,11 @@ font-family: 'PT Serif Caption', serif; */
 .hide {
     display: none;
 }
-.create-text{
+.createText{
     font-family: 'PT Serif Caption', serif;
     font-size: 1.3em;
 }
-/* .actionModal {
-  position: relative;
-  left: 15%;
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  box-shadow: 0px 1px 3px 0px #999290;
-	background:linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%);
-	border-radius:5px;
-	border:1px solid rgb(58, 54, 53);
-	display:inline-block;
-	cursor:pointer;
-	color:#303634;
-	font-family: 'PT Serif Caption', serif; 
-	font-size:13px;
-	padding:7px 10px;
-	text-decoration:none;
-  width: 60vw;
-  height: 60vh;
-} */
+
 
 .modalContent {
   background: linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%);
@@ -307,3 +212,10 @@ font-family: 'PT Serif Caption', serif; */
   overflow-y: 'auto'
 }
 
+.createActivity{
+  margin: auto;
+}
+.createActivity:hover{
+background:linear-gradient(to bottom, #c4bbb8 5%, #ad5c4e 100%);
+background-color:#c4bbb8;
+}

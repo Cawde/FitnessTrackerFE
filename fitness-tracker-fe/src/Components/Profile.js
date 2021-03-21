@@ -1,5 +1,7 @@
 
 import { useState, useEffect } from 'react';
+import {  Dialog, DialogActions, DialogContent, TextField } from '@material-ui/core';
+
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
 let routineId = undefined;
 let name = '';
@@ -9,9 +11,9 @@ let updateGoal = '';
 let isPublic = true;
 
 const Profile = () => {
-  const [activities, setActivities] = useState();
   const [routines, setRoutines] = useState();
   const [deletedRoutine, setDeletedRoutine] = useState();
+  const [activities, setActivities] = useState();
 
   const getActivities = async () => {
     await fetch(`${BASE_URL}/activities`)
@@ -22,11 +24,9 @@ const Profile = () => {
     })
     .catch(console.error);
   }
-
- 
-
   const getID = (id) => {
     routineId = id;
+    return routineId;
     console.log(routineId)
   }
 
@@ -95,7 +95,7 @@ const Profile = () => {
     userRoutines();
   }
 
-  console.log(routines);
+
   useEffect(() => {
     getActivities();
     userRoutines();
@@ -130,32 +130,31 @@ const Profile = () => {
               return (
                 <div className="Card" key={index} id={routine.id} onClick={() => { getID(routine.id) }}>
                   <header>
-                    <h3 className="card_title">{routine.name}</h3>
-                    <h3 className="card_subtitle">Goal: {routine.goal}</h3>
-                    <p className="card_content">Creator: {routine.creatorName}</p>
+                    <h3 className="cardTitle">{routine.name}</h3>
+                    <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
+                    <p className="cardContent">Creator: {routine.creatorName}</p>
                   </header>
                   <button className="actionButton" >Edit Routine</button>
                   <button className="actionButton" onClick={() => deleteRoutine(routine.id)}>Delete Routine</button>
                 </div>
               )
             }): null}  
-          </div>
-      
           <h1>Here's the current list of Activities</h1>
-          <div className="Activities-Content">
+          <div className="activitiesContent">
             {activities ? activities.map((activity, index) => {
             return (
-              <div className="Card" key={index} id={activity.id} onClick={() => { getID(activity.id) }}>
+              <div className="card" key={index} id={activity.id} onClick={() => { getID(activity.id) }}>
                 <header>
-                  <h3 className="card_title">{activity.name.toUpperCase()}</h3>
+                  <h3 className="cardTitle">{activity.name.toUpperCase()}</h3>
                   <hr />
-                  <h3 className="card_subtitle">Description: {activity.description}</h3>
+                  <h3 className="cardSubtitle">Description: {activity.description}</h3>
                 </header>
             </div>
             )
           }): null}
           </div>
-        </div>: <h3 className="Home_content">Please log in to create a routine and/or activities.</h3>}
+        </div>
+      </div>: <h3>Please log in to create a routine and/or activities.</h3>}
     </>   
   )
 }
