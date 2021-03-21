@@ -14,8 +14,6 @@ import {
   User,
   Login,
   Footer, 
-  Modal,
-  Navbar
  } from './components';
 
 function App() {
@@ -28,7 +26,7 @@ function App() {
 
   },[])
   return (
-    <div className="App">
+    <div className="app">
       <Header />
       <Router>
         <Navbar/>
