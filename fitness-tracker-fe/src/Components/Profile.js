@@ -10,8 +10,7 @@ import Menu from '@material-ui/core/Menu';
 
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
 let routineId = undefined;
-let name = '';
-let goal = '';
+
 let updateName = '';
 let updateGoal = '';
 let isPublic = true;
@@ -31,6 +30,13 @@ const Profile = () => {
   const [activities, setActivities] = useState();
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(1);
+  const [count, setCount] = useState('');
+  const [duration, setDuration] = useState('')
+  const [ modalDisplay, setModalDisplay ] = useState(false); 
+  const [ name, setName ] = useState('')
+  const [ goal, setGoal ] = useState('')
+  const [ description, setDescription ] = useState('null')
+
   const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -126,7 +132,7 @@ const Profile = () => {
   
   const getActivityId = (id) => {
     activityId = id;
-    console.log(activityId)
+    console.log("The Activity Id Is: ", activityId)
     return activityId;
   }
 
@@ -184,9 +190,60 @@ const Profile = () => {
                     <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
                     <p className="cardContent">Creator: {routine.creatorName}</p>
                   </header>
+                  <button 
+                      className="actionButton"
+                      onClick={()=>setModalDisplay(true)}
+                      >Edit Routine
+                    </button>
+                      {modalDisplay ? 
+                      <Dialog
+                        open={modalDisplay}
+                        className='actionModal'
+                        onClose={() => setModalDisplay(false)}
+                      >
+                      <DialogContent
+                        className="modalContent"
+                      >
+                      <TextField
+                        autoFocus
+                        id="editRoutineName"
+                        label="Name"
+                        type="text"
+                        fullWidth
+                        value={routine.name}
+                        onChange={(event) => {setName(event.target.value)}} 
+                      />
+                      <TextField
+                        autoFocus
+                        id="editRoutineGoal"
+                        label="goal"
+                        type="text"
+                        fullWidth
+                        value={routine.goal}
+                        onChange={(event) => {setGoal(event.target.value)}} 
+                      />
+                      <button 
+                        className="actionButton" 
+                        type="submit" 
+                        value="Submit"
+                        onClick={updateRoutine} //check this
+                      >Submit
+                      </button>
+                      </DialogContent>
+                      <DialogActions
+                        className="modalContent"
+                      >
+                      <div 
+                        className="actionButton"
+                        onClick={()=>{setModalDisplay(false)}}
+                      >Cancel
+                      </div>
+                      </DialogActions>
+                    </Dialog> : null}
                   <div className='addActivityMenu'>
-                    <List component="nav" aria-label="Device settings">
+                    <List component="nav" aria-label="activityList">
                       <ListItem
+                        className="actionButton"
                         button
                         aria-haspopup="true"
                         aria-controls="lock-menu"
@@ -216,7 +273,8 @@ const Profile = () => {
                       }): null}
                     </Menu>
                   </div>
-                    <button className="actionButton">Edit Routine</button>
+                    
+
                     <button className="actionButton" onClick={() => deleteRoutine(routine.id)}>Delete Routine</button>
                   </div>
               )
