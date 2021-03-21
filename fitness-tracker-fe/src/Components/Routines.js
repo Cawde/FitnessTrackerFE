@@ -68,49 +68,49 @@ const Routines = () => {
         open={modalDisplay}
         className='actionModal'
         onClose={() => setModalDisplay(false)}
-    >
-        <DialogContent
-            className="modalContent"
-        >
-                <TextField
-                    autoFocus
-                    id="routineName"
-                    label="Name"
-                    type="text"
-                    fullWidth
-                    value={name}
-                    onChange={(event) => {setName(event.target.value)}} 
-                />
-                <TextField
-                    autoFocus
-                    id="routineGoal"
-                    label="Goal"
-                    type="text"
-                    fullWidth
-                    value={goal}
-                    onChange={(event) => setGoal(event.target.value)}
-                />
-                <button 
-                    className="actionButton" 
-                    type="submit" 
-                    value="Submit"
-                    onClick={createRoutine} //check this
-                >Submit
-                </button>
-        </DialogContent>
-        <DialogActions
-            className="modalContent"
-        >
-            <div 
-                className="actionButton"
-                onClick={()=>{setModalDisplay(false)}}
-            >Cancel
-            </div>
-        </DialogActions>
+      >
+      <DialogContent
+        className="modalContent"
+      >
+      <TextField
+        autoFocus
+        id="routineName"
+        label="Name"
+        type="text"
+        fullWidth
+        value={name}
+        onChange={(event) => {setName(event.target.value)}} 
+      />
+      <TextField
+        autoFocus
+        id="routineGoal"
+        label="Goal"
+        type="text"
+        fullWidth
+        value={goal}
+        onChange={(event) => setGoal(event.target.value)}
+      />
+      <button 
+        className="actionButton" 
+        type="submit" 
+        value="Submit"
+        onClick={createRoutine} //check this
+      >Submit
+      </button>
+      </DialogContent>
+      <DialogActions
+        className="modalContent"
+      >
+      <div 
+        className="actionButton"
+        onClick={()=>{setModalDisplay(false)}}
+      >Cancel
+      </div>
+      </DialogActions>
     </Dialog> : null} 
       <div className="searchContainer">
         <div className="search">
-          <form className="search-box">
+          <form className="searchBox">
           { <input 
             type="text" 
             placeholder="Search for routines here" 
@@ -119,7 +119,7 @@ const Routines = () => {
           </form>
         </div>
       </div>
-      <div className="Routines_Content">
+      <div className="routinesContent">
         {routines ? routines.filter((routine) => {
           if (searchTerm === '') {
             return routine;
@@ -128,22 +128,20 @@ const Routines = () => {
         }).map((routine, index) => {
           return (
             <div className="card" key={index} >
-              <header>
-                <h3 className="cardTitle">{routine.name}</h3>
-                <hr />
-                <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
-                <hr />
-                <p className="cardContent">Creator: {routine.creatorName}</p>
-              </header>
+              <p className="cardTitle">{routine.name}</p>
+              <hr />
+              <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
+              <hr />
+              <p className="cardContent">Creator: {routine.creatorName}</p>
               <div className="cardContent" value={routine.id}>
                 {routine.activities.length ? routine.activities.map((activity, index) => {
                   return (
                     <div className="subContent" key={index}>
                       <h2>Activity: </h2>
                       <header>
-                        <h3 className="cardSubtitle">Activity name: {activity.name}</h3>
-                        <h3 className="cardSubtitle">Activity description: {activity.description}</h3>
-                        {activity.goal ? <h3 className="card_title">Goal: {activity.goal}</h3> : null}
+                        <h3 className="cardSubtitle">-{activity.name}</h3>
+                        <h3 className="cardSubtitle">-{activity.description}</h3>
+                        {activity.goal ? <h3 className="cardTitle">Goal: {activity.goal}</h3> : null}
                         <h3 className="cardSutitle">Count: {activity.count} reps</h3>
                         <h3 className="cardSubtitle">Duration: {activity.duration} minutes</h3>
                       </header>

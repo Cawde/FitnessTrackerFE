@@ -7,6 +7,7 @@ let activityId = undefined;
 let name = '';
 let goal = '';
 let isPublic = true;
+let routineId = undefined;
 
 const Profile = () => {
   const [routines, setRoutines] = useState();
@@ -22,14 +23,25 @@ const Profile = () => {
     })
     .catch(console.error);
   }
-
-  useEffect(() => {
-    getActivities();
-  }, []);
-
   const getID = (id) => {
-    activityId = id;
-    console.log(id)
+    routineId = id;
+    return routineId;
+    console.log(routineId)
+  }
+
+  const updateRoutine = async (event) => {
+    event.preventDefault();
+    await fetch(`${BASE_URL}/routines/${routineId}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        name: name,
+        goal: goal
+      })
+    }).then(response => response.json())
+      .then(result => {
+        console.log(result);
+      })
+      .catch(console.error);
   }
 
   const createRoutine = async (event) => {
@@ -65,7 +77,29 @@ const Profile = () => {
       })
       .catch(console.error);
   }
-  
+
+  const deleteRoutine = async (id) => {
+    await fetch(`${BASE_URL}/routines/${id}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then(response => response.json())
+      .then(result => {
+        console.log(result);
+        setDeletedRoutine(result);
+      })
+      .catch(console.error);
+    userRoutines();
+  }
+
+
+  useEffect(() => {
+    getActivities();
+    userRoutines();
+  }, [setActivities, setRoutines, setDeletedRoutine]);
+
   return (
     <>
       {/* <button id="modalOpen" className="actionButton" onClick={toggleModal}>uiText</button> */}
@@ -96,9 +130,9 @@ const Profile = () => {
               return (
                 <div className="Card" key={index} >
                   <header>
-                    <h3 className="card_title">{routine.name}</h3>
-                    <h3 className="card_subtitle">Goal: {routine.goal}</h3>
-                    <p className="card_content">Creator: {routine.creatorName}</p>
+                    <h3 className="cardTitle">{routine.name}</h3>
+                    <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
+                    <p className="cardContent">Creator: {routine.creatorName}</p>
                   </header>
                 </div>
               )
@@ -109,16 +143,16 @@ const Profile = () => {
             return (
               <div className="card" key={index} id={activity.id} onClick={() => { getID(activity.id) }}>
                 <header>
-                  <h3 className="card_title">{activity.name.toUpperCase()}</h3>
+                  <h3 className="cardTitle">{activity.name.toUpperCase()}</h3>
                   <hr />
-                  <h3 className="card_subtitle">Description: {activity.description}</h3>
+                  <h3 className="cardSubtitle">Description: {activity.description}</h3>
                 </header>
             </div>
             )
           }): null}
-            </div>
-            </div>
-        </div>: <h3 className="Home_content">Please log in to create a routine and/or activities.</h3>}
+          </div>
+        </div>
+      </div>: <h3>Please log in to create a routine and/or activities.</h3>}
     </>   
   )
 }
