@@ -16,17 +16,16 @@ const Profile = () => {
   const [activities, setActivities] = useState();
 
   const getActivities = async () => {
-    await fetch(`${BASE_URL}/activities`)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      setActivities(data); 
-    })
-    .catch(console.error);
-  }
-  const getID = (id) => {
-    routineId = id;
-    console.log(routineId)
+    await fetch(`${BASE_URL}/activities`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(response => response.json())
+      .then(result => {
+        console.log(result);
+        setActivities(result);
+      })
+      .catch(console.error);
   }
   const updateRoutine = async (event) => {
     event.preventDefault();
@@ -92,11 +91,15 @@ const Profile = () => {
     userRoutines();
   }
 
-  console.log(routines);
+  const getID = (id) => {
+    routineId = id;
+    return routineId;
+  }
+
   useEffect(() => {
     getActivities();
     userRoutines();
-  }, [setActivities, setRoutines, setDeletedRoutine]);
+  }, [setActivities, setDeletedRoutine, setRoutines]);
 
   return (
     <>
@@ -126,13 +129,13 @@ const Profile = () => {
             {routines ? routines.map((routine, index) => {
               
               return (
-                <div className="card" key={index} id={routine.id} onClick={() => { getID(routine.id) }}>
+                <div className="card" key={index} id={routine.id} onClick={()=> getID(routine.id)}>
                   <header>
                     <h3 className="cardTitle">{routine.name}</h3>
                     <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
                     <p className="cardContent">Creator: {routine.creatorName}</p>
                   </header>
-                  <button className="actionButton" >Edit Routine</button>
+                  <button className="actionButton">Edit Routine</button>
                   <button className="actionButton" onClick={() => deleteRoutine(routine.id)}>Delete Routine</button>
                 </div>
                 

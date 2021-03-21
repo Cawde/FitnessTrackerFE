@@ -14,9 +14,9 @@ const Login = () => {
     localStorage.setItem('user', user);
   }
 
-  const registerUser = async (event) => {
+  const registerUser = (event) => {
     event.preventDefault();
-    await fetch(`${BASE_URL}/users/register`, {
+    fetch(`${BASE_URL}/users/register`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -34,9 +34,9 @@ const Login = () => {
       }).catch(console.error);
   }
   
-  const loginUser = async (event) => {
+  const loginUser = (event) => {
     event.preventDefault();
-    await fetch(`${BASE_URL}/users/login`, {
+    fetch(`${BASE_URL}/users/login`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -61,7 +61,6 @@ const Login = () => {
   }
 
   useEffect(() => {
-
   }, [])
   return (
     <div className="login">

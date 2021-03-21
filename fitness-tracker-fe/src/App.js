@@ -13,6 +13,7 @@ import {
   Routines,
   User,
   Login,
+  Profile,
   Footer,
   Navbar,
   Modal
@@ -30,6 +31,15 @@ function App() {
       <Header />
       <Navbar />
       <Router>
+        <nav>
+          <ul className="Navbar">
+            <li><Link to="/home">Home</Link></li>
+            <li><Link to="/myroutines">My Routines</Link></li>
+            <li><Link to="/routines">Routines</Link></li>
+            <li><Link to="/activities">Activities</Link></li>
+          </ul>
+        </nav>
+
         <Switch>
           <Route path="/home">
             <Home
@@ -37,8 +47,8 @@ function App() {
               setCurrentPage={setCurrentPage}
             />
           </Route>
-          <Route path="/profile">
-            <User 
+          <Route path="/myroutines">
+            <Profile 
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
             />
