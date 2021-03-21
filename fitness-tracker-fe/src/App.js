@@ -13,25 +13,35 @@ import {
   Routines,
   User,
   Login,
-  Footer, 
-  Modal,
-  Navbar
+  Footer,
+  Navbar,
+  Modal
  } from './components';
 
 function App() {
   const [loginSuccessful, setLoginSuccessful] = useState(false);
   const [currentPage, setCurrentPage] = useState("home");
   const logOut = () => {
-    setLoginSuccessful(false);
     localStorage.clear();
+    
   }
+  useEffect(() => {
+
+  },[])
   return (
     <div className="App">
       <Header />
       
       <Router>
-         <Navbar/>
-        <Modal />
+        <nav>
+          <ul className="Navbar">
+            <li><Link to="/home">Home</Link></li>
+          {localStorage.getItem('user') ? <li><Link to="/myroutines">My Routines</Link></li> : null}
+            <li><Link to="/routines">Routines</Link></li>
+            <li><Link to="/activities">Activities</Link></li>
+          </ul>
+        </nav>
+
         <Switch>
           <Route path="/home">
             <Home
@@ -57,7 +67,7 @@ function App() {
               setCurrentPage={setCurrentPage}
             />
           </Route>
-          <Footer />
+          
           <Route path="/login">
             <Login
               currentPage={currentPage}
@@ -66,9 +76,10 @@ function App() {
               setLoginSuccessful={setLoginSuccessful}
             />
           </Route>
-          </Switch>
-        </Router>
-        
+        </Switch>
+        <Footer />
+        {localStorage.getItem('user') ? <button className="actionButton" onClick={logOut}>Log Out</button> : <li className="Login-btn"><Link to="/login">Login/Register here</Link></li>}
+      </Router>
     </div>
   )
 }
