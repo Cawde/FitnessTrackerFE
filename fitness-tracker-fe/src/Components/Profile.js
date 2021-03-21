@@ -1,5 +1,7 @@
 
 import { useState, useEffect } from 'react';
+import {  Dialog, DialogActions, DialogContent, TextField } from '@material-ui/core';
+
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
 let routineId = undefined;
 let name = '';
@@ -9,7 +11,6 @@ let updateGoal = '';
 let isPublic = true;
 
 const Profile = () => {
-  const [activities, setActivities] = useState();
   const [routines, setRoutines] = useState();
   const [deletedRoutine, setDeletedRoutine] = useState();
 
@@ -139,13 +140,11 @@ const Profile = () => {
                 </div>
               )
             }): null}  
-          </div>
-      
           <h1>Here's the current list of Activities</h1>
-          <div className="Activities-Content">
+          <div className="activitiesContent">
             {activities ? activities.map((activity, index) => {
             return (
-              <div className="Card" key={index} id={activity.id} onClick={() => { getID(activity.id) }}>
+              <div className="card" key={index} id={activity.id} onClick={() => { getID(activity.id) }}>
                 <header>
                   <h3 className="card_title">{activity.name.toUpperCase()}</h3>
                   <hr />
@@ -155,7 +154,8 @@ const Profile = () => {
             )
           }): null}
           </div>
-        </div>: <h3 className="Home_content">Please log in to create a routine and/or activities.</h3>}
+        </div>
+      </div>: <h3 className="Home_content">Please log in to create a routine and/or activities.</h3>}
     </>   
   )
 }

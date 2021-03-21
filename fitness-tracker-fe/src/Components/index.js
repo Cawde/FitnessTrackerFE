@@ -7,8 +7,6 @@ export { default as Login } from './Login';
 export { default as Navbar } from './Navbar';
 
 export { default as Hamburger } from './Hamburger';
-export { default as Modal } from './Modal'
-export { default as Card } from './Card.js';
 export { default as Footer } from './Footer'
 
 

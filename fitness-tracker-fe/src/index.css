@@ -55,7 +55,7 @@ font-family: 'PT Serif Caption', serif; */
       background-image: url(./images/DT1.svg);
       background-repeat: no-repeat;
       color: #303634ff;
-      min-width: 100vw;;
+      min-width: 100vw;
   }
 }
 @media screen 
@@ -106,12 +106,10 @@ font-family: 'PT Serif Caption', serif; */
   background-repeat: no-repeat;
 }
 
-  .Activities-Content{
+  .activitiesContent{
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-    flex: 1;
-
     background-size: 100%;
     background-repeat: no-repeat;
   }
@@ -162,10 +160,10 @@ font-family: 'PT Serif Caption', serif; */
     /* width: 80vw; */
     margin: auto;
  }
-.Card {
+.card {
     display: flex;
     flex-direction: column;
-    align-self: center;
+
     padding: .5rem;
     margin: .5rem;
     border-radius: 5px; 
@@ -215,23 +213,14 @@ font-family: 'PT Serif Caption', serif; */
  a, a:visited, a:hover, a:active {
     color: inherit;
   }
-  .Routine-Content{
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  margin-top: 20px;
-  flex: 1;
- 
-  }
+
 /*AC content may be a redundant rule*/
-  .Activities-Content{
+  .contentContainer{
     display: flex;
     flex-direction: column;
+    align-self: center;
     margin-top: 20px;
-    flex: 1;
-
-    background-size: 100%;
-    background-repeat: no-repeat;
+    flex: 1 1;
   }
 
 .actionButton {

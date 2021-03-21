@@ -19,13 +19,11 @@ import {
  } from './components';
 
 function App() {
-  const [loginSuccessful, setLoginSuccessful] = useState(false);
   const [currentPage, setCurrentPage] = useState("home");
-  const logOut = () => {
-    setLoginSuccessful(false);
-    localStorage.clear();
-  }
 
+  useEffect(() => {
+
+  },[])
   return (
     <div className="App">
       <Header />
@@ -40,7 +38,7 @@ function App() {
               setCurrentPage={setCurrentPage}
             />
           </Route>
-          <Route path="/profile">
+          <Route path="/myroutines">
             <User 
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
@@ -66,8 +64,6 @@ function App() {
             <Login
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
-              loginSuccessful={loginSuccessful} 
-              setLoginSuccessful={setLoginSuccessful}
             />
           </Route>
         </Router>
