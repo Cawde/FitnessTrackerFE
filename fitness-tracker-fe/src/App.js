@@ -11,12 +11,11 @@ import {
   Header,
   Activity,
   Routines,
-  User,
   Login,
   Profile,
   Footer,
   Navbar,
-  Modal
+
  } from './components';
 
 function App() {
@@ -39,35 +38,30 @@ function App() {
             <li><Link to="/activities">Activities</Link></li>
           </ul>
         </nav>
-
         <Switch>
+
           <Route path="/home">
             <Home
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
             />
           </Route>
+
           <Route path="/myroutines">
             <Profile 
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
             />
           </Route>
+
           <Route path="/routines">
-            <Routines 
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
+            <Routines
             />
           </Route>
+
           <Route path="/activities">
             <Activity 
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
             />
           </Route>
-          
-          <Route path="/login">
-            
+
+          <Route path="/login"> 
+            <Login />
           </Route>
         </Switch>
         <Footer />
