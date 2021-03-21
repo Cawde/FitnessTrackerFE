@@ -78,7 +78,7 @@ const Routines = () => {
                     label="Name"
                     type="text"
                     fullWidth
-                    value="Name"
+                    value={name}
                     onChange={(event) => {setName(event.target.value)}} 
                 />
                 <TextField
@@ -87,7 +87,7 @@ const Routines = () => {
                     label="Goal"
                     type="text"
                     fullWidth
-                    value="Goal"
+                    value={goal}
                     onChange={(event) => setGoal(event.target.value)}
                 />
                 <button 
