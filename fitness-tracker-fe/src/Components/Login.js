@@ -3,18 +3,12 @@ import { Redirect, Link, useHistory } from 'react-router-dom';
 
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
 
-const Login = (props) => {
+const Login = () => {
   let pass = '';
   let user = '';
-  const [loginSuccessful, setLoginSuccessful] = useState(false);
   
   const history = useHistory();
 
-  useEffect(() => {
-
-  }, [loginSuccessful])
-
-  
   const storeToken = (token, user) => {
     localStorage.setItem('token', token);
     localStorage.setItem('user', user);
@@ -35,8 +29,8 @@ const Login = (props) => {
       .then(result => {
         console.log(result);
         alert(result.message);
-        setLoginSuccessful(result.success);
         storeToken(result.token, user);
+        return <Redirect to="/routines"/>
       }).catch(console.error);
   }
   
@@ -56,22 +50,19 @@ const Login = (props) => {
         console.log(result);
         alert(result.message);
         console.log(result.success);
-        setLoginSuccessful(true);
         storeToken(result.token, user);
+        return <Redirect to="/myroutines"/>
       }).catch(console.error);
   }
 
-  console.log(loginSuccessful);
-
   const logOut = () => {
     localStorage.clear();
-    setLoginSuccessful(false);
     history.push("/home");
   }
 
-  if (loginSuccessful) {
-    return <Redirect to="/myroutines"/>;
-  }
+  useEffect(() => {
+
+  }, [])
   return (
     <div className="login">
       {localStorage.getItem('user') ? <button className="actionButton" onClick={logOut}>Log Out</button> :

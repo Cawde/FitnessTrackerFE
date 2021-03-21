@@ -13,19 +13,25 @@ import {
   Routines,
   User,
   Login,
-  Footer,
-  Navbar, 
+  Footer, 
+  Modal,
+  Navbar
  } from './components';
 
 function App() {
+  const [loginSuccessful, setLoginSuccessful] = useState(false);
   const [currentPage, setCurrentPage] = useState("home");
-
+  const logOut = () => {
+    setLoginSuccessful(false);
+    localStorage.clear();
+  }
   return (
-    <div className="app">
+    <div className="App">
       <Header />
+      
       <Router>
-        <Navbar/>
-
+         <Navbar/>
+        <Modal />
         <Switch>
           <Route path="/home">
             <Home
@@ -33,7 +39,7 @@ function App() {
               setCurrentPage={setCurrentPage}
             />
           </Route>
-          <Route path="/myroutines">
+          <Route path="/profile">
             <User 
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
@@ -51,16 +57,16 @@ function App() {
               setCurrentPage={setCurrentPage}
             />
           </Route>
-          
-        </Switch>
-        <Footer />
-      
+          <Footer />
           <Route path="/login">
             <Login
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
+              loginSuccessful={loginSuccessful} 
+              setLoginSuccessful={setLoginSuccessful}
             />
           </Route>
+          </Switch>
         </Router>
         
     </div>

@@ -75,16 +75,12 @@ font-family: 'PT Serif Caption', serif; */
 .navbar {
     display: flex;
     flex-direction: row;
-}
-.navbar ul{
-  display:flex;
-  flex-direction: row; 
+    justify-content: center;
 }
 .navbar li, a {
-    font-size: 1.6em;
+    font-size: 1.2em;
     padding: 3px;
     text-decoration: none;
-    margin: 5px;
 }
 .headingH1 {
     font-family: 'Poppins', sans-serif;
@@ -136,8 +132,6 @@ font-family: 'PT Serif Caption', serif; */
   font-style: italic;
   line-height: 2em;
   background: rgba(107, 102, 100, 0.25)
-
-  
 }
  .footer {
     font-size: 1.5em;
