@@ -53,10 +53,15 @@ const Profile = () => {
       })
       .catch(console.error);
   }
-  const updateRoutine = async (event) => {
+  const updateRoutine = async (event, routineId) => {
     event.preventDefault();
+    console.log(name, goal);
     await fetch(`${BASE_URL}/routines/${routineId}`, {
       method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
       body: JSON.stringify({
         name: name,
         goal: goal
@@ -220,7 +225,7 @@ const Profile = () => {
                         label="Name"
                         type="text"
                         fullWidth
-                        value={routine.name}
+                        placeholder={routine.name}
                         onChange={(event) => {name = event.target.value}} 
                       />
                       <TextField
@@ -229,14 +234,14 @@ const Profile = () => {
                         label="goal"
                         type="text"
                         fullWidth
-                        value={routine.goal}
+                        placeholder={routine.goal}
                         onChange={(event) => {goal = event.target.value}} 
                       />
                       <button 
                         className="actionButton" 
                         type="submit" 
                         value="Submit"
-                        onClick={updateRoutine} //check this
+                          onClick={(event) => { updateRoutine(event, routine.id); setModalDisplay(false) }} //check this
                       >Submit
                       </button>
                       </DialogContent>
@@ -297,33 +302,17 @@ const Profile = () => {
                                   onChange={(event) => {duration = event.target.value}}          
                                 />
                               </label>
-                                <button className="actionButton" type="submit" onClick={() => { addActivityToRoutine(activity.id, routine.id) }}>Add Activity</button>
+                              <button className="actionButton" type="submit" onClick={() => { addActivityToRoutine(activity.id, routine.id); setModalDisplay(false) }}>Add Activity</button>
                             </header>
                         </div>
                         )
                       }): null}
                     </Menu>
                   </div>
-                    
-
                     <button className="actionButton" onClick={() => deleteRoutine(routine.id)}>Delete Routine</button>
                   </div>
               )
             }): null}  
-          <h1>Here's the current list of Activities</h1>
-          <div className="activitiesContent">
-            {activities ? activities.map((activity, index) => {
-            return (
-              <div className="card" key={index} id={activity.id} onClick={() => { getActivityId(activity.id) }}>
-                <header>
-                  <h3 className="cardTitle">{activity.name.toUpperCase()}</h3>
-                  <hr />
-                  <h3 className="cardSubtitle">Description: {activity.description}</h3>
-                </header>
-            </div>
-            )
-          }): null}
-          </div>
         </div>
       </div>: <h3>Please log in to create a routine and/or activities.</h3>}
     </>   
