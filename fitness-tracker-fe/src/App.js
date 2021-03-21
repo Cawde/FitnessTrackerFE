@@ -13,7 +13,9 @@ import {
   Routines,
   User,
   Login,
-  Footer, 
+  Footer,
+  Navbar,
+  Modal
  } from './components';
 
 function App() {
