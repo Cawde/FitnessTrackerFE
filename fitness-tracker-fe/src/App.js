@@ -27,8 +27,6 @@ function App() {
       <Header />
       
       <Router>
-         <Navbar/>
-        <Modal />
         <Switch>
           <Route path="/home">
             <Home
