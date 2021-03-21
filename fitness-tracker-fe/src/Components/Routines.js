@@ -68,45 +68,45 @@ const Routines = () => {
         open={modalDisplay}
         className='actionModal'
         onClose={() => setModalDisplay(false)}
-      >
-      <DialogContent
-        className="modalContent"
-      >
-      <TextField
-        autoFocus
-        id="routineName"
-        label="Name"
-        type="text"
-        fullWidth
-        value={name}
-        onChange={(event) => {setName(event.target.value)}} 
-      />
-      <TextField
-        autoFocus
-        id="routineGoal"
-        label="Goal"
-        type="text"
-        fullWidth
-        value={goal}
-        onChange={(event) => setGoal(event.target.value)}
-      />
-      <button 
-        className="actionButton" 
-        type="submit" 
-        value="Submit"
-        onClick={createRoutine} //check this
-      >Submit
-      </button>
-      </DialogContent>
-      <DialogActions
-        className="modalContent"
-      >
-      <div 
-        className="actionButton"
-        onClick={()=>{setModalDisplay(false)}}
-      >Cancel
-      </div>
-      </DialogActions>
+    >
+        <DialogContent
+            className="modalContent"
+        >
+                <TextField
+                    autoFocus
+                    id="routineName"
+                    label="Name"
+                    type="text"
+                    fullWidth
+                    value={name}
+                    onChange={(event) => {setName(event.target.value)}} 
+                />
+                <TextField
+                    autoFocus
+                    id="routineGoal"
+                    label="Goal"
+                    type="text"
+                    fullWidth
+                    value={goal}
+                    onChange={(event) => setGoal(event.target.value)}
+                />
+                <button 
+                    className="actionButton" 
+                    type="submit" 
+                    value="Submit"
+                    onClick={createRoutine} //check this
+                >Submit
+                </button>
+        </DialogContent>
+        <DialogActions
+            className="modalContent"
+        >
+            <div 
+                className="actionButton"
+                onClick={()=>{setModalDisplay(false)}}
+            >Cancel
+            </div>
+        </DialogActions>
     </Dialog> : null} 
       <div className="searchContainer">
         <div className="search">
