@@ -10,7 +10,8 @@ import Menu from '@material-ui/core/Menu';
 
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
 let routineId = undefined;
-
+let count = undefined;
+let duration = undefined;
 let isPublic = true;
 let activityId = undefined;
 
@@ -21,12 +22,12 @@ const Profile = () => {
   const [activities, setActivities] = useState();
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(1);
-  const [count, setCount] = useState('');
-  const [duration, setDuration] = useState('')
   const [ modalDisplay, setModalDisplay ] = useState(false); 
   const [ name, setName ] = useState('')
   const [ goal, setGoal ] = useState('')
-  const [ description, setDescription ] = useState('null')
+  const [description, setDescription] = useState('null')
+  
+
 
   const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
@@ -120,16 +121,14 @@ const Profile = () => {
       method: "POST",
       headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
       body: JSON.stringify({
-        routineActivityId: activityId,
-        count: 4, 
-        duration: 5
+        activityId: activityId,
+        count: count, 
+        duration: duration
       })
     }).then(response => response.json())
       .then(result => {
-        console.log("activity and routine following: ", activityId, routineId)
         console.log(result);
       })
       .catch(console.error);
@@ -177,7 +176,6 @@ const Profile = () => {
               <button className="actionButton" type="submit" onClick={createRoutine}>Create Routine</button>
             </form>
             {routines ? routines.map((routine, index) => {
-              console.log(routine, "is there an activities array here")
               return (
                 <div className="card" key={index} id={routine.id} onClick={()=> getRoutineId(routine.id)}>
                   <header>
@@ -187,14 +185,20 @@ const Profile = () => {
 
                     <div className="activitiesBox">
                       <h3 className="cardSubtitle">Activities:</h3>
-                      {routine.activites ? routine.activites.map((activity, index) => {
-                        <ul>
-                        
-                        <li>activity.name</li>
-                        <li>inputs here</li>
-                      </ul>
-                      })
-                      : null}
+                      {routine.activities.length ? routine.activities.map((activity, index) => {
+                          return (
+                            <div className="subContent" key={index}>
+                              <h2>Activity: </h2>
+                              <header>
+                                <h3 className="cardSubtitle">-{activity.name}</h3>
+                                <h3 className="cardSubtitle">-{activity.description}</h3>
+                                {activity.goal ? <h3 className="cardTitle">Goal: {activity.goal}</h3> : null}
+                                <h3 className="cardSutitle">Count: {activity.count} reps</h3>
+                                <h3 className="cardSubtitle">Duration: {activity.duration} minutes</h3>
+                              </header>
+                            </div>
+                          )
+                        }) : null} 
                     </div>
                   </header>
                   <button 
@@ -269,7 +273,7 @@ const Profile = () => {
                     >
                       {activities ? activities.map((activity, index) => {
                         return (
-                          <div className="card" key={index} id={activity.id} onClick={() => { addActivityToRoutine(activity.id, routine.id) }}>
+                          <div className="card" key={index} id={activity.id} onClick={() => console.log(activity.id)}>
                             <header>
                               <h3 className="cardTitle">{activity.name.toUpperCase()}</h3>
                               <hr />
@@ -294,7 +298,7 @@ const Profile = () => {
                                   onChange={(event) => {duration = event.target.value}}          
                                 />
                               </label>
-                                <button className="actionButton" type="submit" onClick={createRoutine}>Add Activity</button>
+                                <button className="actionButton" type="submit" onClick={() => { addActivityToRoutine(activity.id, routine.id) }}>Add Activity</button>
                             </header>
                         </div>
                         )
