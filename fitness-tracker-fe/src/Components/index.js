@@ -6,8 +6,8 @@ export { default as Profile } from './Profile';
 export { default as Login } from './Login';
 export { default as Navbar } from './Navbar';
 export { default as Hamburger } from './Hamburger';
-export { default as Footer } from './Footer';
-export { default as AddMenu } from './AddMenu';
+export { default as Footer } from './Footer'
+
 
 
 
