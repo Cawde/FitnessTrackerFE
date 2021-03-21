@@ -11,7 +11,8 @@ const Navbar = () => {
         localStorage.clear();
         
       }
-    return (  
+    return (
+        
         <nav>
             <Router>
                 <ul className="Navbar">
@@ -24,12 +25,12 @@ const Navbar = () => {
                 <Route>
                     <li><Link to="/activities">Activities</Link></li>
                 </Route>
-                <Route>   
+                <Route></Route>    
                     <li className="actionButton"><Link to="/login">{localStorage.getItem('user') ? "Log Out" : "Login/Register"}</Link></li>
-                </Route>
                 </ul>
             </Router>
         </nav>
+
     );
 }
 

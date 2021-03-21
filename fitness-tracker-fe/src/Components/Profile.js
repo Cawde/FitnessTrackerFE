@@ -1,6 +1,8 @@
 
 import { useState, useEffect } from 'react';
 import {  Dialog, DialogActions, DialogContent, TextField } from '@material-ui/core';
+import { AddMenu } from './'
+
 
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
 let routineId = undefined;
@@ -131,6 +133,7 @@ const Profile = () => {
               return (
                 <div className="card" key={index} id={routine.id} onClick={()=> getID(routine.id)}>
                   <header>
+                    <AddMenu />
                     <h3 className="cardTitle">{routine.name}</h3>
                     <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
                     <p className="cardContent">Creator: {routine.creatorName}</p>
