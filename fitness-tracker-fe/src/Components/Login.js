@@ -13,6 +13,7 @@ const Login = () => {
     localStorage.setItem('token', token);
     localStorage.setItem('user', user);
   }
+  const [loggedIn, setLoggedIn] = useState(false)
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -51,20 +52,24 @@ const Login = () => {
         alert(result.message);
         console.log(result.success);
         storeToken(result.token, user);
+        setLoggedIn(true);
         return <Redirect to="/myroutines"/>
       }).catch(console.error);
   }
 
   const logOut = () => {
     localStorage.clear();
+    setLoggedIn(false);
+    console.log("after", loggedIn)
     history.push("/home");
   }
 
-  useEffect(() => {
-  }, [])
+  // useEffect(() => {
+  // }, [])
+
   return (
     <div className="login">
-      {localStorage.getItem('user') ? <button className="actionButton" onClick={logOut}>Log Out</button> :
+      {loggedIn ? <button className="actionButton" onClick={logOut}>Log Out</button> :
       <div>
         <h1>Register or Sign in below</h1>
         <form className="inputBox" onSubmit={loginUser}>

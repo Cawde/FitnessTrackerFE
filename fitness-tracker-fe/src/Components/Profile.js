@@ -11,15 +11,12 @@ import Menu from '@material-ui/core/Menu';
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
 let routineId = undefined;
 
-let updateName = '';
-let updateGoal = '';
 let isPublic = true;
 let activityId = undefined;
-let count = null;
-let duration = null;
 
 const Profile = () => {
   const [routines, setRoutines] = useState();
+  const [routinesActivities, setRoutinesActivities] = useState();
   const [deletedRoutine, setDeletedRoutine] = useState();
   const [activities, setActivities] = useState();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -121,6 +118,10 @@ const Profile = () => {
   const addActivityToRoutine = async (activityId, routineId) => {
     await fetch( `${BASE_URL}/routines/${routineId}/activities`, {
       method: "POST",
+      headers: {
+      'Content-Type': 'application/json',
+      // 'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
       body: JSON.stringify({
         "activityId": activityId,
         count: 4, 
@@ -128,7 +129,7 @@ const Profile = () => {
       })
     }).then(response => response.json())
       .then(result => {
-        console.log(activityId, routineId)
+        console.log("activity and routine following: ", activityId, routineId)
         console.log(result);
       })
       .catch(console.error);
@@ -142,8 +143,6 @@ const Profile = () => {
   
   const getActivityId = (id) => {
     activityId = id;
-    console.log(id);
-    console.log(activityId)
     return activityId;
   }
   
@@ -178,12 +177,25 @@ const Profile = () => {
               <button className="actionButton" type="submit" onClick={createRoutine}>Create Routine</button>
             </form>
             {routines ? routines.map((routine, index) => {
+              console.log(routine, "is there an activities array here")
               return (
                 <div className="card" key={index} id={routine.id} onClick={()=> getRoutineId(routine.id)}>
                   <header>
                     <h3 className="cardTitle">{routine.name}</h3>
                     <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
                     <p className="cardContent">Creator: {routine.creatorName}</p>
+
+                    <div className="activitiesBox">
+                      <h3 className="cardSubtitle">Activities:</h3>
+                      {routine.activites ? routine.activites.map((activity, index) => {
+                        <ul>
+                        
+                        <li>activity.name</li>
+                        <li>inputs here</li>
+                      </ul>
+                      })
+                      : null}
+                    </div>
                   </header>
                   <button 
                       className="actionButton"
@@ -262,6 +274,27 @@ const Profile = () => {
                               <h3 className="cardTitle">{activity.name.toUpperCase()}</h3>
                               <hr />
                               <h3 className="cardSubtitle">Description: {activity.description}</h3>
+                              <label>
+                                  Count:
+                                <input 
+                                  type="number" 
+                                  name="activityCount" 
+                                  min="1"
+                                  max="20"
+                                  onChange={(event) => {count = event.target.value}} 
+                                />
+                              </label>
+                              <label>
+                                  Duration
+                                <input 
+                                  type="number" 
+                                  name="activityDuration"
+                                  min="1"
+                                  max="20"
+                                  onChange={(event) => {duration = event.target.value}}          
+                                />
+                              </label>
+                                <button className="actionButton" type="submit" onClick={createRoutine}>Add Activity</button>
                             </header>
                         </div>
                         )
