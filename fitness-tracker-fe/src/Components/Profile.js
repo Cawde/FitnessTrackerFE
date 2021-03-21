@@ -14,6 +14,8 @@ let count = undefined;
 let duration = undefined;
 let isPublic = true;
 let activityId = undefined;
+let goal = '';
+let name = '';
 
 const Profile = () => {
   const [routines, setRoutines] = useState();
@@ -23,9 +25,6 @@ const Profile = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(1);
   const [ modalDisplay, setModalDisplay ] = useState(false); 
-  const [ name, setName ] = useState('')
-  const [ goal, setGoal ] = useState('')
-  const [description, setDescription] = useState('null')
   
 
 
@@ -222,7 +221,7 @@ const Profile = () => {
                         type="text"
                         fullWidth
                         value={routine.name}
-                        onChange={(event) => {setName(event.target.value)}} 
+                        onChange={(event) => {name = event.target.value}} 
                       />
                       <TextField
                         autoFocus
@@ -231,7 +230,7 @@ const Profile = () => {
                         type="text"
                         fullWidth
                         value={routine.goal}
-                        onChange={(event) => {setGoal(event.target.value)}} 
+                        onChange={(event) => {goal = event.target.value}} 
                       />
                       <button 
                         className="actionButton" 
