@@ -20,16 +20,18 @@ import {
 
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
-
+  const logOut = () => {
+    localStorage.clear();
+    
+  }
   useEffect(() => {
 
   },[])
   return (
     <div className="App">
       <Header />
-      
       <Router>
-         <Navbar/>
+        <Navbar/>
         <Modal />
         <Switch>
           <Route path="/home">

@@ -13,6 +13,7 @@ let isPublic = true;
 const Profile = () => {
   const [routines, setRoutines] = useState();
   const [deletedRoutine, setDeletedRoutine] = useState();
+  const [activities, setActivities] = useState();
 
   const getActivities = async () => {
     await fetch(`${BASE_URL}/activities`)

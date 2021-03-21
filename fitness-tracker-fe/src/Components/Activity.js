@@ -74,7 +74,7 @@ const Activity = () => {
   }
   useEffect(() => {
     getActivities();
-  }, []);
+  }, [setActivities]);
   
   return activities ? (
     <div className="activitiesContent">
@@ -82,8 +82,8 @@ const Activity = () => {
         <div className="create-text">Create an activity below</div>
         <div className="Create-Activity">
         <div 
-                className="actionButton" 
-                onClick={()=>setModalDisplay(true)}
+          className="actionButton" 
+            onClick={()=>setModalDisplay(true)}
             >Create Activity
             </div>
             {modalDisplay ? 

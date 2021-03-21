@@ -69,6 +69,7 @@ const Modal = (modalTitle) => {
         </>)
 }
 
+export default Modal;
 
 
 
