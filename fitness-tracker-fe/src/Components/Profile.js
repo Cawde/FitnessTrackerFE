@@ -96,9 +96,9 @@ const Profile = () => {
               return (
                 <div className="Card" key={index} >
                   <header>
-                    <h3 className="cardTitle">{routine.name}</h3>
-                    <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
-                    <p className="cardContent">Creator: {routine.creatorName}</p>
+                    <h3 className="card_title">{routine.name}</h3>
+                    <h3 className="card_subtitle">Goal: {routine.goal}</h3>
+                    <p className="card_content">Creator: {routine.creatorName}</p>
                   </header>
                 </div>
               )
@@ -109,16 +109,16 @@ const Profile = () => {
             return (
               <div className="card" key={index} id={activity.id} onClick={() => { getID(activity.id) }}>
                 <header>
-                  <h3 className="cardTitle">{activity.name.toUpperCase()}</h3>
+                  <h3 className="card_title">{activity.name.toUpperCase()}</h3>
                   <hr />
-                  <h3 className="cardSubtitle">Description: {activity.description}</h3>
+                  <h3 className="card_subtitle">Description: {activity.description}</h3>
                 </header>
             </div>
             )
           }): null}
-          </div>
-        </div>
-      </div>: <h3>Please log in to create a routine and/or activities.</h3>}
+            </div>
+            </div>
+        </div>: <h3 className="Home_content">Please log in to create a routine and/or activities.</h3>}
     </>   
   )
 }

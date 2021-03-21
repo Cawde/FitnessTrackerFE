@@ -65,12 +65,12 @@ const Login = () => {
     <div className="login">
       <div>
         <h1>Register or Sign in below</h1>
-        <form className="inputBox" onSubmit={loginUser}>
+        <form className="input-box" onSubmit={loginUser}>
           <div className="container">
             <label><b>Enter Username</b></label>
             <input
               type="text"
-              name="name"
+              name="uname"
               placeholder="Enter Username" required
               onChange={(event) => { user = event.target.value }}
             />

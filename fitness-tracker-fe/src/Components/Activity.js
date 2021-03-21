@@ -81,8 +81,10 @@ const Activity = () => {
   }, [setActivities, setModalDisplay]);
   
   return activities ? (
-    <div className="contentContainer">
-        <div className="createActivity">
+    <div className="activitiesContent">
+      <div className="contentContainer">
+        <div className="create-text">Create an activity below</div>
+        <div className="Create-Activity">
         <div 
           className="actionButton" 
             onClick={()=>setModalDisplay(true)}
@@ -135,9 +137,10 @@ const Activity = () => {
                 </DialogActions>
             </Dialog> : null} 
         </div>
+    </div>
      <div className="searchContainer">
         <div className="search">
-          <form className="searchBox">
+          <form className="search-box">
           { <input 
               type="text" 
               placeholder="Search for activities here" 
@@ -154,11 +157,11 @@ const Activity = () => {
         }).map((activity, index) => {
         return (
           <div className="card" key={index} >
-
-              <p className="cardTitle">{activity['name'].toUpperCase()}</p>
+            <header>
+              <h3 className="card_title">{activity['name'].toUpperCase()}</h3>
               <hr />
-              <h3 className="cardSubtitle">Description: {activity.description}</h3>
-  
+              <h3 className="card_subtitle">Description: {activity.description}</h3>
+            </header>
           </div>
         )
       }): null}

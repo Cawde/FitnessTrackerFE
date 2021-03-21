@@ -46,7 +46,7 @@ font-family: 'PT Serif Caption', serif; */
 
 @media screen 
   and (min-device-width: 701px) {
-    .app {
+    .App {
       display: flex;
       min-height: 100vh;
       flex-direction: column;
@@ -60,33 +60,85 @@ font-family: 'PT Serif Caption', serif; */
 }
 @media screen 
   and (max-device-width: 700px) {
-    .app {
-        display: flex;
-        min-height: 100vh;
-        flex-direction: column;
-        background: #303634;
-        font-size: 0.75em;
-        background-image: url(./images/M1.svg);
-        background-repeat: no-repeat;
-        color: #303634ff;
-        min-width: 100vw;
-    }
+.App {
+
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background: #303634;
+    font-size: 0.75em;
+    background-image: url(./images/M1.svg);
+    background-repeat: no-repeat;
+    color: #303634ff;
+}
   }
-.navbar {
+.Navbar {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
-.navbar li, a {
+.Navbar li, a {
     font-size: 1.2em;
     padding: 3px;
     text-decoration: none;
 }
-.headingH1 {
+.Heading_h1 {
     font-family: 'Poppins', sans-serif;
     font-size: 6em;
 }
-.user {
+@media only screen 
+  and (min-width: 1200px) {
+  .homeContent {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    flex: 1;
+
+    background-size: auto;
+ }
+ .User {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  flex: 1;
+
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+  .activitiesContent{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+  .Routine-Content{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-top: 20px;
+    flex: 1;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    }
+}
+
+@media only screen
+  and (max-width: 768px){
+.homeContent {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    flex: 1;
+
+    background-size: 100%;
+    background-repeat: no-repeat;
+ }
+}
+
+.User {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -95,10 +147,23 @@ font-family: 'PT Serif Caption', serif; */
     background-size: 100%;
     background-repeat: no-repeat;
 }
+ .Content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: .5rem .5rem;
+    grid-template-areas:
+      "."
+      ".";
+    border-radius: 20px; 
+   ;
+    /* width: 80vw; */
+    margin: auto;
+ }
 .card {
     display: flex;
     flex-direction: column;
-    width: 60vw;
+
     padding: .5rem;
     margin: .5rem;
     border-radius: 5px; 
@@ -108,16 +173,17 @@ font-family: 'PT Serif Caption', serif; */
     box-shadow: rgb(17, 19, 18) 3px 3px 5px;
     font-weight: bolder;
 }
-.cardTitle {
+.card_details
+.card_content
+.card_title {
     font-family: 'PT Serif Caption', serif;
     font-weight: bolder;
-    color:  #ad5d4eff;
 }
-.cardSubtitle {
+.card_subtitle {
   font-family: 'PT Serif Caption', serif;;
-  font-weight: 50;
+  font-weight: 100;
 }
-.subCard{
+.sub_card{
     display: flex;
     flex-direction: column;
     font-family: 'PT Serif Caption', serif;
@@ -135,11 +201,11 @@ font-family: 'PT Serif Caption', serif; */
 
   
 }
- .footer {
+ .Footer {
     font-size: 1.5em;
     background: none;
  }
- .footer :is(a, li) {
+ .Footer :is(a, li) {
     font-size: 1.5em;  /*NOT WORKING*/
  }
 
@@ -178,11 +244,33 @@ font-family: 'PT Serif Caption', serif; */
 .hide {
     display: none;
 }
-.createText{
+.create-text{
     font-family: 'PT Serif Caption', serif;
     font-size: 1.3em;
 }
-
+/* .actionModal {
+  position: relative;
+  left: 15%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0px 1px 3px 0px #999290;
+	background:linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%);
+	border-radius:5px;
+	border:1px solid rgb(58, 54, 53);
+	display:inline-block;
+	cursor:pointer;
+	color:#303634;
+	font-family: 'PT Serif Caption', serif; 
+	font-size:13px;
+	padding:7px 10px;
+	text-decoration:none;
+  width: 60vw;
+  height: 60vh;
+} */
 
 .modalContent {
   background: linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%);
@@ -208,10 +296,3 @@ font-family: 'PT Serif Caption', serif; */
   overflow-y: 'auto'
 }
 
-.createActivity{
-  margin: auto;
-}
-.createActivity:hover{
-background:linear-gradient(to bottom, #c4bbb8 5%, #ad5c4e 100%);
-background-color:#c4bbb8;
-}
