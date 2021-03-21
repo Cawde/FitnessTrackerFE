@@ -11,8 +11,8 @@ const Routines = () => {
   const [isPublic, setIsPublic] = useState(true);
   const [ modalDisplay, setModalDisplay ] = useState(false); 
 
-  const getRoutines = async () => {
-    await fetch(`${BASE_URL}/routines`)
+  const getRoutines = () => {
+    fetch(`${BASE_URL}/routines`)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -23,9 +23,9 @@ const Routines = () => {
   useEffect(() => {
     getRoutines();
   }, []);
-  const createRoutine = async (event) => {
+  const createRoutine = (event) => {
     event.preventDefault();
-    await fetch(`${BASE_URL}/routines`, {
+    fetch(`${BASE_URL}/routines`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -43,8 +43,8 @@ const Routines = () => {
       .catch(console.error);
     userRoutines();
   }
-  const userRoutines = async () => {
-    await fetch(`${BASE_URL}/users/${localStorage.getItem('user')}/routines`, {
+  const userRoutines = () => {
+    fetch(`${BASE_URL}/users/${localStorage.getItem('user')}/routines`, {
       headers: {
         'Content-Type': 'application/json',
       },

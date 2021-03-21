@@ -31,11 +31,10 @@ function App() {
   return (
     <div className="App">
       <Header />
-      
       <Router>
-        <Navbar/>
-        <Modal />
-        <Switch>
+         <Navbar/>
+          <Modal /> 
+          <Switch>
           <Route path="/home">
             <Home
               currentPage={currentPage}
@@ -60,9 +59,7 @@ function App() {
               setCurrentPage={setCurrentPage}
             />
           </Route>
-          
-        </Switch>
-        <Footer />
+          <Footer />
         {localStorage.getItem('user') ? <button className="actionButton" onClick={logOut}>Log Out</button> : <li className="Login-btn"><Link to="/login">Login/Register here</Link></li>}
           <Route path="/login">
             <Login
@@ -72,7 +69,8 @@ function App() {
               setLoginSuccessful={setLoginSuccessful}
             />
           </Route>
-        </Router>
+          </Switch>
+      </Router>
     </div>
   )
 }

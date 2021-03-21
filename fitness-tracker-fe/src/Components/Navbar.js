@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
+
 const Navbar = () => {
     const [currentPage, setCurrentPage] = useState('')
     return (
@@ -12,7 +14,8 @@ const Navbar = () => {
                 <li><Link to="/activities">Activities</Link></li>
             </ul>
         </nav>
-    )
+    );
 }
+
 
 export default Navbar;

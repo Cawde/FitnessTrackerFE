@@ -3,11 +3,9 @@ import { useState, useEffect } from 'react';
 import {  Dialog, DialogActions, DialogContent, TextField } from '@material-ui/core';
 
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
-let routineId = undefined;
+let activityId = undefined;
 let name = '';
 let goal = '';
-let updateName = '';
-let updateGoal = '';
 let isPublic = true;
 
 const Profile = () => {
@@ -25,26 +23,13 @@ const Profile = () => {
     .catch(console.error);
   }
 
- 
+  useEffect(() => {
+    getActivities();
+  }, []);
 
   const getID = (id) => {
-    routineId = id;
-    console.log(routineId)
-  }
-
-  const updateRoutine = async (event) => {
-    event.preventDefault();
-    await fetch(`${BASE_URL}/routines/${routineId}`, {
-      method: "PATCH",
-      body: JSON.stringify({
-        name: name,
-        goal: goal
-      })
-    }).then(response => response.json())
-      .then(result => {
-        console.log(result);
-      })
-      .catch(console.error);
+    activityId = id;
+    console.log(id)
   }
 
   const createRoutine = async (event) => {
@@ -80,31 +65,10 @@ const Profile = () => {
       })
       .catch(console.error);
   }
-
-  const deleteRoutine = async (id) => {
-    await fetch(`${BASE_URL}/routines/${id}`, {
-      method: "DELETE",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    }).then(response => response.json())
-      .then(result => {
-        console.log(result);
-        setDeletedRoutine(result);
-      })
-      .catch(console.error);
-    userRoutines();
-  }
-
-  console.log(routines);
-  useEffect(() => {
-    getActivities();
-    userRoutines();
-  }, [setActivities, setRoutines, setDeletedRoutine]);
-
+  
   return (
     <>
+      {/* <button id="modalOpen" className="actionButton" onClick={toggleModal}>uiText</button> */}
       {localStorage.getItem('user') ?
         <div className="Home_content">
           <div className="create-text">Create an routine below</div>
@@ -130,14 +94,12 @@ const Profile = () => {
             </form>
             {routines ? routines.map((routine, index) => {
               return (
-                <div className="Card" key={index} id={routine.id} onClick={() => { getID(routine.id) }}>
+                <div className="Card" key={index} >
                   <header>
                     <h3 className="cardTitle">{routine.name}</h3>
                     <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
                     <p className="cardContent">Creator: {routine.creatorName}</p>
                   </header>
-                  <button className="actionButton" >Edit Routine</button>
-                  <button className="actionButton" onClick={() => deleteRoutine(routine.id)}>Delete Routine</button>
                 </div>
               )
             }): null}  
