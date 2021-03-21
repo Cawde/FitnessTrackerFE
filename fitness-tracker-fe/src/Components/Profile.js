@@ -21,6 +21,10 @@ const options = [
   'different',
   'activities'
  ];
+let activityId = undefined;
+let count = null;
+let duration = null;
+
 const Profile = () => {
   const [routines, setRoutines] = useState();
   const [deletedRoutine, setDeletedRoutine] = useState();
@@ -114,9 +118,32 @@ const Profile = () => {
     userRoutines();
   }
 
-  const getID = (id) => {
+  const getRoutineId = (id) => {
     routineId = id;
+    console.log(routineId)
     return routineId;
+  }
+  
+  const getActivityId = (id) => {
+    activityId = id;
+    console.log(activityId)
+    return activityId;
+  }
+
+
+  const addActivityToRoutine = () => {
+    fetch( `${BASE_URL}/routines/${routineId}/activities`, {
+      method: "POST",
+      body: JSON.stringify({
+        activityId: activityId,
+        count: count, 
+        duration: duration
+      })
+    }).then(response => response.json())
+      .then(result => {
+        console.log(result);
+      })
+      .catch(console.error);
   }
 
   useEffect(() => {
@@ -151,7 +178,7 @@ const Profile = () => {
             </form>
             {routines ? routines.map((routine, index) => {
               return (
-                <div className="card" key={index} id={routine.id} onClick={()=> getID(routine.id)}>
+                <div className="card" key={index} id={routine.id} onClick={()=> getRoutineId(routine.id)}>
                   <header>
                     <h3 className="cardTitle">{routine.name}</h3>
                     <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
@@ -198,7 +225,7 @@ const Profile = () => {
           <div className="activitiesContent">
             {activities ? activities.map((activity, index) => {
             return (
-              <div className="card" key={index} id={activity.id} onClick={() => { getID(activity.id) }}>
+              <div className="card" key={index} id={activity.id} onClick={() => { getActivityId(activity.id) }}>
                 <header>
                   <h3 className="cardTitle">{activity.name.toUpperCase()}</h3>
                   <hr />
