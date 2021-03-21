@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from 'react';
 import {  Dialog, DialogActions, DialogContent, TextField } from '@material-ui/core';
-import { AddMenu } from './'
+import { List, ListItem, ListItemText, MenuItem, Menu } from '@material-ui/core'
+
 
 
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
@@ -11,11 +12,30 @@ let goal = '';
 let updateName = '';
 let updateGoal = '';
 let isPublic = true;
+const activitiesHere = [
+  'a bunch',
+  'of',
+  'different',
+  'activities'
+ ];
 
 const Profile = () => {
   const [routines, setRoutines] = useState();
   const [deletedRoutine, setDeletedRoutine] = useState();
   const [activities, setActivities] = useState();
+  const [activitySelect, setActivitySelect] = useState('banana');
+  const [selectedIndex, setSelectedIndex] = useState(1);
+
+  const handleClickListItem = (event) => {
+    setActivitySelect(event.currentTarget);
+  };
+  const handleMenuItemClick = (event, index) => {
+    setSelectedIndex(index);
+    setActivitySelect(event.target.value);
+  };
+  const handleClose = () => {
+    setActivitySelect("null");
+  };
 
   const getActivities = async () => {
     await fetch(`${BASE_URL}/activities`, {
@@ -129,15 +149,42 @@ const Profile = () => {
               <button className="actionButton" type="submit" onClick={createRoutine}>Create Routine</button>
             </form>
             {routines ? routines.map((routine, index) => {
-              
               return (
                 <div className="card" key={index} id={routine.id} onClick={()=> getID(routine.id)}>
                   <header>
-                    <AddMenu />
                     <h3 className="cardTitle">{routine.name}</h3>
                     <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
                     <p className="cardContent">Creator: {routine.creatorName}</p>
                   </header>
+                  <div className='menu'>
+                <List component="nav" aria-label="Device settings">
+                    <div 
+                      className="actionButton" 
+                      primary="Add Activity to Routine" 
+                      secondary={activitySelect[selectedIndex]} 
+                      onClick={handleClickListItem}
+                      >Add Activity
+                    </div> 
+                </List>
+                <Menu
+                  id="addActivity"
+                  activitySelect={activitySelect}
+                  keepMounted
+                  open={Boolean(activitySelect)}
+                  onClose={handleClose}
+                >
+                  {activitiesHere.map((activity, index) => (
+                    <MenuItem
+                      key={activity}
+                      disabled={index === 0}
+                      selected={index === selectedIndex}
+                      onClick={(event) => handleMenuItemClick(event, index)}
+                    >
+                      {activity}
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </div>
                   <button className="actionButton">Edit Routine</button>
                   <button className="actionButton" onClick={() => deleteRoutine(routine.id)}>Delete Routine</button>
                 </div>
