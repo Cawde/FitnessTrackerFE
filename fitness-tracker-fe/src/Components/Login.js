@@ -20,9 +20,9 @@ const Login = (props) => {
     localStorage.setItem('user', user);
   }
 
-  const registerUser = (event) => {
+  const registerUser = async (event) => {
     event.preventDefault();
-    fetch(`${BASE_URL}/users/register`, {
+    await fetch(`${BASE_URL}/users/register`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -40,9 +40,9 @@ const Login = (props) => {
       }).catch(console.error);
   }
   
-  const loginUser = (event) => {
+  const loginUser = async (event) => {
     event.preventDefault();
-    fetch(`${BASE_URL}/users/login`, {
+    await fetch(`${BASE_URL}/users/login`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'

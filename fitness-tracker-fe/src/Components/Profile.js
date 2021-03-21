@@ -3,23 +3,19 @@ import { useState, useEffect } from 'react';
 import {  Dialog, DialogActions, DialogContent, TextField } from '@material-ui/core';
 
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
-
+let routineId = undefined;
+let name = '';
+let goal = '';
+let updateName = '';
+let updateGoal = '';
+let isPublic = true;
 
 const Profile = () => {
   const [routines, setRoutines] = useState();
-  const [searchTerm, setSearchTerm] = useState('');
-  const [name, setName] = useState('');
-  const [goal, setGoal] = useState('');
-  const [isPublic, setIsPublic] = useState(true);
-  const [ modalDisplay, setModalDisplay ] = useState(false); 
-  let routineId = undefined;
-  let updateName = '';
-  let updateGoal = '';
-  const [activities, setActivities] = useState();
+  const [deletedRoutine, setDeletedRoutine] = useState();
 
-
-  const getActivities = () => {
-    fetch(`${BASE_URL}/activities`)
+  const getActivities = async () => {
+    await fetch(`${BASE_URL}/activities`)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -28,23 +24,20 @@ const Profile = () => {
     .catch(console.error);
   }
 
-  useEffect(() => {
-    getActivities();
-    userRoutines();
-  }, []);
+ 
 
   const getID = (id) => {
     routineId = id;
     console.log(routineId)
   }
 
-  const updateRoutine = (event) => {
+  const updateRoutine = async (event) => {
     event.preventDefault();
-    fetch(`${BASE_URL}/routines/${routineId}`, {
+    await fetch(`${BASE_URL}/routines/${routineId}`, {
       method: "PATCH",
       body: JSON.stringify({
-        name: 'Long Cardio Day',
-        goal: 'To get your heart pumping!'
+        name: name,
+        goal: goal
       })
     }).then(response => response.json())
       .then(result => {
@@ -52,9 +45,10 @@ const Profile = () => {
       })
       .catch(console.error);
   }
-  const createRoutine = (event) => {
+
+  const createRoutine = async (event) => {
     event.preventDefault();
-    fetch(`${BASE_URL}/routines`, {
+    await fetch(`${BASE_URL}/routines`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -73,8 +67,8 @@ const Profile = () => {
     userRoutines();
   }
 
-  const userRoutines = () => {
-    fetch(`${BASE_URL}/users/${localStorage.getItem('user')}/routines`, {
+  const userRoutines = async () => {
+    await fetch(`${BASE_URL}/users/${localStorage.getItem('user')}/routines`, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -85,70 +79,64 @@ const Profile = () => {
       })
       .catch(console.error);
   }
+
+  const deleteRoutine = async (id) => {
+    await fetch(`${BASE_URL}/routines/${id}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then(response => response.json())
+      .then(result => {
+        console.log(result);
+        setDeletedRoutine(result);
+      })
+      .catch(console.error);
+    userRoutines();
+  }
+
+  console.log(routines);
+  useEffect(() => {
+    getActivities();
+    userRoutines();
+  }, [setActivities, setRoutines, setDeletedRoutine]);
+
   return (
     <>
-      {localStorage.getItem('user') ? 
-        <div className="contentContainer">
-        <div 
-        className="actionButton" 
-        onClick={()=>setModalDisplay(true)}
-    >Create Routine
-    </div>
-    {modalDisplay ? 
-    <Dialog
-        open={modalDisplay}
-        className='actionModal'
-        onClose={() => setModalDisplay(false)}
-    >
-        <DialogContent
-            className="modalContent"
-        >
-                <TextField
-                    autoFocus
-                    id="routineName"
-                    label="Name"
-                    type="text"
-                    fullWidth
-                    value="Name"
-                    onChange={(event) => {setName(event.target.value)}} 
-                />
-                <TextField
-                    autoFocus
-                    id="routineGoal"
-                    label="Goal"
-                    type="text"
-                    fullWidth
-                    value="Goal"
-                    onChange={(event) => setGoal(event.target.value)}
-                />
-                
-                <button 
-                    className="actionButton" 
-                    type="submit" 
-                    value="Submit"
-                    onClick={createRoutine} //check this
-                >Submit
-                </button>
-        </DialogContent>
-        <DialogActions
-            className="modalContent"
-        >
-            <div 
-                className="actionButton"
-                onClick={()=>{setModalDisplay(false)}}
-            >Cancel
-            </div>
-        </DialogActions>
-    </Dialog> : null} 
+      {localStorage.getItem('user') ?
+        <div className="Home_content">
+          <div className="create-text">Create an routine below</div>
+          <div className="Create-routine">
+            <form className="create_routine">
+              <label>
+                Name:
+              <input 
+                type="text" 
+                name="Routine_Name" 
+                onChange={(event) => {name = event.target.value}} 
+              />
+              </label>
+              <label>
+                Goal
+              <input 
+                type="text" 
+                name="Routine_Goal"
+                onChange={(event) => {goal = event.target.value}}          
+              />
+              </label>
+              <button className="actionButton" type="submit" onClick={createRoutine}>Create Routine</button>
+            </form>
             {routines ? routines.map((routine, index) => {
               return (
-                <div className="card" key={index} id={routine.id} onClick={() => { getID(routine.id) }}>
+                <div className="Card" key={index} id={routine.id} onClick={() => { getID(routine.id) }}>
                   <header>
                     <h3 className="cardTitle">{routine.name}</h3>
                     <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
                     <p className="cardContent">Creator: {routine.creatorName}</p>
                   </header>
-                  <button>Edit Routine</button>
+                  <button className="actionButton" >Edit Routine</button>
+                  <button className="actionButton" onClick={() => deleteRoutine(routine.id)}>Delete Routine</button>
                 </div>
               )
             }): null}  
@@ -166,7 +154,8 @@ const Profile = () => {
             )
           }): null}
           </div>
-        </div>: <h3 className="homeContent">Please log in to create a routine and/or activities.</h3>}
+        </div>
+      </div>: <h3>Please log in to create a routine and/or activities.</h3>}
     </>   
   )
 }
