@@ -24,14 +24,10 @@ const Profile = () => {
     })
     .catch(console.error);
   }
-
- 
-
   const getID = (id) => {
     routineId = id;
     console.log(routineId)
   }
-
   const updateRoutine = async (event) => {
     event.preventDefault();
     await fetch(`${BASE_URL}/routines/${routineId}`, {
@@ -46,7 +42,6 @@ const Profile = () => {
       })
       .catch(console.error);
   }
-
   const createRoutine = async (event) => {
     event.preventDefault();
     await fetch(`${BASE_URL}/routines`, {
@@ -75,7 +70,7 @@ const Profile = () => {
       },
     }).then(response => response.json())
       .then(result => {
-        console.log(result);
+        console.log("user routines is", result);
         setRoutines(result);
       })
       .catch(console.error);
@@ -106,15 +101,15 @@ const Profile = () => {
   return (
     <>
       {localStorage.getItem('user') ?
-        <div className="Home_content">
-          <div className="create-text">Create an routine below</div>
-          <div className="Create-routine">
-            <form className="create_routine">
+        <div className="homeContent">
+          <div className="createText">Create an routine below</div>
+          <div className="createRoutine">
+            <form className="createRoutine">
               <label>
                 Name:
               <input 
                 type="text" 
-                name="Routine_Name" 
+                name="routineName" 
                 onChange={(event) => {name = event.target.value}} 
               />
               </label>
@@ -122,15 +117,16 @@ const Profile = () => {
                 Goal
               <input 
                 type="text" 
-                name="Routine_Goal"
+                name="routineGoal"
                 onChange={(event) => {goal = event.target.value}}          
               />
               </label>
               <button className="actionButton" type="submit" onClick={createRoutine}>Create Routine</button>
             </form>
             {routines ? routines.map((routine, index) => {
+              
               return (
-                <div className="Card" key={index} id={routine.id} onClick={() => { getID(routine.id) }}>
+                <div className="card" key={index} id={routine.id} onClick={() => { getID(routine.id) }}>
                   <header>
                     <h3 className="cardTitle">{routine.name}</h3>
                     <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
@@ -139,6 +135,7 @@ const Profile = () => {
                   <button className="actionButton" >Edit Routine</button>
                   <button className="actionButton" onClick={() => deleteRoutine(routine.id)}>Delete Routine</button>
                 </div>
+                
               )
             }): null}  
           <h1>Here's the current list of Activities</h1>
