@@ -55,13 +55,13 @@ const Routines = () => {
       })
       .catch(console.error);
   }
-  console.log('These are the routines in the state', routines);
+  // console.log('These are the routines in the state', routines);
   return routines ? (
-    <div className="Routine-Content">
+    <div className="contentContainer">
      <div 
         className="actionButton" 
         onClick={()=>setModalDisplay(true)}
-    >Open Modal
+    >Create Routine
     </div>
     {modalDisplay ? 
     <Dialog
@@ -90,11 +90,11 @@ const Routines = () => {
                     value="Goal"
                     onChange={(event) => setGoal(event.target.value)}
                 />
-                
                 <button 
                     className="actionButton" 
                     type="submit" 
                     value="Submit"
+                    onClick={createRoutine} //check this
                 >Submit
                 </button>
         </DialogContent>
@@ -119,7 +119,6 @@ const Routines = () => {
           </form>
         </div>
       </div>
-      <h1>{routines.length} Routines</h1>
       <div className="Routines_Content">
         {routines ? routines.filter((routine) => {
           if (searchTerm === '') {
@@ -128,25 +127,25 @@ const Routines = () => {
             return routine }
         }).map((routine, index) => {
           return (
-            <div className="Card" key={index} >
+            <div className="card" key={index} >
               <header>
-                <h3 className="card_title">{routine.name}</h3>
+                <h3 className="cardTitle">{routine.name}</h3>
                 <hr />
-                <h3 className="card_subtitle">Goal: {routine.goal}</h3>
+                <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
                 <hr />
-                <p className="card_content">Creator: {routine.creatorName}</p>
+                <p className="cardContent">Creator: {routine.creatorName}</p>
               </header>
-              <div className="card_details" value={routine.id}>
+              <div className="cardContent" value={routine.id}>
                 {routine.activities.length ? routine.activities.map((activity, index) => {
                   return (
-                    <div className="sub_card" key={index}>
+                    <div className="subContent" key={index}>
                       <h2>Activity: </h2>
                       <header>
-                        <h3 className="card_title">Activity name: {activity.name}</h3>
-                        <h3 className="card_title">Activity description: {activity.description}</h3>
+                        <h3 className="cardSubtitle">Activity name: {activity.name}</h3>
+                        <h3 className="cardSubtitle">Activity description: {activity.description}</h3>
                         {activity.goal ? <h3 className="card_title">Goal: {activity.goal}</h3> : null}
-                        <h3 className="card_title">Count: {activity.count} reps</h3>
-                        <h3 className="card_title">Duration: {activity.duration} minutes</h3>
+                        <h3 className="cardSutitle">Count: {activity.count} reps</h3>
+                        <h3 className="cardSubtitle">Duration: {activity.duration} minutes</h3>
                       </header>
                     </div>
                   )
