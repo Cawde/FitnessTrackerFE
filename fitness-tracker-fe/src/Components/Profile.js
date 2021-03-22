@@ -24,7 +24,8 @@ const Profile = () => {
   const [activities, setActivities] = useState();
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(1);
-  const [ modalDisplay, setModalDisplay ] = useState(false); 
+  const [modalDisplay, setModalDisplay] = useState(false);
+  const [addRoutineActivity, setAddRoutineActivity] = useState(false);
   
 
 
@@ -136,6 +137,7 @@ const Profile = () => {
         console.log(result);
       })
       .catch(console.error);
+    setAddRoutineActivity(false);
   }
   
   const getRoutineId = (id) => {
@@ -153,6 +155,22 @@ const Profile = () => {
     getActivities();
     userRoutines();
   }, [setActivities, setDeletedRoutine, setRoutines]);
+
+  const renderActivities = (routineId) => {
+    return (<div>
+      {activities ? activities.map((activity, index) => {
+      return (
+        <div className="card" key={index} id={activity.id} onClick={() => { getActivityId(activity.id); addActivityToRoutine(activity.id, routineId) }}>
+          <header>
+            <h3 className="cardTitle">{activity.name.toUpperCase()}</h3>
+            <hr />
+            <h3 className="cardSubtitle">Description: {activity.description}</h3>
+          </header>
+      </div>
+      )
+    }) : null}
+      </div>)
+  }
 
   return (
     <>
@@ -186,7 +204,6 @@ const Profile = () => {
                     <h3 className="cardTitle">{routine.name}</h3>
                     <h3 className="cardSubtitle">Goal: {routine.goal}</h3>
                     <p className="cardContent">Creator: {routine.creatorName}</p>
-
                     <div className="activitiesBox">
                       <h3 className="cardSubtitle">Activities:</h3>
                       {routine.activities.length ? routine.activities.map((activity, index) => {
@@ -204,6 +221,8 @@ const Profile = () => {
                           )
                         }) : null} 
                     </div>
+                    <button onClick={() => { setAddRoutineActivity(true)}}>Add activity to routine</button>
+                    {addRoutineActivity && renderActivities(routine.id)}
                   </header>
                   <button 
                       className="actionButton"
@@ -241,7 +260,7 @@ const Profile = () => {
                         className="actionButton" 
                         type="submit" 
                         value="Submit"
-                          onClick={(event) => { updateRoutine(event, routine.id); setModalDisplay(false) }} //check this
+                          onClick={(event) => { setModalDisplay(false); updateRoutine(event, routine.id)  }} //check this
                       >Submit
                       </button>
                       </DialogContent>
@@ -302,7 +321,7 @@ const Profile = () => {
                                   onChange={(event) => {duration = event.target.value}}          
                                 />
                               </label>
-                              <button className="actionButton" type="submit" onClick={() => { addActivityToRoutine(activity.id, routine.id); setModalDisplay(false) }}>Add Activity</button>
+                              <button className="actionButton" type="submit" onClick={() => { setModalDisplay(false); addActivityToRoutine(activity.id, routine.id) }}>Add Activity</button>
                             </header>
                         </div>
                         )

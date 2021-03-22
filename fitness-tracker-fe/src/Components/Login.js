@@ -15,9 +15,9 @@ const Login = () => {
   }
   const [loggedIn, setLoggedIn] = useState(false)
 
-  const registerUser = (event) => {
+  const registerUser = async (event) => {
     event.preventDefault();
-    fetch(`${BASE_URL}/users/register`, {
+    await fetch(`${BASE_URL}/users/register`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -31,13 +31,15 @@ const Login = () => {
         console.log(result);
         alert(result.message);
         storeToken(result.token, user);
-        return <Redirect to="/routines"/>
+        setLoggedIn(result.success);
+        window.location.reload(true);
+        return loggedIn && <Redirect to="/myroutines" />;
       }).catch(console.error);
   }
   
-  const loginUser = (event) => {
+  const loginUser = async (event) => {
     event.preventDefault();
-    fetch(`${BASE_URL}/users/login`, {
+    await fetch(`${BASE_URL}/users/login`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -52,24 +54,23 @@ const Login = () => {
         alert(result.message);
         console.log(result.success);
         storeToken(result.token, user);
-        setLoggedIn(true);
-        return <Redirect to="/myroutines"/>
+        setLoggedIn(result.success);
+        window.location.reload(true);
+        return loggedIn && <Redirect to="/myroutines" />;
       }).catch(console.error);
   }
 
   const logOut = () => {
     localStorage.clear();
     setLoggedIn(false);
-    console.log("after", loggedIn)
-    history.push("/home");
+    window.location.reload(true);
+    return <Redirect to="/login"/>
   }
 
-  // useEffect(() => {
-  // }, [])
 
   return (
     <div className="login">
-      {loggedIn ? <button className="actionButton" onClick={logOut}>Log Out</button> :
+      {localStorage.getItem('user') ? <button className="actionButton" onClick={logOut}>Log Out</button> :
       <div>
         <h1>Register or Sign in below</h1>
         <form className="inputBox" onSubmit={loginUser}>

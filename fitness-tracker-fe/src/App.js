@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <Navbar />
+      {/* <Navbar /> */}
       <Router>
         <nav>
           <ul className="Navbar">
@@ -36,32 +36,33 @@ function App() {
             <li><Link to="/myroutines">My Routines</Link></li>
             <li><Link to="/routines">Routines</Link></li>
             <li><Link to="/activities">Activities</Link></li>
+            <li><Link to="/login">{localStorage.getItem("user") ? `Welcome, ${localStorage.getItem("user")}, click to log out` : "Click Here to Log In"}</Link></li>
           </ul>
         </nav>
         <Switch>
 
-          <Route path="/home">
-            <Home
-            />
+          <Route exact path="/home">
+            <Home/>
           </Route>
 
-          <Route path="/myroutines">
-            <Profile 
-            />
+          <Route exact path="/myroutines">
+            <Profile/>
           </Route>
 
-          <Route path="/routines">
-            <Routines
-            />
+          <Route exact path="/routines">
+            <Routines/>
           </Route>
 
-          <Route path="/activities">
-            <Activity 
-            />
+          <Route exact path="/activities">
+            <Activity/>
           </Route>
 
-          <Route path="/login"> 
+          <Route exact path="/login"> 
             <Login />
+          </Route>
+
+          <Route exact path="/*">
+            <Home/>
           </Route>
         </Switch>
         <Footer />

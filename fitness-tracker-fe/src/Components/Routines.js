@@ -58,11 +58,7 @@ const Routines = () => {
 
   return routines ? (
     <div className="contentContainer">
-     <div 
-        className="actionButton" 
-        onClick={()=>setModalDisplay(true)}
-    >Create Routine
-    </div>
+      {localStorage.getItem('user') ? <div className="actionButton" onClick={() => setModalDisplay(true)}>Create Routine</div> : null}
       {modalDisplay ? 
       <Dialog
         open={modalDisplay}
@@ -94,7 +90,7 @@ const Routines = () => {
         className="actionButton" 
         type="submit" 
         value="Submit"
-        onClick={createRoutine} //check this
+              onClick={(event) => { setModalDisplay(false); createRoutine(event)}} //check this
       >Submit
       </button>
       </DialogContent>

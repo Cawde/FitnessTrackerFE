@@ -37,7 +37,7 @@ const Activity = () => {
         }
         console.log(name, description)
         alert('Activity successfully created!');
-        return;
+        window.location.reload(true);
       })
       .catch(console.error);
   };
@@ -78,63 +78,63 @@ const Activity = () => {
 
   useEffect(() => {
     getActivities();
-  }, [setActivities, setModalDisplay]);
+  }, [setActivities, setModalDisplay, setName]);
   
   return activities ? (
     <div className="contentContainer">
-        <div className="createActivity">
-        <div 
-          className="actionButton" 
-            onClick={()=>setModalDisplay(true)}
-            >Create Activity
+      {localStorage.getItem('user') ? <div className="createActivity">
+        <div
+          className="actionButton"
+          onClick={() => setModalDisplay(true)}
+        >Create Activity
             </div>
-            {modalDisplay ? 
-            <Dialog
-                open={modalDisplay}
-                className='actionModal'
-                onClose={() => setModalDisplay(false)}
+        {modalDisplay ?
+          <Dialog
+            open={modalDisplay}
+            className='actionModal'
+            onClose={() => setModalDisplay(false)}
+          >
+            <DialogContent
+              className="modalContent"
             >
-                <DialogContent
-                    className="modalContent"
-                >
-                        <TextField
-                            autoFocus
-                            id="Name"
-                            label="Name"
-                            type="text"
-                            fullWidth
-                            value={name} //check this may need to be {name same on routines}
-                            onChange={(event) => setName(event.target.value)} 
-                        />
-                        <TextField
-                            autoFocus
-                            id="Description"
-                            label="Description"
-                            type="text"
-                            fullWidth
-                            value={description}
-                            onChange={(event) => setDescription(event.target.value)}
-                        />
+              <TextField
+                autoFocus
+                id="Name"
+                label="Name"
+                type="text"
+                fullWidth
+                value={name} //check this may need to be {name same on routines}
+                onChange={(event) => setName(event.target.value)}
+              />
+              <TextField
+                autoFocus
+                id="Description"
+                label="Description"
+                type="text"
+                fullWidth
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+              />
 
-                        <button 
-                            className="actionButton" 
-                            type="submit" 
-                            value="Submit"
-                onClick={(event) => { createActivity(event); setModalDisplay(false) }}//check this
-                          >Submit
+              <button
+                className="actionButton"
+                type="submit"
+                value="Submit"
+                onClick={(event) => { setModalDisplay(false); createActivity(event) }}//check this
+              >Submit
                         </button>
-                </DialogContent>
-                <DialogActions
-                    className="modalContent"
-                >
-                    <div 
-                        className="actionButton"
-                        onClick={()=>{setModalDisplay(false)}}
-                    >Cancel
+            </DialogContent>
+            <DialogActions
+              className="modalContent"
+            >
+              <div
+                className="actionButton"
+                onClick={() => { setModalDisplay(false) }}
+              >Cancel
                     </div>
-                </DialogActions>
-            </Dialog> : null} 
-        </div>
+            </DialogActions>
+          </Dialog> : null}
+      </div> : null}
      <div className="searchContainer">
         <div className="search">
           <form className="searchBox">
