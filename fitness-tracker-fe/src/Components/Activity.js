@@ -3,11 +3,7 @@ import { useState, useEffect } from 'react';
 import {  Dialog, DialogActions, DialogContent, TextField } from '@material-ui/core';
 
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
-
-
-
 let activityId = undefined;
-
 
 const Activity = () => {
   const [activities, setActivities] = useState();
@@ -30,12 +26,12 @@ const Activity = () => {
       })
     }).then(response => response.json())
       .then(result => {
-        console.log(result);
+
         if (result.name === "error") {
           alert('This activity already exists');
           return;
         }
-        console.log(name, description)
+
         alert('Activity successfully created!');
         window.location.reload(true);
       })
@@ -51,16 +47,14 @@ const Activity = () => {
       })
     }).then(response => response.json())
       .then(result => {
-        console.log(result);
+
         setActivities(result);
       })
       .catch(console.error);
   }
 
-
   const getID = (id) => {
     activityId = id;
-    console.log(id)
   }
 
   const getActivities = async () => {
@@ -70,7 +64,7 @@ const Activity = () => {
       },
     }).then(response => response.json())
       .then(result => {
-        console.log(result);
+  
         setActivities(result);
       })
       .catch(console.error);
@@ -103,7 +97,7 @@ const Activity = () => {
                 label="Name"
                 type="text"
                 fullWidth
-                value={name} //check this may need to be {name same on routines}
+                value={name}
                 onChange={(event) => setName(event.target.value)}
               />
               <TextField
@@ -115,14 +109,13 @@ const Activity = () => {
                 value={description}
                 onChange={(event) => setDescription(event.target.value)}
               />
-
               <button
                 className="actionButton"
                 type="submit"
                 value="Submit"
                 onClick={(event) => { setModalDisplay(false); createActivity(event) }}//check this
               >Submit
-                        </button>
+              </button>
             </DialogContent>
             <DialogActions
               className="modalContent"
@@ -154,11 +147,9 @@ const Activity = () => {
         }).map((activity, index) => {
         return (
           <div className="card" key={index} >
-
               <p className="cardTitle">{activity['name'].toUpperCase()}</p>
               <hr />
               <h3 className="cardSubtitle">Description: {activity.description}</h3>
-  
           </div>
         )
       }): null}

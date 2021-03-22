@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Redirect, Link, useHistory } from 'react-router-dom';
+import {  useState } from "react";
+import { Redirect, } from 'react-router-dom';
 
 const BASE_URL = "https://murmuring-journey-02933.herokuapp.com/api"
 
@@ -7,8 +7,6 @@ const Login = () => {
   let pass = '';
   let user = '';
   
-  const history = useHistory();
-
   const storeToken = (token, user) => {
     localStorage.setItem('token', token);
     localStorage.setItem('user', user);
@@ -28,7 +26,7 @@ const Login = () => {
       })
     }).then(response => response.json())
       .then(result => {
-        console.log(result);
+
         alert(result.message);
         storeToken(result.token, user);
         setLoggedIn(result.success);
@@ -50,9 +48,9 @@ const Login = () => {
       })
     }).then(response => response.json())
       .then(result => {
-        console.log(result);
+
         alert(result.message);
-        console.log(result.success);
+
         storeToken(result.token, user);
         setLoggedIn(result.success);
         window.location.reload(true);
@@ -66,7 +64,6 @@ const Login = () => {
     window.location.reload(true);
     return <Redirect to="/login"/>
   }
-
 
   return (
     <div className="login">
@@ -82,7 +79,6 @@ const Login = () => {
               placeholder="Enter Username" required
               onChange={(event) => { user = event.target.value }}
             />
-
             <label><b>Enter Password</b></label>
             <input
               type="password"

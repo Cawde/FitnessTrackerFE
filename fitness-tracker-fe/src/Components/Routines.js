@@ -15,7 +15,7 @@ const Routines = () => {
     await fetch(`${BASE_URL}/routines`)
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+
       setRoutines(data);
     })
     .catch(console.error);
@@ -38,7 +38,6 @@ const Routines = () => {
       })
     }).then(response => response.json())
       .then(result => {
-        console.log(result);
       })
       .catch(console.error);
     userRoutines();
@@ -50,12 +49,11 @@ const Routines = () => {
       },
     }).then(response => response.json())
       .then(result => {
-        console.log(result);
+ 
         setRoutines(result);
       })
       .catch(console.error);
   }
-
   return routines ? (
     <div className="contentContainer">
       {localStorage.getItem('user') ? <div className="actionButton" onClick={() => setModalDisplay(true)}>Create Routine</div> : null}

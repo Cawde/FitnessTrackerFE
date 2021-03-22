@@ -60,12 +60,27 @@ a, a:visited, a:hover, a:active {
     }
   }
 /* -----Component Styles----- */
-.navbar {
+nav {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-content: flex-end;
+
+    
 }
-.navbar li, a {
+nav li {
+  display: inline;
+  background: rgb(75, 85, 81);
+  margin: .5em;
+  border-radius: 5px;
+  padding: .2em;
+  box-shadow: rgb(17, 19, 18) 3px 3px 5px;
+  color: #c4bbb8ff;
+  font-size: larger;
+  text-shadow: #303634 1px 1px 1px;
+  
+}
+.nav li, a {
     font-size: 1.2em;
     padding: 3px;
     text-decoration: none;
@@ -79,7 +94,6 @@ a, a:visited, a:hover, a:active {
     flex-direction: column;
     margin-top: 20px;
     flex: 1;
-
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -95,21 +109,55 @@ a, a:visited, a:hover, a:active {
     font-size: 20px;
     box-shadow: rgb(17, 19, 18) 3px 3px 5px;
     font-weight: bolder;
+    z-index: 2;;
 }
 .cardTitle {
     font-family: 'PT Serif Caption', serif;
     font-weight: bolder;
     color:  #ad5d4eff;
+    text-shadow: rgb(17, 19, 18) 3px 3px 5px;
+    padding: .25em;
 }
+
 .cardSubtitle {
   font-family: 'PT Serif Caption', serif;;
-  font-weight: 50;
+  font-weight: 40;
+  font-size: 1em;
+  margin-left: 1em;
 }
+
+.cardContent{
+  font-size: .75em;
+  font-weight: 5;
+  padding: .2rem;
+  margin-left: 3em;
+}
+
+.cardNumbers{
+  display: inline;
+  padding: .25em;
+  margin: .5em;
+  margin-left: 3em;
+  font-size: .7em;
+  height: 1.5em;
+
+}
+
 .subCard{
     display: flex;
     flex-direction: column;
     font-family: 'PT Serif Caption', serif;
     font-size: large;
+    padding: 5px;
+}
+.activitySub{
+  background:hsl(160, 6%, 48%);
+  margin: 1.5em;
+  padding: .15em;
+  border-radius: 3px;
+  box-shadow: rgb(17, 19, 18) 3px 3px 5px; 
+  text-shadow:rgb(17, 19, 18) 3px 3px 5px; 
+  
 }
 .heroText {
   font-size: 3em;
@@ -131,19 +179,19 @@ a, a:visited, a:hover, a:active {
  /*----OUT OF ORDER-----*/
 
 
-  .contentContainer{
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    margin-top: 20px;
-    flex: 1 1;
+.contentContainer{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-top: 20px;
+  flex: 1 1;
   }
 .actionButton {
 	box-shadow: 0px 1px 3px 0px #999290;
 	background:linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%);
 	border-radius:5px;
 	border:1px solid rgb(58, 54, 53);
-	display:inline-block;
+	display:inline;
 	cursor:pointer;
 	color:#303634;
 	font-family: 'PT Serif Caption', serif; 
@@ -151,6 +199,13 @@ a, a:visited, a:hover, a:active {
 	padding:7px 10px;
 	text-decoration:none;
   max-width: fit-content;	
+}
+.buttonContainer{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+
 }
 .actionButton:hover {
 	background:linear-gradient(to bottom, #c4bbb8 5%, #ad5c4e 100%);
@@ -182,13 +237,23 @@ a, a:visited, a:hover, a:active {
   overflow-y: 'auto'
 }
 .createActivity{
-  margin: auto;
+  margin: 1em auto;
 }
 .createActivity:hover{
 background:linear-gradient(to bottom, #c4bbb8 5%, #ad5c4e 100%);
 background-color:#c4bbb8;
 }
 
+.createRoutine {
+  margin: 0 auto;
+  
+
+}
+.activitiesBox{
+  background:#4e5855;
+  border-radius: 5px;
+  box-shadow: rgb(17, 19, 18) 3px 3px 5px;
+}
 
 /* CSS HEX */
 /* --onyx: #303634ff;

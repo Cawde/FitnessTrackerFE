@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Link,
@@ -14,21 +14,16 @@ import {
   Login,
   Profile,
   Footer,
-  Navbar,
-
  } from './components';
 
 function App() {
 
-  const [currentPage, setCurrentPage] = useState("home");
-
   useEffect(() => {
-
   },[])
+  
   return (
     <div className="app">
       <Header />
-      {/* <Navbar /> */}
       <Router>
         <nav>
           <ul className="Navbar">
@@ -36,7 +31,7 @@ function App() {
             <li><Link to="/myroutines">My Routines</Link></li>
             <li><Link to="/routines">Routines</Link></li>
             <li><Link to="/activities">Activities</Link></li>
-            <li><Link to="/login">{localStorage.getItem("user") ? `Welcome, ${localStorage.getItem("user")}, click to log out` : "Click Here to Log In"}</Link></li>
+            <li className="userText"><Link to="/login">{localStorage.getItem("user") ? `Welcome, ${localStorage.getItem("user")}, click to log out` : "Click Here to Log In"}</Link></li>
           </ul>
         </nav>
         <Switch>
