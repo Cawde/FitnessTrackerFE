@@ -159,13 +159,25 @@ const Profile = () => {
   const renderActivities = (routineId) => {
     return (<div>
       {activities ? activities.map((activity, index) => {
+        console.log(activity.id, routineId);
       return (
-        <div className="card" key={index} id={activity.id} onClick={() => { getActivityId(activity.id); addActivityToRoutine(activity.id, routineId) }}>
+        <div className="card" key={index} id={activity.id}>
           <header>
             <h3 className="cardTitle">{activity.name.toUpperCase()}</h3>
             <hr />
             <h3 className="cardSubtitle">Description: {activity.description}</h3>
           </header>
+          <input
+            type="number"
+            placeholder="count"
+            onChange={(event) => { count = event.target.value }}
+          />
+          <input
+            type="number"
+            placeholder="duration"
+            onChange={(event) => { duration = event.target.value }}
+          />
+          <button onClick={() => { getActivityId(activity.id); addActivityToRoutine(activity.id, routineId) }}>Add this activity</button>
       </div>
       )
     }) : null}
@@ -224,111 +236,8 @@ const Profile = () => {
                     <button onClick={() => { setAddRoutineActivity(true)}}>Add activity to routine</button>
                     {addRoutineActivity && renderActivities(routine.id)}
                   </header>
-                  <button 
-                      className="actionButton"
-                      onClick={()=>setModalDisplay(true)}
-                      >Edit Routine
-                    </button>
-                      {modalDisplay ? 
-                      <Dialog
-                        open={modalDisplay}
-                        className='actionModal'
-                        onClose={() => setModalDisplay(false)}
-                      >
-                      <DialogContent
-                        className="modalContent"
-                      >
-                      <TextField
-                        autoFocus
-                        id="editRoutineName"
-                        label="Name"
-                        type="text"
-                        fullWidth
-                        placeholder={routine.name}
-                        onChange={(event) => {name = event.target.value}} 
-                      />
-                      <TextField
-                        autoFocus
-                        id="editRoutineGoal"
-                        label="goal"
-                        type="text"
-                        fullWidth
-                        placeholder={routine.goal}
-                        onChange={(event) => {goal = event.target.value}} 
-                      />
-                      <button 
-                        className="actionButton" 
-                        type="submit" 
-                        value="Submit"
-                          onClick={(event) => { setModalDisplay(false); updateRoutine(event, routine.id)  }} //check this
-                      >Submit
-                      </button>
-                      </DialogContent>
-                      <DialogActions
-                        className="modalContent"
-                      >
-                      <div 
-                        className="actionButton"
-                        onClick={()=>{setModalDisplay(false)}}
-                      >Cancel
-                      </div>
-                      </DialogActions>
-                    </Dialog> : null}
-                  <div className='addActivityMenu'>
-                    <List component="nav" aria-label="activityList">
-                      <ListItem
-                        className="actionButton"
-                        button
-                        aria-haspopup="true"
-                        aria-controls="lock-menu"
-                        aria-label="Add to Routine"
-                        onClick={handleClickListItem}
-                      >
-                        <ListItemText primary="Add activity to routine"/>
-                      </ListItem>
-                    </List>
-                    <Menu
-                      id="lock-menu"
-                      anchorEl={anchorEl}
-                      keepMounted
-                      open={Boolean(anchorEl)}
-                      onClose={handleClose}
-                    >
-                      {activities ? activities.map((activity, index) => {
-                        return (
-                          <div className="card" key={index} id={activity.id} onClick={() => console.log(activity.id)}>
-                            <header>
-                              <h3 className="cardTitle">{activity.name.toUpperCase()}</h3>
-                              <hr />
-                              <h3 className="cardSubtitle">Description: {activity.description}</h3>
-                              <label>
-                                  Count:
-                                <input 
-                                  type="number" 
-                                  name="activityCount" 
-                                  min="1"
-                                  max="20"
-                                  onChange={(event) => {count = event.target.value}} 
-                                />
-                              </label>
-                              <label>
-                                  Duration
-                                <input 
-                                  type="number" 
-                                  name="activityDuration"
-                                  min="1"
-                                  max="20"
-                                  onChange={(event) => {duration = event.target.value}}          
-                                />
-                              </label>
-                              <button className="actionButton" type="submit" onClick={() => { setModalDisplay(false); addActivityToRoutine(activity.id, routine.id) }}>Add Activity</button>
-                            </header>
-                        </div>
-                        )
-                      }): null}
-                    </Menu>
-                  </div>
-                    <button className="actionButton" onClick={() => deleteRoutine(routine.id)}>Delete Routine</button>
+                  <button className="actionButton" onClick={() => setModalDisplay(true)}>Edit Routine</button>
+                  <button className="actionButton" onClick={() => deleteRoutine(routine.id)}>Delete Routine</button>
                   </div>
               )
             }): null}  
