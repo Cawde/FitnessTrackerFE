@@ -1,8 +1,4 @@
-/*-----CSS STANDARDS-----*/
-/*Naming: 
 
-Names of parent classes returned from a React component are capitalized, and use underscores when needed to seperate.
-Names of children classes or classes created within the html doc conform to lowercase with underscore seperation
 /*-----IMPORTS-----*/
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif+Caption&family=Poppins:ital,wght@0,400;0,700;1,100&display=swap');
 /*-----CSS RESET----*/
@@ -28,22 +24,13 @@ ol, ul {
 	list-style: none;
 }
 /*-----Global Styles-----*/
-html { font-size: 100%; }
-
-h1 { font-size: 2em; }
-
-/* CSS HEX */
-/* --onyx: #303634ff;
---black-olive: #3a413eff;
---crimson-ua: #ac0c2cff;
---redwood: #ad5d4eff;
---pale-silver: #c4bbb8ff; */
-
-
-/* font-family: 'Poppins', sans-serif;
-
-font-family: 'PT Serif Caption', serif; */
-
+html { 
+  font-size: 100%; 
+}
+a, a:visited, a:hover, a:active {
+  color: inherit;
+}
+/* -----Media Queries----- */
 @media screen 
   and (min-device-width: 701px) {
     .app {
@@ -72,6 +59,7 @@ font-family: 'PT Serif Caption', serif; */
         min-width: 100vw;
     }
   }
+/* -----Component Styles----- */
 .navbar {
     display: flex;
     flex-direction: row;
@@ -140,13 +128,9 @@ font-family: 'PT Serif Caption', serif; */
  .footer :is(a, li) {
     font-size: 1.5em;  /*NOT WORKING*/
  }
-
  /*----OUT OF ORDER-----*/
- a, a:visited, a:hover, a:active {
-    color: inherit;
-  }
 
-/*AC content may be a redundant rule*/
+
   .contentContainer{
     display: flex;
     flex-direction: column;
@@ -154,7 +138,6 @@ font-family: 'PT Serif Caption', serif; */
     margin-top: 20px;
     flex: 1 1;
   }
-
 .actionButton {
 	box-shadow: 0px 1px 3px 0px #999290;
 	background:linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%);
@@ -173,28 +156,21 @@ font-family: 'PT Serif Caption', serif; */
 	background:linear-gradient(to bottom, #c4bbb8 5%, #ad5c4e 100%);
 	background-color:#c4bbb8;
 }
-.hide {
-    display: none;
-}
 .createText{
     font-family: 'PT Serif Caption', serif;
     font-size: 1.3em;
 }
-
-
 .modalContent {
   background: linear-gradient(to bottom, #c4bbb8ff 5%, rgb(107, 102, 100) 100%);
   display: flex;
   flex-direction: column;;
   justify-content: center;
 }
-
 .searchContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-
 .actionModal{
   width: '100%';
   max-width: '100vw';
@@ -205,7 +181,6 @@ font-family: 'PT Serif Caption', serif; */
   transform: 'translate(0, -50%)';
   overflow-y: 'auto'
 }
-
 .createActivity{
   margin: auto;
 }
@@ -213,3 +188,14 @@ font-family: 'PT Serif Caption', serif; */
 background:linear-gradient(to bottom, #c4bbb8 5%, #ad5c4e 100%);
 background-color:#c4bbb8;
 }
+
+
+/* CSS HEX */
+/* --onyx: #303634ff;
+--black-olive: #3a413eff;
+--crimson-ua: #ac0c2cff;
+--redwood: #ad5d4eff;
+--pale-silver: #c4bbb8ff; */
+/* font-family: 'Poppins', sans-serif;
+
+font-family: 'PT Serif Caption', serif; */
